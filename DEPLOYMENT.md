@@ -6,7 +6,7 @@ Deploy `frontend/` as the project root. Set `VITE_API_BASE_URL` to the HTTPS URL
 
 ## Backend (Render or equivalent)
 
-Use `render.yaml` or deploy the repository with `pip install -r backend/requirements.txt` and `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`. Store `GEMINI_API_KEY` in the host secret manager, never in Git. Set `GEMINI_MODEL` and `ALLOWED_ORIGINS` to the exact frontend origins.
+Use `render.yaml` or deploy the repository with `pip install -r backend/requirements.txt` and `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`. Store `GEMINI_API_KEY` in the host secret manager, never in Git. Set `GEMINI_MODEL` and `ALLOWED_ORIGINS` to the exact frontend origins. The Docker image deliberately excludes the local PDF corpus and indexes; attach persistent storage and ingest approved documents after deployment.
 
 ## Before making it public
 
