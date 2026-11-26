@@ -1,12 +1,14 @@
 import json
 import os
 import hmac
+import secrets
 import time
 from collections import defaultdict, deque
 import re
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 import numpy as np
 from typing import Literal
 from sentence_transformers import SentenceTransformer
@@ -21,6 +23,7 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile, Request
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from rank_bm25 import BM25Okapi
 # --------------------------------------------------
@@ -54,10 +57,17 @@ SESSION_SECRET = os.getenv('INDIRAG_SESSION_SECRET', '')
 PRODUCTION = os.getenv('INDIRAG_PRODUCTION', 'false').lower() == 'true'
 if (PRODUCTION and not AUTH_ENABLED) or (AUTH_ENABLED and (len(TEAM_PASSWORD) < 16 or len(SESSION_SECRET) < 32)):
     raise RuntimeError('Authentication requires a team password of at least 16 characters and a session secret of at least 32 characters; production requires authentication.')
+if PRODUCTION and (not os.getenv('INDIRAG_DATA_DIR') or not Path(os.environ['INDIRAG_DATA_DIR']).is_absolute()):
+    raise RuntimeError('Production requires an absolute INDIRAG_DATA_DIR on persistent storage.')
 ORIGINS = [origin.strip() for origin in os.getenv('ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173').split(',') if origin.strip()]
-if PRODUCTION and (not ORIGINS or '*' in ORIGINS or any(not x.startswith('https://') for x in ORIGINS)):
+def secure_origin(origin):
+    parsed = urlsplit(origin)
+    return parsed.scheme == 'https' and bool(parsed.hostname) and not parsed.username and not parsed.password and not parsed.path and not parsed.query and not parsed.fragment and '*' not in origin
+if PRODUCTION and (not ORIGINS or any(not secure_origin(origin) for origin in ORIGINS)):
     raise RuntimeError('Production CORS requires explicit HTTPS origins.')
 request_times = defaultdict(deque)
+active_sessions = {}
+SESSION_LIFETIME_SECONDS = 8 * 60 * 60
 
 @app.middleware('http')
 async def access_control(request: Request, call_next):
@@ -66,8 +76,12 @@ async def access_control(request: Request, call_next):
         origin = request.headers.get('origin')
         if origin and origin not in ORIGINS:
             return JSONResponse({'detail': 'Origin not allowed.'}, status_code=403)
-        if AUTH_ENABLED and path not in ('/api/health', '/api/login') and not request.session.get('authenticated'):
-            return JSONResponse({'detail': 'Login required.'}, status_code=401)
+        if AUTH_ENABLED and path not in ('/api/health', '/api/login'):
+            session_id = request.session.get('session_id')
+            expiry = active_sessions.get(session_id, 0)
+            if expiry <= time.time():
+                active_sessions.pop(session_id, None)
+                return JSONResponse({'detail': 'Login required.'}, status_code=401)
         if path in ('/api/login', '/api/query', '/api/evaluation/qa'):
             key = (request.client.host if request.client else 'unknown', path)
             now = time.monotonic(); q = request_times[key]
@@ -93,12 +107,21 @@ class LoginRequest(BaseModel):
 def login(request: Request, credentials: LoginRequest):
     if not AUTH_ENABLED or not hmac.compare_digest(credentials.password, TEAM_PASSWORD):
         raise HTTPException(status_code=401, detail='Invalid credentials.')
+    old_id = request.session.get('session_id')
+    active_sessions.pop(old_id, None)
     request.session.clear()
-    request.session['authenticated'] = True
+    now = time.time()
+    for session_id, expires in list(active_sessions.items()):
+        if expires <= now:
+            active_sessions.pop(session_id, None)
+    session_id = secrets.token_urlsafe(32)
+    active_sessions[session_id] = now + SESSION_LIFETIME_SECONDS
+    request.session['session_id'] = session_id
     return {'status': 'authenticated'}
 
 @app.post('/api/logout')
 def logout(request: Request):
+    active_sessions.pop(request.session.get('session_id'), None)
     request.session.clear()
     return {'status': 'signed out'}
 # --------------------------------------------------
@@ -514,3 +537,12 @@ def run_qa_evaluation(request: QAExperimentRequest):
         output["pipelines"][pipeline] = run_pipeline(rows, runner)
     output["note"] = "Only completed calls contribute to metrics. API/generation failures are reported separately and never relabeled as UNANSWERABLE. Unsupported-answer rate requires a separate manual support annotation."
     return output
+
+
+# Optional same-origin deployment: API routes take precedence over static pages.
+frontend_dir = os.getenv('INDIRAG_FRONTEND_DIR')
+if frontend_dir:
+    frontend_path = Path(frontend_dir).resolve()
+    if not (frontend_path / 'index.html').is_file():
+        raise RuntimeError('INDIRAG_FRONTEND_DIR must contain a built frontend and index.html.')
+    app.mount('/', StaticFiles(directory=frontend_path, html=True), name='frontend')

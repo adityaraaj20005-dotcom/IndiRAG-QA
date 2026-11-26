@@ -4,6 +4,10 @@
 
 From the project root, open two PowerShell terminals. In the first run `cd backend`, `.\.venv\Scripts\Activate.ps1`, then `uvicorn main:app --reload --port 8000`. In the second run `cd frontend` and `npm run dev`. Open `http://127.0.0.1:5173`.
 
+Alternatively, after installation run `powershell -ExecutionPolicy Bypass -File .\start-demo.ps1` from the project root. It starts both processes hidden and refuses to start if either default port is occupied. The workspace defaults to retrieval-only: expand the evidence panel to show real page numbers and passage IDs without consuming Gemini quota. There are no completed saved unanswerable QA examples to demonstrate as actual predictions.
+
+Before the presentation, start the app and warm Dense or Hybrid retrieval once. The multilingual model must already be present in the local Sentence Transformers cache for an offline demonstration; the first use may download it and may take substantial time. Uploading documents and showing saved aggregate results do not need Gemini quota. Do not present the 429-interrupted unanswerable cases as completed predictions.
+
 This Bennett University CSET 346 project uses a Vite interface and FastAPI backend. PyMuPDF extracts text; BM25 and TF-IDF supply lexical retrieval; Sentence Transformers supplies multilingual dense retrieval; reciprocal rank fusion combines rankings. Gemini generates grounded answers with retrieved citation-ID validation.
 
 ## Ten-minute sequence

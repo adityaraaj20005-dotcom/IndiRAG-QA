@@ -226,11 +226,12 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 <!-- Action Row -->
 <div class="flex flex-wrap items-center justify-between gap-gutter-md pt-gutter-sm border-t border-border">
 <span class="font-mono text-label-sm text-text-muted">
-              POST /api/query · generate_answer: true
+              <label><input id="retrieval-only" type="checkbox" checked/> Retrieval only — no Gemini request</label>
+<button id="team-logout" type="button" class="ml-4 underline">Sign out of team workspace</button>
             </span>
 <!-- COMPONENT: button-primary -->
 <button class="group inline-flex items-center justify-center gap-gutter-sm px-gutter-xl py-3 rounded-full bg-primary text-on-primary font-label text-label-lg transition-colors duration-state-change ease-state-change hover:bg-black hover:text-on-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-black" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" id="ask-ai-btn" type="button">
-<span data-design-text-token="label-lg">Ask AI</span>
+<span id="ask-button-label" data-design-text-token="label-lg">Search evidence</span>
 <span aria-hidden="true" class="material-symbols-outlined text-title-md transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
 </button>
 </div>
@@ -238,7 +239,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 <!-- Loading & Error States -->
 <div aria-live="polite" class="hidden border border-black bg-surface-white p-gutter-lg flex items-center gap-gutter-md" id="qa-loading" role="status">
 <span aria-hidden="true" class="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
-<span class="font-mono text-mono-md text-on-surface">Retrieving evidence passages and synthesizing grounded answer...</span>
+<span class="font-mono text-mono-md text-on-surface">Retrieving evidence; generation runs only if enabled...</span>
 </div>
 <div class="hidden border border-error bg-primary-tint p-gutter-lg flex items-start justify-between gap-gutter-md" id="qa-error" role="alert">
 <div>
@@ -266,7 +267,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 </div>
 <!-- Answer Body -->
 <div class="p-gutter-xl border-b border-border">
-<span class="font-mono text-label-sm uppercase text-text-muted block mb-gutter-sm">Evidence-Grounded Answer</span>
+<span id="result-heading" class="font-mono text-label-sm uppercase text-text-muted block mb-gutter-sm">Evidence-Grounded Answer</span>
 <p class="font-devanagari text-headline-md text-on-surface leading-relaxed max-w-prose text-pretty" id="res-answer-text">
               Submit a question above to query your indexed corpus via <code class="font-mono text-mono-md bg-surface px-1.5 py-0.5">POST /api/query</code>. When answered, the grounded response, answerability verdict, and supporting citations appear here.
             </p>

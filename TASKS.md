@@ -33,3 +33,20 @@
 - [ ] Complete browser upload, folder, export download, authentication, and responsive interaction testing.
 - [ ] Obtain diverse source documents and independently review a larger benchmark; complete 15 distinct difficult-case analyses.
 - [ ] Configure and test an HTTPS same-origin API proxy and persistent production volume before deployment.
+
+## Release preparation
+
+- [x] Default the QA Workspace to retrieval-only; verify a browser query and all four retrieval columns with disposable local data.
+- [x] Add same-origin container configuration, production fail-closed settings, revocable single-worker team sessions, a Windows launcher and academic outlines.
+- [x] Test secure cookie flags, logout/replay rejection, session expiry, and local-copy public corpus seeding through HTTP/application tests.
+- [ ] Verify the built container and HTTPS hosting, persistent disk, final-domain cookie flow, reverse-proxy rate limits, file scanning and backup policy before deployment.
+- [ ] Verify browser folder/file selection, removal, authentication interaction, download completion and mobile layouts in the target browser.
+- [ ] Review tracked team names and student identifiers and approve the private repository before publishing.
+
+## Final release round
+
+- [x] Add retrieval-only default, saved-result demo, a launcher, IEEE paper and presentation outlines.
+- [x] Exercise all four retrieval methods in the browser; test production cookie attributes, session expiry and logout invalidation through local HTTP tests.
+- [x] Scan reachable Git blobs for selected secret signatures and excluded paths; record personal information for owner review.
+- [ ] Validate browser file/folder uploads, deletion and authentication; verify export actually downloads and test mobile interactions.
+- [ ] Build and test the Docker image, real HTTPS domain and persistent storage; review file scanning and shared rate limiting before any public deployment.

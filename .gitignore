@@ -1,5 +1,7 @@
 # Secrets and local environments
 .env
+.env.*
+!.env.example
 backend/.env
 .venv/
 backend/.venv/
@@ -9,11 +11,15 @@ frontend/node_modules/
 # Private or replaceable document corpus and generated indexes
 data/raw/
 data/processed/
+*.pdf
+*.pem
+*.key
 
 # Caches and build products
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
+.release-test/
 frontend/dist/
 .DS_Store

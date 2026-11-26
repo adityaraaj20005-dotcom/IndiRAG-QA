@@ -2,27 +2,27 @@
 
 ## Frontend (Vercel)
 
-Deploy `frontend/` as the project root. Set `VITE_API_BASE_URL` to the HTTPS URL of the API, then run `npm ci && npm run build`. The supplied `vercel.json` allows the multipage static app to be served unchanged.
+The preferred prepared configuration serves the built frontend from FastAPI in one Docker service, with `/api` on the same HTTPS origin. The Vercel configuration is static-only and does not proxy `/api`; do not deploy it separately until an explicit HTTPS reverse proxy is configured and tested.
 
 ## Backend (Render or equivalent)
 
-Use `render.yaml` or deploy the repository with `pip install -r backend/requirements.txt` and `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`. Store `GEMINI_API_KEY` in the host secret manager, never in Git. Set `GEMINI_MODEL` and `ALLOWED_ORIGINS` to the exact frontend origins. The Docker image deliberately excludes the local PDF corpus and indexes; attach persistent storage and ingest approved documents after deployment.
+The prepared `render.yaml` uses the multi-stage Dockerfile, port 8000 and `/api/health`. It serves the frontend and API together. Store `GEMINI_API_KEY` in the host secret manager, never in Git. Set `GEMINI_MODEL` and `ALLOWED_ORIGINS` to the exact HTTPS site origin. Attach persistent storage and set its absolute mount path as `INDIRAG_DATA_DIR`. The image excludes local PDFs and indexes. Docker and an actual HTTPS host were not available for end-to-end verification in this workspace.
 
 ## Team access and storage
 
 Set `INDIRAG_PRODUCTION=true`, `INDIRAG_AUTH_ENABLED=true`, a strong `INDIRAG_TEAM_PASSWORD` of at least 16 characters and an independent random `INDIRAG_SESSION_SECRET` of at least 32 characters in the host secret manager. Set `ALLOWED_ORIGINS` to exact HTTPS frontend origins. The HTTP-only signed session grants access to the shared team workspace. Cross-site cookie restrictions can prevent authentication in some browsers; verify on the intended hosting domains.
 
-Set `INDIRAG_DATA_DIR` to a persistent mounted directory for PDFs and indexes. Back up that volume independently. The in-process rate limit is per worker, so use one worker for a demonstration and a shared reverse-proxy limiter for public deployment. Production mode fails to start without authentication and HTTPS CORS configuration.
+Set `INDIRAG_DATA_DIR` to an absolute persistent mounted directory for PDFs and indexes. Back up that volume independently. The in-process rate limit and session registry are per worker, so use one worker for a demonstration and a shared reverse-proxy limiter for public deployment. Sessions expire after eight hours, logout invalidates the server-side session, and a restart invalidates all sessions. Production mode fails to start without authentication, an absolute data path and explicit HTTPS CORS origins. Production cookies are Secure, HttpOnly and SameSite=None. TLS must terminate at a trusted HTTPS host.
 
 ## Reproducible public corpus
 
-`backend/seed_public_corpus.py` downloads two official Ministry of Education PDFs documented in `research/datasets/qa_pilot_evidence.md`. To seed a new dedicated empty directory, in PowerShell set `$env:INDIRAG_DATA_DIR` to its absolute path, set `$env:INDIRAG_PRODUCTION='false'` and `$env:INDIRAG_AUTH_ENABLED='false'`, then from `backend/` run `python seed_public_corpus.py`. Do this offline before starting the secured service; restore production environment settings before serving. The script refuses a nonempty target. Generated document IDs differ from existing benchmark IDs; relabel or map gold IDs before rerunning evaluation. Never copy a private local index into a public image.
+`backend/seed_public_corpus.py` can use two approved official PDFs documented in `research/datasets/qa_pilot_evidence.md`. In the current environment the automatic official URL returned HTTP 404, so use verified local public copies: set `$env:INDIRAG_DATA_DIR` to a dedicated empty directory, `$env:INDIRAG_PRODUCTION='false'` and `$env:INDIRAG_AUTH_ENABLED='false'`; then from `backend/` run `python seed_public_corpus.py --faq <faq.pdf> --guidelines <guidelines.pdf>`. A local-copy seed was tested and indexed 26 and 11 passages. Restore production settings before serving. The script records source URLs and hashes, but cannot establish a local file's provenance; review the files first. Generated document IDs differ from historical benchmark IDs; relabel or map gold IDs before rerunning evaluation.
 
 ## Frontend and cross-origin sessions
 
-Production frontend builds default to same-origin `/api`. Before deployment, configure the hosting provider's HTTPS reverse proxy to forward `/api/*` to the backend without exposing backend credentials; validate cookie and origin behavior on the final domains. Alternatively `VITE_API_BASE_URL` may target an HTTPS backend, but cross-site cookie blocking can break sessions. The supplied Vercel configuration does not yet establish an API proxy; set and test its destination after a backend hostname exists. No hosting configuration here has been deployed or tested end-to-end.
+Production frontend builds default to same-origin `/api`; the Docker image bundles and serves both on one host, avoiding cross-site cookies and a separate proxy. For separate Vercel hosting an explicit `/api/*` HTTPS reverse proxy is still required. No hosting configuration here has been deployed or tested end-to-end.
 
-CPU-only PyTorch and multilingual MiniLM consume substantial memory. Model and embeddings load lazily; the 46-passage local corpus is much smaller than a production corpus. Memory depends on OS, package builds, model cache and concurrency; no reliable deployment peak was measured in this round. Measure cold start and peak RAM with the final image before selecting a host. Use persistent disk for the model cache if appropriate.
+One Windows test process with the model loaded and one indexed passage used approximately 1,160 MiB working set and 2,393 MiB private committed memory at one observation. This is not a peak or a Linux container measurement. A conservative initial sizing estimate is at least 4 GiB RAM and two CPU cores for one worker, with additional headroom for concurrency, model loading and the OS; actual needs may be higher. Benchmark the final image and corpus before choosing or purchasing a host. Persist the model cache if appropriate.
 
 ## Publishing after approval
 
@@ -30,4 +30,4 @@ Review `git status`, `git ls-files`, and the staged diff for secrets and private
 
 ## Before making it public
 
-The team password grants access to every document. Before public deployment, add a hardened shared rate limiter, file scanning, operational logging, a document review policy, and tested backups. Treat PDF text as untrusted prompt input. PyTorch and the multilingual model require substantial memory and cold-start time; measure on the selected host. No public deployment has been verified.
+The team password grants access to every document. Before public deployment, add a hardened shared rate limiter, proxy-level request-body limits, PDF malware scanning, operational logging, a document review policy, and tested backups. The application checks file extension, parsing and a 20 MiB application read limit; it does not scan for malware and the multipart body may be buffered before application validation. Treat PDF text as untrusted prompt input. No public deployment has been verified.

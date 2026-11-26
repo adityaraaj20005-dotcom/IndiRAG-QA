@@ -1,9 +1,16 @@
 .env
 backend/.env
+.env.*
+**/.env*
 .venv
 backend/.venv
 node_modules
 frontend/node_modules
 .git
 data/raw
+data/processed
 __pycache__
+.release-test
+*.pdf
+*.pem
+*.key

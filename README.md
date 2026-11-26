@@ -24,6 +24,8 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. API documentation is at `http://127.0.0.1:8000/docs`.
 
+On Windows, after installation, `powershell -ExecutionPolicy Bypass -File .\start-demo.ps1` starts both services hidden if ports 8000 and 5173 are free. The QA workspace defaults to retrieval-only mode, so the demo does not require Gemini quota. Stop those processes using your normal process manager; the script does not stop pre-existing services.
+
 ## Evaluation
 
 The included pilot benchmark is retrieval-only. QA metrics require manually verified answers and gold passage IDs using `research/datasets/qa_annotation_template.json`. The UI and `/api/evaluation/qa` require explicit confirmation before live Gemini evaluation. See `research/METRICS.md`, `research/EXPERIMENTS.md`, and `DEPLOYMENT.md`.

@@ -30,3 +30,10 @@ def test_isolated_upload_scoping_retrieval_and_removal(tmp_path, monkeypatch):
     assert client.post('/api/documents/upload', files={'file': ('fake.pdf', b'not a pdf', 'application/pdf')}).status_code == 400
     assert client.delete('/api/documents/' + doc_id).status_code == 200
     assert client.get('/api/documents').json()['count'] == 0
+
+
+def test_upload_limit_and_type(monkeypatch):
+    monkeypatch.setattr(main, 'MAX_FILE_SIZE', 100)
+    client = TestClient(main.app)
+    assert client.post('/api/documents/upload', files={'file': ('large.pdf', b'x' * 101, 'application/pdf')}).status_code == 413
+    assert client.post('/api/documents/upload', files={'file': ('wrong.txt', b'abc', 'text/plain')}).status_code == 415
