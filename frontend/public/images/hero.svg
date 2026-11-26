@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1600" height="900"
+     viewBox="0 0 1600 900">
+
+  <style>
+    .serif {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+    }
+
+    .sans {
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: -4px;
+    }
+
+    .mono {
+      font-family: 'Courier New', monospace;
+      letter-spacing: 4px;
+    }
+
+    .hindi {
+      font-family: 'Nirmala UI', Mangal, sans-serif;
+    }
+
+    .word {
+      fill: #111111;
+      animation: appear 8s ease-in-out infinite;
+    }
+
+    @keyframes appear {
+      0%, 100% { opacity: 0.12; }
+      35%, 65% { opacity: 0.85; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .word {
+        animation: none;
+        opacity: 0.65;
+      }
+    }
+  </style>
+
+  <rect width="1600" height="900" fill="#ffffff"/>
+
+  <text x="100" y="165"
+        class="word serif"
+        font-size="145"
+        style="animation-delay:-1s">
+    Knowledge.
+  </text>
+
+  <text x="1120" y="130"
+        class="word hindi"
+        font-size="65"
+        style="animation-delay:-3s">
+    भाषा
+  </text>
+
+  <text x="180" y="340"
+        class="word hindi"
+        font-size="115"
+        style="animation-delay:-5s">
+    ज्ञान
+  </text>
+
+  <text x="750" y="330"
+        class="word sans"
+        font-size="140"
+        font-weight="700"
+        style="animation-delay:-2s">
+    Answers.
+  </text>
+
+  <text x="570" y="430"
+        class="word mono"
+        font-size="35"
+        style="animation-delay:-4s">
+    EVIDENCE
+  </text>
+
+  <text x="100" y="590"
+        class="word sans"
+        font-size="160"
+        font-weight="400"
+        style="animation-delay:-6s">
+    Discover.
+  </text>
+
+  <text x="1060" y="510"
+        class="word serif"
+        font-size="85"
+        style="animation-delay:-2s">
+    Samjho.
+  </text>
+
+  <text x="1220" y="710"
+        class="word hindi"
+        font-size="110"
+        style="animation-delay:-4s">
+    उत्तर
+  </text>
+
+  <text x="150" y="760"
+        class="word mono"
+        font-size="30"
+        style="animation-delay:-3s">
+    RETRIEVE / UNDERSTAND
+  </text>
+
+  <text x="690" y="840"
+        class="word serif"
+        font-size="100"
+        style="animation-delay:-5s">
+    Meaning.
+  </text>
+
+  <text x="520" y="245"
+        class="word mono"
+        font-size="25"
+        style="animation-delay:-7s">
+    QUESTION / ANSWER
+  </text>
+
+  <text x="340" y="680"
+        class="word hindi"
+        font-size="50"
+        style="animation-delay:-1s">
+    खोज
+  </text>
+
+</svg>

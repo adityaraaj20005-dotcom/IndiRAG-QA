@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What is the maximum annual family income for scholarship eligibility?",
+    "language": "English",
+    "relevant_passage_ids": [
+      "d03cd512b5b8_P2_C1",
+      "cf525ca294ba_P1_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "छात्रवृत्ति के लिए परिवार की अधिकतम वार्षिक आय कितनी होनी चाहिए?",
+    "language": "Hindi",
+    "relevant_passage_ids": [
+      "d03cd512b5b8_P2_C1",
+      "cf525ca294ba_P1_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "Scholarship ke liye family income limit kitni hai?",
+    "language": "Hinglish",
+    "relevant_passage_ids": [
+      "d03cd512b5b8_P2_C1",
+      "cf525ca294ba_P1_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "Are distance learning courses eligible under the scheme?",
+    "language": "English",
+    "relevant_passage_ids": [
+      "d03cd512b5b8_P2_C1"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "क्या दूरस्थ शिक्षा के पाठ्यक्रम इस योजना के लिए पात्र हैं?",
+    "language": "Hindi",
+    "relevant_passage_ids": [
+      "d03cd512b5b8_P2_C1"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "Distance learning course scholarship ke liye eligible hai kya?",
+    "language": "Hinglish",
+    "relevant_passage_ids": [
+      "d03cd512b5b8_P2_C1"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "What minimum attendance is required for scholarship renewal?",
+    "language": "English",
+    "relevant_passage_ids": [
+      "cf525ca294ba_P2_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "छात्रवृत्ति के नवीनीकरण के लिए न्यूनतम उपस्थिति कितनी होनी चाहिए?",
+    "language": "Hindi",
+    "relevant_passage_ids": [
+      "cf525ca294ba_P2_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "Scholarship renewal ke liye minimum attendance kitni chahiye?",
+    "language": "Hinglish",
+    "relevant_passage_ids": [
+      "cf525ca294ba_P2_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "What minimum marks are required for scholarship renewal?",
+    "language": "English",
+    "relevant_passage_ids": [
+      "cf525ca294ba_P2_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "छात्रवृत्ति के नवीनीकरण के लिए न्यूनतम अंक कितने होने चाहिए?",
+    "language": "Hindi",
+    "relevant_passage_ids": [
+      "cf525ca294ba_P2_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  },
+  {
+    "question": "Scholarship renew karne ke liye minimum marks kitne chahiye?",
+    "language": "Hinglish",
+    "relevant_passage_ids": [
+      "cf525ca294ba_P2_C2"
+    ],
+    "collection_id": "folder-scholarship_dataset"
+  }
+]

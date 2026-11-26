@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Methodology — IndiRAG-QA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#FF5722',
+        'on-primary': '#080808',
+        'primary-deep': '#B02F00',
+        'on-primary-deep': '#FFFFFF',
+        'primary-tint': '#FFEDE8',
+        'on-primary-tint': '#3B0900',
+        'black': '#080808',
+        'on-black': '#FFFFFF',
+        'surface': '#F5F3EE',
+        'on-surface': '#080808',
+        'surface-white': '#FFFFFF',
+        'on-surface-white': '#080808',
+        'surface-container': '#E5E2E1',
+        'on-surface-container': '#080808',
+        'muted': '#898989',
+        'text-muted': '#5F5E5E',
+        'border': '#D9D9D9',
+        'border-dark': '#313030',
+        'error': '#BA1A1A',
+        'on-error': '#FFFFFF',
+        'success': '#1B5E20',
+        'on-success': '#FFFFFF',
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '2px',
+        'DEFAULT': '4px',
+        'md': '8px',
+        'lg': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '32px',
+      },
+      fontFamily: {
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'headline': ['"Space Grotesk"', 'sans-serif'],
+        'title': ['"Geist"', 'sans-serif'],
+        'body': ['"Geist"', 'sans-serif'],
+        'label': ['"Geist"', 'sans-serif'],
+        'mono': ['"Geist Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-xl': ['96px', { lineHeight: '92px', letterSpacing: '-3px', fontWeight: '700' }],
+        'display-xl-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'display-lg': ['64px', { lineHeight: '66px', letterSpacing: '-2px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-1.2px', fontWeight: '700' }],
+        'headline-lg-mobile': ['28px', { lineHeight: '32px', letterSpacing: '-0.6px', fontWeight: '700' }],
+        'headline-md': ['28px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '600' }],
+        'title-lg': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.1px', fontWeight: '600' }],
+        'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['15px', { lineHeight: '23px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '19px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.8px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.4, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+<style>button:disabled{opacity:.55;cursor:not-allowed} .live-passage{overflow-wrap:anywhere;white-space:pre-wrap} [hidden]{display:none!important} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+<!-- Shared Editorial Header -->
+<header class="w-full bg-black text-on-black border-b border-border-dark sticky top-0 z-40">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl h-16 flex items-center justify-between gap-gutter-md">
+<a class="font-headline text-title-lg tracking-tight" href="/index.html">
+          IndiRAG-QA<sup class="text-primary text-body-sm"></sup>
+</a>
+<nav aria-label="Primary" class="hidden md:flex items-center gap-gutter-xl">
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/index.html#overview">Overview</a>
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/evaluation.html">Research</a>
+<a aria-current="page" class="font-label text-label-lg text-primary" href="/methodology.html">Methodology</a>
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/about.html">About</a>
+</nav>
+<a class="group inline-flex items-center gap-gutter-xs px-gutter-md py-2 rounded-full bg-primary text-on-primary font-label text-label-lg hover:bg-surface-white hover:text-on-surface transition-colors duration-state-change" href="/ask.html">
+<span>Launch Workspace</span>
+<span aria-hidden="true" class="material-symbols-outlined text-body-lg transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+</div>
+<div class="md:hidden flex flex-wrap gap-3 px-4 py-2 text-xs bg-black text-white"><a href="/index.html">Home</a><a href="/ask.html">Workspace</a><a href="/evaluation.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a></div></header>
+<main class="flex-1">
+<!-- Hero Title Section (Black) -->
+<section class="bg-black text-on-black border-b border-border-dark">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<span class="font-mono text-label-sm uppercase text-primary block mb-gutter-sm">06 / SYSTEM ARCHITECTURE &amp; METHODOLOGY</span>
+<h1 class="font-headline text-display-xl-mobile md:text-display-lg tracking-tight text-balance max-w-4xl">
+            Nine stages from raw PDF to validated citation.
+          </h1>
+<p class="font-body text-body-lg text-muted max-w-2xl mt-gutter-lg text-pretty">
+            IndiRAG-QA combines deterministic lexical retrieval, multilingual dense embeddings, and Reciprocal Rank Fusion with strict answerability gating.
+          </p>
+</div>
+</section>
+<!-- Original Geometric System Architecture Diagram (Off-White) -->
+<section class="bg-surface text-on-surface border-b border-border">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="flex flex-wrap items-baseline justify-between gap-gutter-md mb-gutter-lg">
+<h2 class="font-headline text-headline-lg-mobile md:text-headline-lg">System Architecture</h2>
+<span class="font-mono text-label-sm uppercase text-text-muted">PYMUPDF · BM25 · TF-IDF · SENTENCE TRANSFORMERS · RRF · GEMINI</span>
+</div>
+<div class="bg-surface-white border border-black p-gutter-lg overflow-x-auto">
+<svg aria-label="IndiRAG-QA geometric system architecture diagram" class="w-full min-w-[780px] h-auto" role="img" viewbox="0 0 1120 340">
+<!-- Background Grid Lines -->
+<line stroke="#D9D9D9" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="1120" y1="170" y2="170"></line>
+<!-- Stage 1: PDF Ingestion -->
+<rect fill="#F5F3EE" height="150" stroke="#080808" stroke-width="1.5" width="160" x="20" y="95"></rect>
+<circle cx="50" cy="125" fill="#FF5722" r="12"></circle>
+<text fill="#080808" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700" x="36" y="165">01–02</text>
+<text fill="#080808" font-family="Geist, sans-serif" font-size="13" font-weight="600" x="36" y="190">PyMuPDF Extract</text>
+<text fill="#5F5E5E" font-family="Geist Mono, monospace" font-size="11" x="36" y="210">&amp; Segmentation</text>
+<line stroke="#080808" stroke-width="1.5" x1="180" x2="230" y1="170" y2="170"></line>
+<!-- Stage 2: Triple Index Fan-out -->
+<rect fill="#FFFFFF" height="72" stroke="#080808" stroke-width="1.5" width="210" x="230" y="30"></rect>
+<text fill="#5F5E5E" font-family="Geist Mono, monospace" font-size="11" x="248" y="60">03 / LEXICAL</text>
+<text fill="#080808" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700" x="248" y="82">BM25 + TF-IDF</text>
+<rect fill="#080808" height="72" stroke="#080808" stroke-width="1.5" width="210" x="230" y="134"></rect>
+<text fill="#FF5722" font-family="Geist Mono, monospace" font-size="11" x="248" y="164">04 / SEMANTIC</text>
+<text fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700" x="248" y="186">Multilingual Dense</text>
+<rect fill="#F5F3EE" height="72" stroke="#080808" stroke-width="1.5" width="210" x="230" y="238"></rect>
+<text fill="#5F5E5E" font-family="Geist Mono, monospace" font-size="11" x="248" y="268">QUERY INPUT</text>
+<text fill="#080808" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="700" x="248" y="290">EN / HI / Hinglish</text>
+<!-- Connectors to RRF -->
+<line stroke="#080808" stroke-width="1.5" x1="440" x2="500" y1="66" y2="170"></line>
+<line stroke="#FF5722" stroke-width="2" x1="440" x2="500" y1="170" y2="170"></line>
+<line stroke="#080808" stroke-width="1.5" x1="440" x2="500" y1="274" y2="170"></line>
+<!-- Stage 3: RRF Fusion Circle -->
+<circle cx="570" cy="170" fill="#FF5722" r="70" stroke="#080808" stroke-width="1.5"></circle>
+<text fill="#080808" font-family="Geist Mono, monospace" font-size="11" font-weight="600" text-anchor="middle" x="570" y="158">05 / FUSION</text>
+<text fill="#080808" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700" text-anchor="middle" x="570" y="182">Hybrid RRF</text>
+<line stroke="#080808" stroke-width="1.5" x1="640" x2="690" y1="170" y2="170"></line>
+<!-- Stage 4: Gemini RAG -->
+<rect fill="#080808" height="150" width="180" x="690" y="95"></rect>
+<text fill="#FF5722" font-family="Geist Mono, monospace" font-size="11" x="710" y="135">06 / SYNTHESIS</text>
+<text fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700" x="710" y="165">Gemini RAG</text>
+<text fill="#898989" font-family="Geist, sans-serif" font-size="12" x="710" y="192">Top-K Evidence</text>
+<text fill="#898989" font-family="Geist, sans-serif" font-size="12" x="710" y="210">Grounded Prompt</text>
+<line stroke="#080808" stroke-width="1.5" x1="870" x2="915" y1="170" y2="170"></line>
+<!-- Stage 5: Validation & Eval -->
+<rect fill="#FFFFFF" height="90" stroke="#080808" stroke-width="1.5" width="185" x="915" y="70"></rect>
+<text fill="#5F5E5E" font-family="Geist Mono, monospace" font-size="11" x="932" y="102">07–08 / GUARDRAILS</text>
+<text fill="#080808" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="700" x="932" y="126">Answerability &amp;</text>
+<text fill="#080808" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="700" x="932" y="145">Citation Check</text>
+<rect fill="#F5F3EE" height="90" stroke="#080808" stroke-width="1.5" width="185" x="915" y="180"></rect>
+<text fill="#B02F00" font-family="Geist Mono, monospace" font-size="11" x="932" y="212">09 / BENCHMARK</text>
+<text fill="#080808" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="700" x="932" y="236">Research Eval</text>
+<text fill="#5F5E5E" font-family="Geist Mono, monospace" font-size="11" x="932" y="255">R@K · MRR · F1</text>
+</svg>
+</div>
+</div>
+</section>
+<!-- 01–09 Oversized Numbered Methodology Grid (White) -->
+<section class="bg-surface-white text-on-surface border-b border-border">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="grid grid-cols-1 md:grid-cols-3 border-t border-l border-border">
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-primary tabular-nums">01</span>
+<h3 class="font-headline text-title-lg">Document processing</h3>
+<p class="font-body text-body-sm text-text-muted">Ingests single PDFs or nested collections with deterministic document IDs, folder metadata, and deduplication.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-surface tabular-nums">02</span>
+<h3 class="font-headline text-title-lg">Text extraction and segmentation</h3>
+<p class="font-body text-body-sm text-text-muted">Uses PyMuPDF to extract page-level Unicode text (Latin &amp; Devanagari) and segments it into overlapping passage chunks with page anchors.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-surface tabular-nums">03</span>
+<h3 class="font-headline text-title-lg">BM25 and TF-IDF</h3>
+<p class="font-body text-body-sm text-text-muted">Captures exact lexical matches for policy codes, numeric limits, and proper nouns that dense vectors can smooth over.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-surface tabular-nums">04</span>
+<h3 class="font-headline text-title-lg">Multilingual sentence embeddings</h3>
+<p class="font-body text-body-sm text-text-muted">Encodes queries and passages via Sentence Transformers into a shared cross-lingual semantic space across English, Hindi, and Hinglish.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border bg-primary text-on-primary flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-primary tabular-nums">05</span>
+<h3 class="font-headline text-title-lg">Hybrid retrieval using Reciprocal Rank Fusion</h3>
+<p class="font-body text-body-sm text-on-primary/90">Fuses BM25, TF-IDF, and dense rankings using RRF (<code class="font-mono">1 / (k + rank)</code>) without fragile raw-score normalization.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-surface tabular-nums">06</span>
+<h3 class="font-headline text-title-lg">Gemini-powered RAG</h3>
+<p class="font-body text-body-sm text-text-muted">Conditions Gemini on the top-K fused passages with strict grounding instructions to prevent parametric-memory fabrication.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-surface tabular-nums">07</span>
+<h3 class="font-headline text-title-lg">Answerability detection</h3>
+<p class="font-body text-body-sm text-text-muted">Classifies each query as <code class="font-mono">ANSWERABLE</code> or <code class="font-mono">UNANSWERABLE</code> when retrieved passages lack sufficient evidence.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-surface tabular-nums">08</span>
+<h3 class="font-headline text-title-lg">Citation validation</h3>
+<p class="font-body text-body-sm text-text-muted">Maps generated claims back to verified source filenames, page numbers, and passage identifiers returned by the retriever.</p>
+</article>
+<article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
+<span class="font-headline text-display-lg text-on-surface tabular-nums">09</span>
+<h3 class="font-headline text-title-lg">Research evaluation</h3>
+<p class="font-body text-body-sm text-text-muted">Evaluates Recall@K, Precision@K, Hit Rate@K, MRR, Exact Match, Token F1, and Direct-LLM vs. RAG ablation on annotated datasets.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- Current Research Limitations (Black) -->
+<section class="bg-black text-on-black">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-xl">
+<div class="md:col-span-4">
+<span class="font-mono text-label-sm uppercase text-primary block mb-gutter-xs">SCIENTIFIC TRANSPARENCY</span>
+<h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-black">Current Research Limitations</h2>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter-lg">
+<div class="p-gutter-lg border border-border-dark">
+<h3 class="font-headline text-title-md text-on-black mb-1">1. Scanned &amp; Image-Only PDFs</h3>
+<p class="font-body text-body-sm text-muted">PyMuPDF extracts embedded text layers; scanned Devanagari PDFs without OCR require an external OCR pre-processing pass.</p>
+</div>
+<div class="p-gutter-lg border border-border-dark">
+<h3 class="font-headline text-title-md text-on-black mb-1">2. Uncalibrated Confidence</h3>
+<p class="font-body text-body-sm text-muted">Raw retrieval and LLM logprobs are not yet Platt-scaled; confidence is explicitly reported as unavailable when uncalibrated.</p>
+</div>
+<div class="p-gutter-lg border border-border-dark">
+<h3 class="font-headline text-title-md text-on-black mb-1">3. Informal Hinglish Spelling</h3>
+<p class="font-body text-body-sm text-muted">Highly non-standard Romanized Hindi spelling variants can reduce lexical BM25 overlap, increasing reliance on dense embeddings.</p>
+</div>
+<div class="p-gutter-lg border border-border-dark">
+<h3 class="font-headline text-title-md text-on-black mb-1">4. Multi-Hop Synthesis</h3>
+<p class="font-body text-body-sm text-muted">Single-pass Top-K retrieval may miss evidence split across distant tables or appendices without iterative query decomposition.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Footer -->
+<footer class="bg-surface text-on-surface border-t border-border">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-gutter-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-gutter-md">
+<p class="font-body text-body-sm text-text-muted">IndiRAG-QA® · Bennett University · CSET 346 — Natural Language Processing</p>
+<a class="font-label text-label-lg hover:text-primary-deep" href="/about.html">Meet the Research Team →</a>
+</div>
+</footer>
+</div>
+<script src="/src/app.js" type="module"></script></body></html>

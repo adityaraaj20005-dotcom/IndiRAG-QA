@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Document Library — IndiRAG-QA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#FF5722',
+        'on-primary': '#080808',
+        'primary-deep': '#B02F00',
+        'on-primary-deep': '#FFFFFF',
+        'primary-tint': '#FFEDE8',
+        'on-primary-tint': '#3B0900',
+        'black': '#080808',
+        'on-black': '#FFFFFF',
+        'surface': '#F5F3EE',
+        'on-surface': '#080808',
+        'surface-white': '#FFFFFF',
+        'on-surface-white': '#080808',
+        'surface-container': '#E5E2E1',
+        'on-surface-container': '#080808',
+        'muted': '#898989',
+        'text-muted': '#5F5E5E',
+        'border': '#D9D9D9',
+        'border-dark': '#313030',
+        'error': '#BA1A1A',
+        'on-error': '#FFFFFF',
+        'success': '#1B5E20',
+        'on-success': '#FFFFFF',
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '2px',
+        'DEFAULT': '4px',
+        'md': '8px',
+        'lg': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '32px',
+      },
+      fontFamily: {
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'headline': ['"Space Grotesk"', 'sans-serif'],
+        'title': ['"Geist"', 'sans-serif'],
+        'body': ['"Geist"', 'sans-serif'],
+        'label': ['"Geist"', 'sans-serif'],
+        'mono': ['"Geist Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-xl': ['96px', { lineHeight: '92px', letterSpacing: '-3px', fontWeight: '700' }],
+        'display-xl-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'display-lg': ['64px', { lineHeight: '66px', letterSpacing: '-2px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-1.2px', fontWeight: '700' }],
+        'headline-lg-mobile': ['28px', { lineHeight: '32px', letterSpacing: '-0.6px', fontWeight: '700' }],
+        'headline-md': ['28px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '600' }],
+        'title-lg': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.1px', fontWeight: '600' }],
+        'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['15px', { lineHeight: '23px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '19px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.8px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.4, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+<style>button:disabled{opacity:.55;cursor:not-allowed} .live-passage{overflow-wrap:anywhere;white-space:pre-wrap} [hidden]{display:none!important} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+<header class="lg:hidden flex items-center justify-between px-gutter-md h-14 bg-black text-on-black border-b border-border-dark sticky top-0 z-40">
+<a class="font-headline text-title-md" href="/index.html">IndiRAG-QA<sup class="text-primary"></sup></a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="p-2 text-on-black hover:text-primary" id="mobile-nav-toggle" type="button">
+<span aria-hidden="true" class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<aside class="hidden lg:flex lg:flex-col lg:w-60 lg:shrink-0 bg-black text-on-black border-r border-border-dark min-h-[1024px] justify-between p-gutter-lg" data-stitch-vh="min-h-[1024px]===min-h-screen" id="app-sidebar">
+<div class="flex flex-col gap-gutter-xl">
+<div class="flex items-center justify-between border-b border-border-dark pb-gutter-md">
+<a class="font-headline text-title-lg tracking-tight" href="/index.html">
+            IndiRAG-QA<sup class="text-primary text-body-sm"></sup>
+</a>
+</div>
+<nav aria-label="Workspace navigation" class="flex flex-col gap-gutter-xs">
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/ask.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">chat_bubble_outline</span>
+<span>QA Workspace</span>
+</a>
+<a aria-current="page" class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm bg-primary text-on-primary font-label text-label-lg" href="/documents.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">folder_open</span>
+<span>Document Library</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/retrieval.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">compare_arrows</span>
+<span>Retrieval Lab</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/evaluation.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">analytics</span>
+<span>Evaluation</span>
+</a>
+<div class="my-gutter-sm border-t border-border-dark"></div>
+<a class="flex items-center gap-gutter-sm px-3 py-2 rounded-sm text-muted hover:text-on-black font-body text-body-sm transition-colors duration-state-change" href="/methodology.html">
+<span>Methodology</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2 rounded-sm text-muted hover:text-on-black font-body text-body-sm transition-colors duration-state-change" href="/about.html">
+<span>About Project</span>
+</a>
+</nav>
+</div>
+<div class="pt-gutter-lg border-t border-border-dark flex flex-col gap-gutter-xs">
+<div class="flex items-center gap-2">
+<span aria-hidden="true" class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-mono text-label-sm text-muted uppercase">API: /api/documents</span>
+</div>
+<a class="font-mono text-label-sm text-muted hover:text-primary transition-colors duration-state-change" href="/index.html">
+          ← Overview Page
+        </a>
+</div>
+</aside>
+<!-- Main Document Library Content -->
+<main class="flex-1 min-w-0 bg-surface">
+<div class="max-w-6xl mx-auto px-gutter-md md:px-gutter-xl py-gutter-xl flex flex-col gap-gutter-xl">
+<!-- Editorial Header + Corpus Metrics -->
+<header class="border-b border-black pb-gutter-lg grid grid-cols-1 md:grid-cols-12 gap-gutter-lg items-end">
+<div class="md:col-span-7">
+<span class="font-mono text-label-sm uppercase text-text-muted block mb-gutter-xs">03 / DOCUMENT LIBRARY</span>
+<h1 class="font-headline text-headline-lg-mobile md:text-display-lg tracking-tight text-on-surface">
+              Your knowledge. Organized.
+            </h1>
+</div>
+<div class="md:col-span-5 grid grid-cols-2 border border-border bg-surface-white">
+<div class="p-gutter-md border-r border-border">
+<span class="font-mono text-label-sm uppercase text-text-muted block">Indexed Documents</span>
+<span class="font-headline text-headline-lg tabular-nums text-on-surface" id="doc-count">—</span>
+</div>
+<div class="p-gutter-md">
+<span class="font-mono text-label-sm uppercase text-text-muted block">Indexed Passages</span>
+<span class="font-headline text-headline-lg tabular-nums text-primary-deep" id="passage-count">—</span>
+</div>
+</div>
+</header>
+<!-- Drag-and-Drop PDF & Folder Upload Zone -->
+<section aria-label="Upload PDFs" class="bg-surface-white border border-dashed border-black p-gutter-xl flex flex-col items-center text-center gap-gutter-md">
+<span aria-hidden="true" class="material-symbols-outlined text-headline-lg text-primary">upload_file</span>
+<div class="flex flex-col gap-1">
+<h2 class="font-headline text-title-lg text-on-surface">Drop PDF files or choose a folder to index</h2>
+<p class="font-body text-body-sm text-text-muted">Extracted via PyMuPDF and segmented into overlapping passages for BM25, TF-IDF, and Dense indexing.</p>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-gutter-sm">
+<label class="cursor-pointer inline-flex items-center gap-gutter-xs px-gutter-lg py-2.5 rounded-full bg-primary text-on-primary font-label text-label-lg hover:bg-black hover:text-on-black transition-colors duration-state-change">
+<span>Select PDFs</span>
+<input accept=".pdf" class="sr-only" id="pdf-file-input" multiple="" type="file"/>
+</label>
+<label class="cursor-pointer inline-flex items-center gap-gutter-xs px-gutter-lg py-2.5 rounded-full border border-black bg-surface-white text-on-surface font-label text-label-lg hover:bg-black hover:text-on-black transition-colors duration-state-change">
+<span>Upload Folder</span>
+<input class="sr-only" directory="" id="pdf-folder-input" multiple="" type="file" webkitdirectory=""/>
+</label>
+</div>
+<!-- Upload Progress -->
+<div class="hidden w-full max-w-md pt-gutter-sm" id="upload-progress-wrap">
+<div class="flex items-center justify-between font-mono text-label-sm text-text-muted mb-1">
+<span>INDEXING CORPUS...</span>
+<span class="tabular-nums" id="upload-pct">0%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container">
+<div class="h-1.5 bg-primary w-0 transition-all duration-state-change" id="upload-bar"></div>
+</div>
+</div>
+</section>
+<!-- Search & Filter Controls -->
+<section aria-label="Filter documents" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-gutter-md">
+<!-- COMPONENT: input-field-icon -->
+<label class="relative flex items-center flex-1 max-w-md" data-component-id="input-field-icon" data-component-type="input-field" data-component-variant="with-icon">
+<span aria-hidden="true" class="material-symbols-outlined absolute left-3 text-text-muted pointer-events-none">search</span>
+<input class="w-full pl-10 pr-gutter-md py-2.5 rounded-none bg-surface-white border border-border text-on-surface font-body text-body-md placeholder:text-text-muted focus:border-black focus:ring-0 focus:outline-none" id="doc-search-input" placeholder="Filter by filename or folder..." type="search"/>
+</label>
+<div class="flex items-center gap-gutter-sm">
+<select aria-label="Filter by folder" class="px-3 py-2.5 rounded-none bg-surface-white border border-border font-body text-body-sm focus:border-black focus:ring-0" id="folder-filter">
+<option value="">All Folders</option>
+</select>
+<button class="px-gutter-md py-2.5 rounded-full border border-border bg-surface-white font-label text-label-lg hover:border-black transition-colors duration-state-change" id="refresh-docs-btn" type="button">
+              Refresh
+            </button>
+</div>
+</section>
+<!-- Error Banner -->
+<div class="hidden border border-error bg-primary-tint p-gutter-md font-body text-body-sm text-on-primary-tint" id="docs-error" role="alert">
+          Could not fetch documents from <code class="font-mono">GET /api/documents</code>. Connect the FastAPI backend to manage live PDFs.
+        </div>
+<!-- Document Table (Copied from Component Kit) -->
+<section aria-label="Indexed documents table" class="w-full overflow-x-auto">
+<!-- COMPONENT: table-standard -->
+<div class="w-full bg-surface-white border-t-2 border-b border-black" data-component-id="table-standard" data-component-type="table" data-component-variant="standard">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border bg-surface">
+<th class="py-3 px-gutter-md font-mono text-label-sm uppercase text-text-muted" scope="col"><span data-design-text-token="label-sm">Document Filename</span></th>
+<th class="py-3 px-gutter-md font-mono text-label-sm uppercase text-text-muted" scope="col"><span data-design-text-token="label-sm">Folder</span></th>
+<th class="py-3 px-gutter-md font-mono text-label-sm uppercase text-text-muted" scope="col"><span data-design-text-token="label-sm">Pages</span></th>
+<th class="py-3 px-gutter-md font-mono text-label-sm uppercase text-text-muted" scope="col"><span data-design-text-token="label-sm">Passages</span></th>
+<th class="py-3 px-gutter-md font-mono text-label-sm uppercase text-text-muted" scope="col"><span data-design-text-token="label-sm">Status</span></th>
+<th class="py-3 px-gutter-md font-mono text-label-sm uppercase text-text-muted text-right" scope="col"><span data-design-text-token="label-sm">Action</span></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border" id="docs-tbody">
+<tr>
+<td class="py-gutter-xl px-gutter-md text-center" colspan="6">
+<p class="font-body text-body-md text-on-surface">No indexed documents loaded yet.</p>
+<p class="font-body text-body-sm text-text-muted mt-1">Upload PDFs above or connect to <code class="font-mono">GET /api/documents</code> to view your corpus.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Confirmation Modal for Remove Document -->
+<div aria-labelledby="delete-modal-title" aria-modal="true" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-gutter-md" id="delete-modal" role="dialog">
+<div class="bg-surface-white border-2 border-black max-w-md w-full p-gutter-xl flex flex-col gap-gutter-lg">
+<div>
+<span class="font-mono text-label-sm uppercase text-error block mb-1">Confirm Removal</span>
+<h2 class="font-headline text-headline-md text-on-surface" id="delete-modal-title">Remove document from index?</h2>
+<p class="font-mono text-mono-md text-text-muted mt-2" id="delete-modal-name"></p>
+</div>
+<div class="flex items-center justify-end gap-gutter-sm">
+<button class="px-gutter-md py-2 rounded-full border border-border font-label text-label-lg hover:border-black" id="cancel-delete-btn" type="button">Cancel</button>
+<button class="px-gutter-lg py-2 rounded-full bg-error text-on-error font-label text-label-lg" id="confirm-delete-btn" type="button">Remove Document</button>
+</div>
+</div>
+</div>
+
+<script src="/src/app.js" type="module"></script></body></html>

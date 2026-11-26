@@ -1,0 +1,19 @@
+# Secrets and local environments
+.env
+backend/.env
+.venv/
+backend/.venv/
+node_modules/
+frontend/node_modules/
+
+# Private or replaceable document corpus and generated indexes
+data/raw/
+data/processed/
+
+# Caches and build products
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+frontend/dist/
+.DS_Store

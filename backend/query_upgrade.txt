@@ -1,0 +1,56 @@
+# Add these imports at the top of main.py:
+from retrieval import retrieve
+from rag_engine import generate
+from language_utils import detect_language
+from evaluation import evaluate
+
+# Replace the existing QueryRequest class and query_documents endpoint only:
+class QueryRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=2000)
+    top_k: int = Field(default=5, ge=1, le=10)
+    retrieval_method: Literal["BM25", "Dense", "Hybrid", "TF-IDF"] = "BM25"
+    collection_id: str | None = None
+    generate_answer: bool = True
+
+
+def scoped_passages(collection_id):
+    return [p for p in passages if collection_id is None or p.get("collection_id", "uploaded-pdfs") == collection_id]
+
+
+@app.post("/api/query")
+def query_documents(request: QueryRequest):
+    question = request.question.strip()
+    if not question:
+        raise HTTPException(status_code=400, detail="Enter a question.")
+    items = scoped_passages(request.collection_id)
+    if not items:
+        raise HTTPException(status_code=409, detail="No passages in selected collection.")
+    evidence = retrieve(question, items, request.retrieval_method, request.top_k, get_embedding_model, get_dense_embeddings)
+    result = generate(question, evidence) if request.generate_answer else {"answer": None, "answerability": "NOT_EVALUATED", "confidence": None, "citations": [], "message": "Retrieval only."}
+    return {"question": question, "language": detect_language(question), "retrieval_method": request.retrieval_method, "collection_id": request.collection_id, "retrieval_status": "EVIDENCE_FOUND" if evidence else "NO_MATCHING_PASSAGES", "evidence": evidence, **result}
+
+
+@app.post("/api/retrieval/compare")
+def compare_retrieval(request: QueryRequest):
+    items = scoped_passages(request.collection_id)
+    if not items:
+        raise HTTPException(status_code=409, detail="No passages in selected collection.")
+    return {"question": request.question, "results": {method: retrieve(request.question, items, method, request.top_k, get_embedding_model, get_dense_embeddings) for method in ("TF-IDF", "BM25", "Dense", "Hybrid")}}
+
+
+class EvaluationRow(BaseModel):
+    question: str
+    language: str
+    relevant_passage_ids: list[str]
+    collection_id: str | None = None
+
+
+@app.post("/api/evaluation/run")
+def run_evaluation(rows: list[EvaluationRow]):
+    for row in rows:
+        valid = {p["passage_id"] for p in scoped_passages(row.collection_id)}
+        if not set(row.relevant_passage_ids).issubset(valid):
+            raise HTTPException(status_code=400, detail="Invalid or out-of-scope gold passage ID.")
+    def search(row, method, k):
+        return retrieve(row["question"], scoped_passages(row.get("collection_id")), method, k, get_embedding_model, get_dense_embeddings)
+    return {"results": evaluate([row.model_dump() for row in rows], search), "note": "Retrieval-only evaluation; rows without gold passages excluded."}

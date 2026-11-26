@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About the Project — IndiRAG-QA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#FF5722',
+        'on-primary': '#080808',
+        'primary-deep': '#B02F00',
+        'on-primary-deep': '#FFFFFF',
+        'primary-tint': '#FFEDE8',
+        'on-primary-tint': '#3B0900',
+        'black': '#080808',
+        'on-black': '#FFFFFF',
+        'surface': '#F5F3EE',
+        'on-surface': '#080808',
+        'surface-white': '#FFFFFF',
+        'on-surface-white': '#080808',
+        'surface-container': '#E5E2E1',
+        'on-surface-container': '#080808',
+        'muted': '#898989',
+        'text-muted': '#5F5E5E',
+        'border': '#D9D9D9',
+        'border-dark': '#313030',
+        'error': '#BA1A1A',
+        'on-error': '#FFFFFF',
+        'success': '#1B5E20',
+        'on-success': '#FFFFFF',
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '2px',
+        'DEFAULT': '4px',
+        'md': '8px',
+        'lg': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '32px',
+      },
+      fontFamily: {
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'headline': ['"Space Grotesk"', 'sans-serif'],
+        'title': ['"Geist"', 'sans-serif'],
+        'body': ['"Geist"', 'sans-serif'],
+        'label': ['"Geist"', 'sans-serif'],
+        'mono': ['"Geist Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-xl': ['96px', { lineHeight: '92px', letterSpacing: '-3px', fontWeight: '700' }],
+        'display-xl-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'display-lg': ['64px', { lineHeight: '66px', letterSpacing: '-2px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-1.2px', fontWeight: '700' }],
+        'headline-lg-mobile': ['28px', { lineHeight: '32px', letterSpacing: '-0.6px', fontWeight: '700' }],
+        'headline-md': ['28px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '600' }],
+        'title-lg': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.1px', fontWeight: '600' }],
+        'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['15px', { lineHeight: '23px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '19px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.8px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.4, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+<style>button:disabled{opacity:.55;cursor:not-allowed} .live-passage{overflow-wrap:anywhere;white-space:pre-wrap} [hidden]{display:none!important} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+<!-- Shared Editorial Header -->
+<header class="w-full bg-black text-on-black border-b border-border-dark sticky top-0 z-40">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl h-16 flex items-center justify-between gap-gutter-md">
+<a class="font-headline text-title-lg tracking-tight" href="/index.html">
+          IndiRAG-QA<sup class="text-primary text-body-sm"></sup>
+</a>
+<nav aria-label="Primary" class="hidden md:flex items-center gap-gutter-xl">
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/index.html#overview">Overview</a>
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/evaluation.html">Research</a>
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/methodology.html">Methodology</a>
+<a aria-current="page" class="font-label text-label-lg text-primary" href="/about.html">About</a>
+</nav>
+<a class="group inline-flex items-center gap-gutter-xs px-gutter-md py-2 rounded-full bg-primary text-on-primary font-label text-label-lg hover:bg-surface-white hover:text-on-surface transition-colors duration-state-change" href="/ask.html">
+<span>Launch Workspace</span>
+<span aria-hidden="true" class="material-symbols-outlined text-body-lg transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+</div>
+<div class="md:hidden flex flex-wrap gap-3 px-4 py-2 text-xs bg-black text-white"><a href="/index.html">Home</a><a href="/ask.html">Workspace</a><a href="/evaluation.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a></div></header>
+<main class="flex-1">
+<!-- Project Title & Academic Context -->
+<section class="bg-surface-white text-on-surface border-b border-black">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-xl items-end">
+<div class="lg:col-span-8">
+<span class="font-mono text-label-sm uppercase text-primary-deep block mb-gutter-sm">07 / ABOUT THE PROJECT</span>
+<h1 class="font-headline text-display-xl-mobile md:text-display-lg tracking-tight text-balance">
+                IndiRAG-QA
+              </h1>
+<p class="font-headline text-headline-md text-on-surface mt-gutter-md max-w-2xl text-pretty">
+                Evidence-Grounded Cross-Lingual Question Answering for Indic and Code-Mixed Languages.
+              </p>
+</div>
+<div class="lg:col-span-4 border-l-2 border-primary pl-gutter-lg flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm uppercase text-text-muted">INSTITUTION</span>
+<p class="font-headline text-title-lg">Bennett University</p>
+<span class="font-mono text-label-sm uppercase text-text-muted mt-gutter-sm">COURSE</span>
+<p class="font-body text-body-md font-medium">CSET 346 — Natural Language Processing</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Swiss Typographic Team Grid (No Invented Photos) -->
+<section class="bg-surface text-on-surface border-b border-border">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="flex items-baseline justify-between mb-gutter-xl">
+<h2 class="font-headline text-headline-lg-mobile md:text-headline-lg">Research Team</h2>
+<span class="font-mono text-label-sm uppercase text-text-muted">4 AUTHORS · B.TECH CSE</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-black bg-surface-white">
+<article class="p-gutter-xl border-r border-b border-black flex flex-col justify-between gap-gutter-xl min-h-[240px]">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm text-primary-deep">01</span>
+<span class="w-10 h-10 rounded-full bg-black text-on-black font-headline text-title-md flex items-center justify-center">SP</span>
+</div>
+<div>
+<h3 class="font-headline text-headline-md text-on-surface">Shekhar Pratyush</h3>
+<p class="font-mono text-mono-md text-text-muted mt-1 tabular-nums">S24CSEU2573</p>
+</div>
+</article>
+<article class="p-gutter-xl border-r border-b border-black flex flex-col justify-between gap-gutter-xl min-h-[240px]">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm text-primary-deep">02</span>
+<span class="w-10 h-10 rounded-full bg-primary text-on-primary font-headline text-title-md flex items-center justify-center">PR</span>
+</div>
+<div>
+<h3 class="font-headline text-headline-md text-on-surface">Pranjal Raj</h3>
+<p class="font-mono text-mono-md text-text-muted mt-1 tabular-nums">S24CSEU2546</p>
+</div>
+</article>
+<article class="p-gutter-xl border-r border-b border-black flex flex-col justify-between gap-gutter-xl min-h-[240px]">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm text-primary-deep">03</span>
+<span class="w-10 h-10 rounded-full bg-black text-on-black font-headline text-title-md flex items-center justify-center">AR</span>
+</div>
+<div>
+<h3 class="font-headline text-headline-md text-on-surface">Aditya Raj</h3>
+<p class="font-mono text-mono-md text-text-muted mt-1 tabular-nums">S24CSEU2548</p>
+</div>
+</article>
+<article class="p-gutter-xl border-r border-b border-black flex flex-col justify-between gap-gutter-xl min-h-[240px]">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm text-primary-deep">04</span>
+<span class="w-10 h-10 rounded-full bg-black text-on-black font-headline text-title-md flex items-center justify-center">AS</span>
+</div>
+<div>
+<h3 class="font-headline text-headline-md text-on-surface">Amit Kumar Singh</h3>
+<p class="font-mono text-mono-md text-text-muted mt-1 tabular-nums">S24CSEU2554</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Faculty Mentor Band (Black) -->
+<section class="bg-black text-on-black">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section grid grid-cols-1 md:grid-cols-12 gap-gutter-xl items-center">
+<div class="md:col-span-8">
+<span class="font-mono text-label-sm uppercase text-primary block mb-gutter-xs">FACULTY MENTOR</span>
+<h2 class="font-headline text-display-lg-mobile md:text-headline-lg text-on-black">
+              Dr. Ankur Kumar Singhal
+            </h2>
+<p class="font-body text-body-md text-muted mt-gutter-sm max-w-xl">
+              Department of Computer Science &amp; Engineering, Bennett University. Guiding the research methodology, cross-lingual retrieval evaluation, and answerability validation framework.
+            </p>
+</div>
+<div class="md:col-span-4 flex md:justify-end">
+<a class="group inline-flex items-center gap-gutter-xs px-gutter-lg py-3 rounded-full bg-primary text-on-primary font-label text-label-lg hover:bg-surface-white hover:text-on-surface transition-colors duration-state-change" href="/ask.html">
+<span>Launch Workspace</span>
+<span aria-hidden="true" class="material-symbols-outlined text-body-lg transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface text-on-surface border-t border-border">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-gutter-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-gutter-md">
+<p class="font-body text-body-sm text-text-muted">IndiRAG-QA® · Bennett University · CSET 346 — Natural Language Processing</p>
+<a class="font-label text-label-lg hover:text-primary-deep" href="/index.html">← Back to Overview</a>
+</div>
+</footer>
+</div>
+<script src="/src/app.js" type="module"></script></body></html>

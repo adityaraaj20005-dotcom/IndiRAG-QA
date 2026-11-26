@@ -1,0 +1,165 @@
+{
+  "results": [
+    {
+      "method": "BM25",
+      "language": "all",
+      "n": 12,
+      "k": 5,
+      "recall": 0.6666666666666666,
+      "precision": 0.16666666666666666,
+      "hit_rate": 0.6666666666666666,
+      "mrr_at_k": 0.4861111111111111
+    },
+    {
+      "method": "BM25",
+      "language": "English",
+      "n": 4,
+      "k": 5,
+      "recall": 1,
+      "precision": 0.25,
+      "hit_rate": 1,
+      "mrr_at_k": 0.875
+    },
+    {
+      "method": "BM25",
+      "language": "Hindi",
+      "n": 4,
+      "k": 5,
+      "recall": 0,
+      "precision": 0,
+      "hit_rate": 0,
+      "mrr_at_k": 0
+    },
+    {
+      "method": "BM25",
+      "language": "Hinglish",
+      "n": 4,
+      "k": 5,
+      "recall": 1,
+      "precision": 0.25,
+      "hit_rate": 1,
+      "mrr_at_k": 0.5833333333333334
+    },
+    {
+      "method": "Dense",
+      "language": "all",
+      "n": 12,
+      "k": 5,
+      "recall": 0.7916666666666666,
+      "precision": 0.18333333333333335,
+      "hit_rate": 0.9166666666666666,
+      "mrr_at_k": 0.5916666666666667
+    },
+    {
+      "method": "Dense",
+      "language": "English",
+      "n": 4,
+      "k": 5,
+      "recall": 0.875,
+      "precision": 0.2,
+      "hit_rate": 1,
+      "mrr_at_k": 0.675
+    },
+    {
+      "method": "Dense",
+      "language": "Hindi",
+      "n": 4,
+      "k": 5,
+      "recall": 0.875,
+      "precision": 0.2,
+      "hit_rate": 1,
+      "mrr_at_k": 0.475
+    },
+    {
+      "method": "Dense",
+      "language": "Hinglish",
+      "n": 4,
+      "k": 5,
+      "recall": 0.625,
+      "precision": 0.15000000000000002,
+      "hit_rate": 0.75,
+      "mrr_at_k": 0.625
+    },
+    {
+      "method": "Hybrid",
+      "language": "all",
+      "n": 12,
+      "k": 5,
+      "recall": 0.9583333333333334,
+      "precision": 0.23333333333333336,
+      "hit_rate": 1,
+      "mrr_at_k": 0.7694444444444444
+    },
+    {
+      "method": "Hybrid",
+      "language": "English",
+      "n": 4,
+      "k": 5,
+      "recall": 1,
+      "precision": 0.25,
+      "hit_rate": 1,
+      "mrr_at_k": 1
+    },
+    {
+      "method": "Hybrid",
+      "language": "Hindi",
+      "n": 4,
+      "k": 5,
+      "recall": 0.875,
+      "precision": 0.2,
+      "hit_rate": 1,
+      "mrr_at_k": 0.475
+    },
+    {
+      "method": "Hybrid",
+      "language": "Hinglish",
+      "n": 4,
+      "k": 5,
+      "recall": 1,
+      "precision": 0.25,
+      "hit_rate": 1,
+      "mrr_at_k": 0.8333333333333334
+    },
+    {
+      "method": "TF-IDF",
+      "language": "all",
+      "n": 12,
+      "k": 5,
+      "recall": 0.6666666666666666,
+      "precision": 0.16666666666666666,
+      "hit_rate": 0.6666666666666666,
+      "mrr_at_k": 0.4166666666666667
+    },
+    {
+      "method": "TF-IDF",
+      "language": "English",
+      "n": 4,
+      "k": 5,
+      "recall": 1,
+      "precision": 0.25,
+      "hit_rate": 1,
+      "mrr_at_k": 0.7083333333333334
+    },
+    {
+      "method": "TF-IDF",
+      "language": "Hindi",
+      "n": 4,
+      "k": 5,
+      "recall": 0,
+      "precision": 0,
+      "hit_rate": 0,
+      "mrr_at_k": 0
+    },
+    {
+      "method": "TF-IDF",
+      "language": "Hinglish",
+      "n": 4,
+      "k": 5,
+      "recall": 1,
+      "precision": 0.25,
+      "hit_rate": 1,
+      "mrr_at_k": 0.5416666666666666
+    }
+  ],
+  "note": "Retrieval-only evaluation; rows without gold passages excluded."
+}

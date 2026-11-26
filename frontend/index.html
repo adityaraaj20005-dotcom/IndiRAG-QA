@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IndiRAG-QA — Evidence-Grounded Cross-Lingual Question Answering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#FF5722',
+        'on-primary': '#080808',
+        'primary-deep': '#B02F00',
+        'on-primary-deep': '#FFFFFF',
+        'primary-tint': '#FFEDE8',
+        'on-primary-tint': '#3B0900',
+        'black': '#080808',
+        'on-black': '#FFFFFF',
+        'surface': '#F5F3EE',
+        'on-surface': '#080808',
+        'surface-white': '#FFFFFF',
+        'on-surface-white': '#080808',
+        'surface-container': '#E5E2E1',
+        'on-surface-container': '#080808',
+        'muted': '#898989',
+        'text-muted': '#5F5E5E',
+        'border': '#D9D9D9',
+        'border-dark': '#313030',
+        'error': '#BA1A1A',
+        'on-error': '#FFFFFF',
+        'success': '#1B5E20',
+        'on-success': '#FFFFFF',
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '2px',
+        'DEFAULT': '4px',
+        'md': '8px',
+        'lg': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '32px',
+      },
+      fontFamily: {
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'headline': ['"Space Grotesk"', 'sans-serif'],
+        'title': ['"Geist"', 'sans-serif'],
+        'body': ['"Geist"', 'sans-serif'],
+        'label': ['"Geist"', 'sans-serif'],
+        'mono': ['"Geist Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-xl': ['96px', { lineHeight: '92px', letterSpacing: '-3px', fontWeight: '700' }],
+        'display-xl-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'display-lg': ['64px', { lineHeight: '66px', letterSpacing: '-2px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-1.2px', fontWeight: '700' }],
+        'headline-lg-mobile': ['28px', { lineHeight: '32px', letterSpacing: '-0.6px', fontWeight: '700' }],
+        'headline-md': ['28px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '600' }],
+        'title-lg': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.1px', fontWeight: '600' }],
+        'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['15px', { lineHeight: '23px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '19px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.8px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.4, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Noto+Sans+Devanagari:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    .font-devanagari { font-family: "Geist", "Noto Sans Devanagari", sans-serif; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+<style>button:disabled{opacity:.55;cursor:not-allowed} .live-passage{overflow-wrap:anywhere;white-space:pre-wrap} [hidden]{display:none!important} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+<style>
+  #hero {
+    background: #ffffff !important;
+    color: #080808 !important;
+    border-bottom-color: #d9d9d9;
+  }
+  #hero h1,
+  #hero p,
+  #hero .text-muted {
+    color: #080808 !important;
+  }
+  #hero .hero-art {
+    opacity: 0.55 !important;
+    pointer-events: none;
+  }
+  #hero .hero-overlay {
+    display: none !important;
+  }
+  #hero .bg-black.text-on-black {
+    color: #ffffff !important;
+  }
+  #hero .bg-black.text-on-black:hover {
+    color: #ffffff !important;
+    background: #252525 !important;
+  }
+  #hero .bg-primary {
+    color: #080808;
+  }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+<!-- Top Editorial Navigation -->
+<header class="w-full bg-black text-on-black border-b border-border-dark sticky top-0 z-40">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl h-16 flex items-center justify-between gap-gutter-md">
+<a class="font-headline text-title-lg tracking-tight flex items-center gap-gutter-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary" href="/index.html">
+<span>IndiRAG-QA<sup class="text-primary text-body-sm"></sup></span>
+</a>
+<nav aria-label="Primary" class="hidden md:flex items-center gap-gutter-xl">
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="#overview">Overview</a>
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/evaluation.html">Research</a>
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/methodology.html">Methodology</a>
+<a class="font-label text-label-lg text-on-black hover:text-primary transition-colors duration-state-change" href="/about.html">About</a>
+</nav>
+<div class="flex items-center gap-gutter-sm">
+<!-- COMPONENT: button-primary -->
+<a class="group inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-2 rounded-full bg-primary text-on-primary font-label text-label-lg transition-colors duration-state-change ease-state-change hover:bg-surface-white hover:text-on-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" href="/ask.html">
+<span data-design-text-token="label-lg">Launch Workspace</span>
+<span aria-hidden="true" class="material-symbols-outlined text-body-lg transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+</div>
+</div>
+<div class="md:hidden flex flex-wrap gap-3 px-4 py-2 text-xs bg-black text-white"><a href="/index.html">Home</a><a href="/ask.html">Workspace</a><a href="/evaluation.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a></div></header>
+<main class="flex-1">
+<!-- HERO SECTION -->
+<section id="hero" class="relative bg-surface-white text-on-surface overflow-hidden border-b border-border">
+<!-- Cinematic Hero Background -->
+<div class="absolute inset-0">
+<img alt="" aria-hidden="true" class="hero-art w-full h-full object-cover" src="/images/hero.svg"/>
+<div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
+</div>
+<!-- Swiss Hairline Grid Overlay -->
+<div class="relative z-10 max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl pt-gutter-xl pb-section min-h-[760px] flex flex-col justify-between">
+<!-- Top Meta Row -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-lg items-start">
+<div class="md:col-span-5 flex flex-col gap-gutter-md">
+<div class="flex items-center gap-gutter-sm">
+<span class="font-mono text-label-sm uppercase tracking-widest text-muted">INDIRAG-QA / 26</span>
+<span aria-hidden="true" class="inline-block w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<p class="font-body text-body-md text-on-surface max-w-sm text-pretty">
+                Ask in your language. Discover answers grounded in real evidence across English, Hindi, and Hinglish corpora.
+              </p>
+<!-- Language Pill Bar -->
+<div class="flex flex-wrap items-center gap-gutter-xs pt-gutter-xs">
+<span class="px-3 py-1 rounded-full border border-border-dark bg-black text-on-black font-mono text-label-sm">ENGLISH</span>
+<span class="px-3 py-1 rounded-full bg-surface-white text-on-surface font-mono text-label-sm">हिन्दी</span>
+<span class="px-3 py-1 rounded-full border border-border-dark bg-black text-on-black font-mono text-label-sm">HINGLISH</span>
+</div>
+</div>
+<!-- Asymmetric Floating Orange Panel (Inspired by OpenLane Reference) -->
+<div class="md:col-span-7 flex md:justify-end">
+<div class="relative w-full max-w-md bg-primary text-on-primary p-gutter-xl rounded-md">
+<!-- Circular Overlapping Arrow Button -->
+<a aria-label="Open AI Question Answering Workspace" class="group absolute -left-6 top-1/2 -translate-y-1/2 hidden md:inline-flex items-center justify-center w-14 h-14 rounded-full bg-black text-on-black border-2 border-primary transition-colors duration-state-change hover:bg-surface-white hover:text-on-surface" href="/ask.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-lg transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+<div class="flex items-center justify-between border-b border-on-primary/20 pb-gutter-md mb-gutter-lg">
+<span class="font-mono text-label-sm uppercase font-semibold">INDIRAG-QA / 26</span>
+<span class="font-mono text-label-sm">BENNETT NLP</span>
+</div>
+<h2 class="font-headline text-headline-lg-mobile md:text-headline-lg tracking-tight mb-gutter-sm text-balance">
+                  English. Hindi.<br/>Hinglish.
+                </h2>
+<p class="font-body text-body-md text-on-primary/90 mb-gutter-xl">
+                  One intelligent research workspace.
+                </p>
+<div class="flex flex-wrap items-center justify-between gap-gutter-md pt-gutter-sm">
+<div class="flex flex-wrap items-center gap-gutter-sm">
+<a class="group inline-flex items-center gap-gutter-xs px-gutter-md py-2.5 rounded-full bg-black text-on-black font-label text-label-lg transition-colors duration-state-change hover:bg-surface-white hover:text-on-surface" href="/ask.html">
+<span>Launch Workspace</span>
+<span aria-hidden="true" class="material-symbols-outlined text-body-md transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+<a class="inline-flex items-center px-gutter-md py-2.5 rounded-full border border-on-primary text-on-primary font-label text-label-lg transition-colors duration-state-change hover:bg-on-primary hover:text-primary" href="/methodology.html">
+<span>Explore Methodology</span>
+</a>
+</div>
+<!-- Recurring Geometric Semicircle Mark -->
+<svg aria-hidden="true" class="shrink-0" fill="none" height="32" viewbox="0 0 32 32" width="32">
+<path d="M0 16C0 7.163 7.163 0 16 0C24.837 0 32 7.163 32 16H0Z" fill="#FFFFFF"></path>
+<path d="M0 32C0 23.163 7.163 16 16 16C24.837 16 32 23.163 32 32H0Z" fill="#FFFFFF"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Oversized Hero Display Headline -->
+<div class="pt-section grid grid-cols-1 md:grid-cols-12 gap-gutter-lg items-end">
+<div class="md:col-span-9">
+<h1 class="font-headline text-display-xl-mobile md:text-display-xl text-on-surface tracking-tight text-balance">
+                Knowledge.<br/>Without Language<br/>Barriers.
+              </h1>
+</div>
+<div class="md:col-span-3 md:text-right">
+<p class="font-mono text-label-sm text-muted uppercase">
+                Evidence-Grounded Cross-Lingual RAG<br/>BM25 · TF-IDF · Dense · RRF
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- WHITE EDITORIAL GRID SECTION (01, 02, 03 + Geometric Circles + 3 Photos) -->
+<section class="bg-surface-white text-on-surface border-b border-border" id="overview">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<!-- Top Brand + Intro Split -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-xl pb-section border-b border-border">
+<div class="md:col-span-3">
+<p class="font-headline text-title-lg tracking-tight">INDIRAG · QA<sup>©</sup></p>
+<p class="font-mono text-label-sm text-text-muted mt-1">CROSS-LINGUAL / 26</p>
+</div>
+<div class="md:col-span-3">
+<p class="font-body text-body-sm text-text-muted text-pretty">
+                Not a black-box chatbot. Every answer is anchored to verifiable document passages, page numbers, and explicit answerability detection.
+              </p>
+</div>
+<div class="md:col-span-6">
+<p class="font-body text-body-lg text-on-surface text-pretty">
+                IndiRAG-QA bridges the language gap between official English institutional documents and everyday Hindi or code-mixed Hinglish questions. Upload PDFs once, retrieve across lexical and multilingual semantic indices, and inspect every citation before trusting a single claim.
+              </p>
+</div>
+</div>
+<!-- 01, 02, 03 Swiss Editorial Steps -->
+<div class="grid grid-cols-1 md:grid-cols-3 border-b border-border">
+<div class="py-gutter-xl md:pr-gutter-xl md:border-r border-border flex flex-col gap-gutter-md">
+<span class="font-headline text-headline-lg text-primary tabular-nums">01</span>
+<h3 class="font-headline text-headline-md text-on-surface">Upload knowledge.</h3>
+<p class="font-body text-body-md text-text-muted text-pretty">
+                Ingest multi-page PDFs and organized research folders via PyMuPDF extraction and overlapping passage segmentation.
+              </p>
+</div>
+<div class="py-gutter-xl md:px-gutter-xl md:border-r border-border border-t md:border-t-0 flex flex-col gap-gutter-md">
+<span class="font-headline text-headline-lg text-on-surface tabular-nums">02</span>
+<h3 class="font-headline text-headline-md text-on-surface">Retrieve meaning.</h3>
+<p class="font-body text-body-md text-text-muted text-pretty">
+                Combine BM25, TF-IDF, and multilingual sentence embeddings with Reciprocal Rank Fusion to surface relevant evidence across scripts.
+              </p>
+</div>
+<div class="py-gutter-xl md:pl-gutter-xl border-t md:border-t-0 flex flex-col gap-gutter-md">
+<span class="font-headline text-headline-lg text-on-surface tabular-nums">03</span>
+<h3 class="font-headline text-headline-md text-on-surface">Generate with evidence.</h3>
+<p class="font-body text-body-md text-text-muted text-pretty">
+                Synthesize grounded answers with Gemini, validate passage citations, and flag unanswerable queries instead of hallucinating.
+              </p>
+</div>
+</div>
+<!-- Bottom Geometric Motifs + 3 Editorial Photos (Matching OpenLane Reference) -->
+<div class="pt-gutter-xl grid grid-cols-1 md:grid-cols-12 gap-gutter-xl items-end">
+<div aria-hidden="true" class="md:col-span-5 flex items-center gap-0 overflow-hidden">
+<svg class="w-full max-w-sm h-auto" fill="none" viewbox="0 0 360 140">
+<circle cx="70" cy="70" r="68" stroke="#080808" stroke-width="1.5"></circle>
+<path d="M210 2A68 68 0 0 0 210 138V2Z" fill="#080808"></path>
+<path d="M290 2A68 68 0 0 0 290 138V2Z" fill="#080808"></path>
+</svg>
+</div>
+<div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-gutter-md">
+<figure class="overflow-hidden rounded-md border border-border bg-surface">
+<img alt="Indexed academic documents and monographs" class="w-full h-40 object-cover" src="/images/documents.svg"/>
+</figure>
+<figure class="overflow-hidden rounded-md border border-border bg-surface">
+<img alt="Devanagari and Latin typography specimen" class="w-full h-40 object-cover" src="/images/languages.svg"/>
+</figure>
+<figure class="overflow-hidden rounded-md border border-border bg-surface">
+<img alt="Geometric semantic retrieval sculpture" class="w-full h-40 object-cover" src="/images/retrieval.svg"/>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<!-- LARGE ORANGE SECTION — MULTILINGUAL QUESTION ANSWERING -->
+<section class="bg-primary text-on-primary border-b border-on-primary/15">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-xl items-start">
+<div class="md:col-span-8">
+<p class="font-mono text-label-sm uppercase mb-gutter-md">CROSS-LINGUAL RETRIEVAL</p>
+<h2 class="font-headline text-display-lg-mobile md:text-display-lg tracking-tight text-balance">
+                Query in Hinglish, Hindi, or English—and trace every claim back to the exact page.
+              </h2>
+</div>
+<div class="md:col-span-4 flex flex-col justify-between gap-gutter-lg pt-gutter-sm">
+<p class="font-body text-body-md text-on-primary/90 text-pretty">
+                Code-mixed queries break keyword-only search. IndiRAG-QA pairs lexical precision (BM25 &amp; TF-IDF) with multilingual dense embeddings so a Hinglish question retrieves the right English or Hindi clause.
+              </p>
+<div>
+<a class="group inline-flex items-center gap-gutter-xs px-gutter-lg py-3 rounded-full bg-black text-on-black font-label text-label-lg transition-colors duration-state-change hover:bg-surface-white hover:text-on-surface" href="/retrieval.html">
+<span>Open Retrieval Lab</span>
+<span aria-hidden="true" class="material-symbols-outlined text-body-lg transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DEEP BLACK SECTION — OVERSIZED TYPOGRAPHY + ILLUSTRATIVE HINGLISH DEMO -->
+<section class="bg-black text-on-black">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-xl items-end pb-gutter-xl border-b border-border-dark">
+<div class="md:col-span-9">
+<h2 class="font-headline text-display-lg-mobile md:text-display-lg text-on-black tracking-tight text-balance">
+                ASK IN YOUR LANGUAGE.<br/>ANSWER WITH EVIDENCE.
+              </h2>
+</div>
+<div class="md:col-span-3 flex md:justify-end">
+<!-- Geometric Orange Semicircles -->
+<svg aria-hidden="true" fill="none" height="56" viewbox="0 0 112 56" width="112">
+<circle cx="28" cy="28" r="27" stroke="#313030" stroke-width="1.5"></circle>
+<path d="M84 0A28 28 0 0 0 84 56V0Z" fill="#FF5722"></path>
+<path d="M112 0A28 28 0 0 0 112 56V0Z" fill="#FF5722"></path>
+</svg>
+</div>
+</div>
+<!-- Illustrative Demonstration Layout -->
+<div class="pt-gutter-xl">
+<div class="flex flex-wrap items-center justify-between gap-gutter-sm mb-gutter-lg">
+<span class="px-3 py-1 rounded-sm bg-primary text-on-primary font-mono text-label-sm uppercase font-semibold">
+                Illustrative Example
+              </span>
+<span class="font-mono text-label-sm text-muted">
+                SAMPLE HINGLISH QUERY · HYBRID RETRIEVAL (TOP-5)
+              </span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 border border-border-dark">
+<!-- Query & Answer Column -->
+<div class="lg:col-span-7 p-gutter-xl border-b lg:border-b-0 lg:border-r border-border-dark flex flex-col gap-gutter-lg">
+<div>
+<span class="font-mono text-label-sm text-muted uppercase block mb-gutter-xs">Query (Detected: Hinglish)</span>
+<p class="font-headline text-headline-md text-on-black">
+                    “Scholarship ke liye family income limit kitni hai?”
+                  </p>
+</div>
+<div class="pt-gutter-md border-t border-border-dark flex flex-col gap-gutter-md">
+<div class="flex flex-wrap items-center gap-gutter-sm">
+<span class="px-2.5 py-1 rounded-sm bg-success text-on-success font-mono text-label-sm uppercase">ANSWERABLE</span>
+<span class="font-mono text-label-sm text-muted">METHOD: HYBRID (RRF)</span>
+<span class="font-mono text-label-sm text-muted">CONFIDENCE: UNAVAILABLE (UNCALIBRATED)</span>
+</div>
+<p class="font-body text-body-lg text-on-black/95 text-pretty">
+                    Merit-cum-Means scholarship eligibility requires total annual family income from all sources not to exceed ₹8,00,000, verified through a current-year income certificate issued by a competent revenue authority.
+                  </p>
+</div>
+</div>
+<!-- Supporting Citations Column -->
+<div class="lg:col-span-5 p-gutter-xl bg-black flex flex-col gap-gutter-md">
+<span class="font-mono text-label-sm text-primary uppercase">Supporting Citations (Illustrative)</span>
+<div class="p-gutter-md border border-border-dark flex flex-col gap-gutter-xs">
+<div class="flex items-center justify-between gap-2">
+<span class="font-mono text-mono-md text-on-black">Scholarship_Policy_2026.pdf</span>
+<span class="font-mono text-label-sm text-primary tabular-nums">PAGE 04 · P-0412</span>
+</div>
+<p class="font-body text-body-sm text-muted text-pretty">
+                    “Section 3.2 — Financial Threshold: Applicants must submit proof that combined parental/guardian annual income does not exceed INR 8.00 Lakhs...”
+                  </p>
+</div>
+<div class="p-gutter-md border border-border-dark flex flex-col gap-gutter-xs">
+<div class="flex items-center justify-between gap-2">
+<span class="font-mono text-mono-md text-on-black">Student_Aid_FAQ_Hindi.pdf</span>
+<span class="font-mono text-label-sm text-primary tabular-nums">PAGE 02 · P-0108</span>
+</div>
+<p class="font-devanagari text-body-sm text-muted text-pretty">
+                    “वार्षिक पारिवारिक आय ₹8,00,000 से अधिक नहीं होनी चाहिए तथा तहसीलदार द्वारा प्रमाणित आय प्रमाण पत्र अनिवार्य है।”
+                  </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- MINIMAL EDITORIAL FOOTER -->
+<footer class="bg-surface text-on-surface border-t border-border">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-section">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-xl pb-gutter-xl border-b border-border items-end">
+<div class="md:col-span-8">
+<h2 class="font-headline text-display-lg-mobile md:text-headline-lg tracking-tight text-balance">
+              Evidence-grounded answers,<br/>across every script.
+            </h2>
+</div>
+<div class="md:col-span-4 flex md:justify-end">
+<a class="group inline-flex items-center gap-gutter-xs px-gutter-lg py-3 rounded-full bg-black text-on-black font-label text-label-lg transition-colors duration-state-change hover:bg-primary hover:text-on-primary" href="/ask.html">
+<span>Launch Workspace</span>
+<span aria-hidden="true" class="material-symbols-outlined text-body-lg transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+</div>
+</div>
+<div class="pt-gutter-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-gutter-xl">
+<div class="md:col-span-4 flex flex-col gap-gutter-xs">
+<p class="font-headline text-title-lg">IndiRAG-QA<sup></sup></p>
+<p class="font-body text-body-sm text-text-muted">Bennett University · CSET 346 — Natural Language Processing</p>
+<p class="font-mono text-label-sm text-text-muted mt-1">FACULTY MENTOR: DR. ANKUR KUMAR SINGHAL</p>
+</div>
+<div class="md:col-span-2 flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm text-text-muted uppercase mb-1">Workspace</span>
+<a class="font-body text-body-sm hover:text-primary-deep" href="/ask.html">QA Workspace</a>
+<a class="font-body text-body-sm hover:text-primary-deep" href="/documents.html">Document Library</a>
+<a class="font-body text-body-sm hover:text-primary-deep" href="/retrieval.html">Retrieval Lab</a>
+</div>
+<div class="md:col-span-2 flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm text-text-muted uppercase mb-1">Research</span>
+<a class="font-body text-body-sm hover:text-primary-deep" href="/evaluation.html">Evaluation</a>
+<a class="font-body text-body-sm hover:text-primary-deep" href="/methodology.html">Methodology</a>
+<a class="font-body text-body-sm hover:text-primary-deep" href="/about.html">About Team</a>
+</div>
+<div class="md:col-span-4 flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm text-text-muted uppercase mb-1">Research Team</span>
+<p class="font-body text-body-sm">Shekhar Pratyush (S24CSEU2573) · Pranjal Raj (S24CSEU2546)</p>
+<p class="font-body text-body-sm">Aditya Raj (S24CSEU2548) · Amit Kumar Singh (S24CSEU2554)</p>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="/src/app.js" type="module"></script></body></html>

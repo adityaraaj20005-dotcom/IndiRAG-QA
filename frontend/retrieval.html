@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Retrieval Lab — IndiRAG-QA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#FF5722',
+        'on-primary': '#080808',
+        'primary-deep': '#B02F00',
+        'on-primary-deep': '#FFFFFF',
+        'primary-tint': '#FFEDE8',
+        'on-primary-tint': '#3B0900',
+        'black': '#080808',
+        'on-black': '#FFFFFF',
+        'surface': '#F5F3EE',
+        'on-surface': '#080808',
+        'surface-white': '#FFFFFF',
+        'on-surface-white': '#080808',
+        'surface-container': '#E5E2E1',
+        'on-surface-container': '#080808',
+        'muted': '#898989',
+        'text-muted': '#5F5E5E',
+        'border': '#D9D9D9',
+        'border-dark': '#313030',
+        'error': '#BA1A1A',
+        'on-error': '#FFFFFF',
+        'success': '#1B5E20',
+        'on-success': '#FFFFFF',
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '2px',
+        'DEFAULT': '4px',
+        'md': '8px',
+        'lg': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '32px',
+      },
+      fontFamily: {
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'headline': ['"Space Grotesk"', 'sans-serif'],
+        'title': ['"Geist"', 'sans-serif'],
+        'body': ['"Geist"', 'sans-serif'],
+        'label': ['"Geist"', 'sans-serif'],
+        'mono': ['"Geist Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-xl': ['96px', { lineHeight: '92px', letterSpacing: '-3px', fontWeight: '700' }],
+        'display-xl-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'display-lg': ['64px', { lineHeight: '66px', letterSpacing: '-2px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-1.2px', fontWeight: '700' }],
+        'headline-lg-mobile': ['28px', { lineHeight: '32px', letterSpacing: '-0.6px', fontWeight: '700' }],
+        'headline-md': ['28px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '600' }],
+        'title-lg': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.1px', fontWeight: '600' }],
+        'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['15px', { lineHeight: '23px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '19px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.8px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.4, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+<style>button:disabled{opacity:.55;cursor:not-allowed} .live-passage{overflow-wrap:anywhere;white-space:pre-wrap} [hidden]{display:none!important} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+<header class="lg:hidden flex items-center justify-between px-gutter-md h-14 bg-black text-on-black border-b border-border-dark sticky top-0 z-40">
+<a class="font-headline text-title-md" href="/index.html">IndiRAG-QA<sup class="text-primary"></sup></a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="p-2 text-on-black hover:text-primary" id="mobile-nav-toggle" type="button">
+<span aria-hidden="true" class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<aside class="hidden lg:flex lg:flex-col lg:w-60 lg:shrink-0 bg-black text-on-black border-r border-border-dark min-h-[1024px] justify-between p-gutter-lg" data-stitch-vh="min-h-[1024px]===min-h-screen" id="app-sidebar">
+<div class="flex flex-col gap-gutter-xl">
+<div class="flex items-center justify-between border-b border-border-dark pb-gutter-md">
+<a class="font-headline text-title-lg tracking-tight" href="/index.html">
+            IndiRAG-QA<sup class="text-primary text-body-sm"></sup>
+</a>
+</div>
+<nav aria-label="Workspace navigation" class="flex flex-col gap-gutter-xs">
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/ask.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">chat_bubble_outline</span>
+<span>QA Workspace</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/documents.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">folder_open</span>
+<span>Document Library</span>
+</a>
+<a aria-current="page" class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm bg-primary text-on-primary font-label text-label-lg" href="/retrieval.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">compare_arrows</span>
+<span>Retrieval Lab</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/evaluation.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">analytics</span>
+<span>Evaluation</span>
+</a>
+<div class="my-gutter-sm border-t border-border-dark"></div>
+<a class="flex items-center gap-gutter-sm px-3 py-2 rounded-sm text-muted hover:text-on-black font-body text-body-sm transition-colors duration-state-change" href="/methodology.html">
+<span>Methodology</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2 rounded-sm text-muted hover:text-on-black font-body text-body-sm transition-colors duration-state-change" href="/about.html">
+<span>About Project</span>
+</a>
+</nav>
+</div>
+<div class="pt-gutter-lg border-t border-border-dark flex flex-col gap-gutter-xs">
+<div class="flex items-center gap-2">
+<span aria-hidden="true" class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-mono text-label-sm text-muted uppercase">API: /api/retrieval/compare</span>
+</div>
+<a class="font-mono text-label-sm text-muted hover:text-primary transition-colors duration-state-change" href="/index.html">
+          ← Overview Page
+        </a>
+</div>
+</aside>
+<!-- Main Retrieval Lab Content -->
+<main class="flex-1 min-w-0 bg-surface">
+<div class="max-w-[1440px] mx-auto px-gutter-md md:px-gutter-xl py-gutter-xl flex flex-col gap-gutter-xl">
+<!-- Header -->
+<header class="border-b border-black pb-gutter-lg flex flex-col md:flex-row md:items-end justify-between gap-gutter-md">
+<div>
+<span class="font-mono text-label-sm uppercase text-text-muted block mb-gutter-xs">04 / RETRIEVAL LAB</span>
+<h1 class="font-headline text-headline-lg-mobile md:text-display-lg tracking-tight text-on-surface">
+              Four approaches. One question.
+            </h1>
+</div>
+<p class="font-body text-body-sm text-text-muted max-w-sm">
+            Side-by-side ranking inspection across lexical, dense semantic, and Reciprocal Rank Fusion retrievers.
+          </p>
+</header>
+<!-- Query Bar -->
+<section aria-label="Comparison query input" class="bg-surface-white border border-border p-gutter-lg flex flex-col md:flex-row gap-gutter-md items-stretch md:items-end">
+<label class="flex-1 flex flex-col gap-gutter-xs">
+<span class="font-label text-label-lg text-on-surface">Comparison Query</span>
+<input class="w-full px-gutter-md py-3 rounded-none bg-surface border border-border font-body text-body-md focus:border-black focus:ring-0 focus:outline-none" id="lab-query-input" placeholder="Enter an English, Hindi, or Hinglish query..." type="text" value="Scholarship ke liye family income limit kitni hai?"/>
+</label>
+<label class="w-full md:w-28 flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm uppercase text-text-muted">Top-K</span>
+<select class="px-3 py-3 rounded-none bg-surface-white border border-border font-mono text-mono-md tabular-nums focus:border-black focus:ring-0" id="lab-topk">
+<option value="3">3</option>
+<option selected="" value="5">5</option>
+<option value="10">10</option>
+</select>
+</label>
+<label class="flex flex-col gap-1"><span class="font-mono text-label-sm uppercase">Collection</span><select class="border border-border bg-white py-3" id="lab-scope"><option value="">All documents</option></select></label><button class="inline-flex items-center justify-center gap-gutter-xs px-gutter-xl py-3 rounded-full bg-primary text-on-primary font-label text-label-lg hover:bg-black hover:text-on-black transition-colors duration-state-change" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" id="compare-btn" type="button">
+<span data-design-text-token="label-lg">Compare Retrievers</span>
+</button>
+</section><p id="lab-status" role="status"></p>
+<!-- Scientific Calibration Notice -->
+<div class="border-l-2 border-primary bg-surface-white px-gutter-md py-3 flex items-center gap-gutter-sm">
+<span aria-hidden="true" class="material-symbols-outlined text-primary-deep text-title-md">info</span>
+<p class="font-body text-body-sm text-text-muted">
+            Raw retrieval scores (unbounded BM25, TF-IDF cosine, dense embedding cosine, and RRF rank fusion) operate on distinct scales and are not presented as directly comparable confidence percentages.
+          </p>
+</div>
+<!-- 4-Column Editorial Comparison Grid -->
+<section aria-label="Retriever comparison columns" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 border border-black bg-surface-white" id="lab-results">
+<!-- Column 01: BM25 -->
+<div class="p-gutter-lg border-b xl:border-b-0 md:border-r border-border flex flex-col gap-gutter-md">
+<div class="border-b border-black pb-gutter-sm flex items-baseline justify-between">
+<div>
+<span class="font-mono text-label-sm text-text-muted block">01 / LEXICAL</span>
+<h2 class="font-headline text-title-lg">BM25</h2>
+</div>
+<span class="font-mono text-label-sm text-text-muted">Okapi</span>
+</div>
+<div class="p-gutter-md border border-border bg-surface flex flex-col gap-gutter-xs" id="lab-col-0">
+<div class="flex items-center justify-between font-mono text-label-sm">
+<span class="text-on-surface">#1 · —</span>
+<span class="text-primary-deep tabular-nums">SCORE: —</span>
+</div>
+<span class="font-mono text-label-sm text-text-muted">FILE: — · PAGE — · ID —</span>
+<p class="font-body text-body-sm text-text-muted">Run comparison via <code class="font-mono">/api/retrieval/compare</code> to inspect ranked BM25 passages.</p>
+</div>
+</div>
+<!-- Column 02: TF-IDF -->
+<div class="p-gutter-lg border-b xl:border-b-0 xl:border-r border-border flex flex-col gap-gutter-md">
+<div class="border-b border-black pb-gutter-sm flex items-baseline justify-between">
+<div>
+<span class="font-mono text-label-sm text-text-muted block">02 / VECTORIAL</span>
+<h2 class="font-headline text-title-lg">TF-IDF</h2>
+</div>
+<span class="font-mono text-label-sm text-text-muted">Cosine</span>
+</div>
+<div class="p-gutter-md border border-border bg-surface flex flex-col gap-gutter-xs" id="lab-col-1">
+<div class="flex items-center justify-between font-mono text-label-sm">
+<span class="text-on-surface">#1 · —</span>
+<span class="text-primary-deep tabular-nums">SCORE: —</span>
+</div>
+<span class="font-mono text-label-sm text-text-muted">FILE: — · PAGE — · ID —</span>
+<p class="font-body text-body-sm text-text-muted">Run comparison via <code class="font-mono">/api/retrieval/compare</code> to inspect ranked TF-IDF passages.</p>
+</div>
+</div>
+<!-- Column 03: Multilingual Dense -->
+<div class="p-gutter-lg border-b md:border-b-0 md:border-r border-border flex flex-col gap-gutter-md">
+<div class="border-b border-black pb-gutter-sm flex items-baseline justify-between">
+<div>
+<span class="font-mono text-label-sm text-text-muted block">03 / SEMANTIC</span>
+<h2 class="font-headline text-title-lg">Dense</h2>
+</div>
+<span class="font-mono text-label-sm text-text-muted">MiniLM / E5</span>
+</div>
+<div class="p-gutter-md border border-border bg-surface flex flex-col gap-gutter-xs" id="lab-col-2">
+<div class="flex items-center justify-between font-mono text-label-sm">
+<span class="text-on-surface">#1 · —</span>
+<span class="text-primary-deep tabular-nums">SCORE: —</span>
+</div>
+<span class="font-mono text-label-sm text-text-muted">FILE: — · PAGE — · ID —</span>
+<p class="font-body text-body-sm text-text-muted">Run comparison via <code class="font-mono">/api/retrieval/compare</code> to inspect multilingual embedding matches.</p>
+</div>
+</div>
+<!-- Column 04: Hybrid (RRF) -->
+<div class="p-gutter-lg bg-primary-tint/40 flex flex-col gap-gutter-md">
+<div class="border-b border-primary pb-gutter-sm flex items-baseline justify-between">
+<div>
+<span class="font-mono text-label-sm text-primary-deep block">04 / FUSION (DEFAULT)</span>
+<h2 class="font-headline text-title-lg">Hybrid (RRF)</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary font-mono text-label-sm">ACTIVE</span>
+</div>
+<div class="p-gutter-md border border-primary/40 bg-surface-white flex flex-col gap-gutter-xs" id="lab-col-3">
+<div class="flex items-center justify-between font-mono text-label-sm">
+<span class="text-on-surface">#1 · —</span>
+<span class="text-primary-deep tabular-nums">RRF: —</span>
+</div>
+<span class="font-mono text-label-sm text-text-muted">FILE: — · PAGE — · ID —</span>
+<p class="font-body text-body-sm text-text-muted">Reciprocal Rank Fusion merges lexical and dense rankings into a unified evidence set.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+<script src="/src/app.js" type="module"></script></body></html>

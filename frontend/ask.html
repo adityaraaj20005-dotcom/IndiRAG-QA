@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Question Answering Workspace — IndiRAG-QA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#FF5722',
+        'on-primary': '#080808',
+        'primary-deep': '#B02F00',
+        'on-primary-deep': '#FFFFFF',
+        'primary-tint': '#FFEDE8',
+        'on-primary-tint': '#3B0900',
+        'black': '#080808',
+        'on-black': '#FFFFFF',
+        'surface': '#F5F3EE',
+        'on-surface': '#080808',
+        'surface-white': '#FFFFFF',
+        'on-surface-white': '#080808',
+        'surface-container': '#E5E2E1',
+        'on-surface-container': '#080808',
+        'muted': '#898989',
+        'text-muted': '#5F5E5E',
+        'border': '#D9D9D9',
+        'border-dark': '#313030',
+        'error': '#BA1A1A',
+        'on-error': '#FFFFFF',
+        'success': '#1B5E20',
+        'on-success': '#FFFFFF',
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '2px',
+        'DEFAULT': '4px',
+        'md': '8px',
+        'lg': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '32px',
+      },
+      fontFamily: {
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'headline': ['"Space Grotesk"', 'sans-serif'],
+        'title': ['"Geist"', 'sans-serif'],
+        'body': ['"Geist"', 'sans-serif'],
+        'label': ['"Geist"', 'sans-serif'],
+        'mono': ['"Geist Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-xl': ['96px', { lineHeight: '92px', letterSpacing: '-3px', fontWeight: '700' }],
+        'display-xl-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'display-lg': ['64px', { lineHeight: '66px', letterSpacing: '-2px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-1px', fontWeight: '700' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-1.2px', fontWeight: '700' }],
+        'headline-lg-mobile': ['28px', { lineHeight: '32px', letterSpacing: '-0.6px', fontWeight: '700' }],
+        'headline-md': ['28px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '600' }],
+        'title-lg': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.1px', fontWeight: '600' }],
+        'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['15px', { lineHeight: '23px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '19px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.8px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.4, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Noto+Sans+Devanagari:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    .font-devanagari { font-family: "Geist", "Noto Sans Devanagari", sans-serif; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+<style>button:disabled{opacity:.55;cursor:not-allowed} .live-passage{overflow-wrap:anywhere;white-space:pre-wrap} [hidden]{display:none!important} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+<!-- Minimal Fixed Sidebar (Desktop) + Mobile Top Bar -->
+<header class="lg:hidden flex items-center justify-between px-gutter-md h-14 bg-black text-on-black border-b border-border-dark sticky top-0 z-40">
+<a class="font-headline text-title-md" href="/index.html">IndiRAG-QA<sup class="text-primary"></sup></a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="p-2 text-on-black hover:text-primary" id="mobile-nav-toggle" type="button">
+<span aria-hidden="true" class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<aside class="hidden lg:flex lg:flex-col lg:w-60 lg:shrink-0 bg-black text-on-black border-r border-border-dark min-h-[1024px] justify-between p-gutter-lg" data-stitch-vh="min-h-[1024px]===min-h-screen" id="app-sidebar">
+<div class="flex flex-col gap-gutter-xl">
+<div class="flex items-center justify-between border-b border-border-dark pb-gutter-md">
+<a class="font-headline text-title-lg tracking-tight" href="/index.html">
+            IndiRAG-QA<sup class="text-primary text-body-sm"></sup>
+</a>
+</div>
+<nav aria-label="Workspace navigation" class="flex flex-col gap-gutter-xs">
+<a aria-current="page" class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm bg-primary text-on-primary font-label text-label-lg" href="/ask.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">chat_bubble_outline</span>
+<span>QA Workspace</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/documents.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">folder_open</span>
+<span>Document Library</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/retrieval.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">compare_arrows</span>
+<span>Retrieval Lab</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2.5 rounded-sm text-on-black/80 hover:text-on-black hover:bg-border-dark/60 font-label text-label-lg transition-colors duration-state-change" href="/evaluation.html">
+<span aria-hidden="true" class="material-symbols-outlined text-title-md">analytics</span>
+<span>Evaluation</span>
+</a>
+<div class="my-gutter-sm border-t border-border-dark"></div>
+<a class="flex items-center gap-gutter-sm px-3 py-2 rounded-sm text-muted hover:text-on-black font-body text-body-sm transition-colors duration-state-change" href="/methodology.html">
+<span>Methodology</span>
+</a>
+<a class="flex items-center gap-gutter-sm px-3 py-2 rounded-sm text-muted hover:text-on-black font-body text-body-sm transition-colors duration-state-change" href="/about.html">
+<span>About Project</span>
+</a>
+</nav>
+</div>
+<div class="pt-gutter-lg border-t border-border-dark flex flex-col gap-gutter-xs">
+<div class="flex items-center gap-2">
+<span aria-hidden="true" class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-mono text-label-sm text-muted uppercase" id="health-status">Checking API…</span>
+</div>
+<a class="font-mono text-label-sm text-muted hover:text-primary transition-colors duration-state-change" href="/index.html">
+          ← Overview Page
+        </a>
+</div>
+</aside>
+<!-- Main Workspace Content -->
+<main class="flex-1 min-w-0 bg-surface">
+<div class="max-w-5xl mx-auto px-gutter-md md:px-gutter-xl py-gutter-xl flex flex-col gap-gutter-xl">
+<!-- Editorial Page Title -->
+<header class="border-b border-black pb-gutter-lg flex flex-col md:flex-row md:items-end justify-between gap-gutter-md">
+<div>
+<span class="font-mono text-label-sm uppercase text-text-muted block mb-gutter-xs">02 / QUESTION ANSWERING WORKSPACE</span>
+<h1 class="font-headline text-headline-lg-mobile md:text-display-lg tracking-tight text-on-surface">
+              Ask in your language.
+            </h1>
+</div>
+<p class="font-body text-body-sm text-text-muted max-w-xs">
+            Submit English, Hindi, or Hinglish questions. Answers are strictly grounded in retrieved corpus passages.
+          </p>
+</header>
+<!-- Query Input & Parameter Controls -->
+<section aria-label="Question input" class="bg-surface-white border border-border p-gutter-lg flex flex-col gap-gutter-lg">
+<div class="flex flex-col gap-gutter-xs">
+<label class="font-label text-label-lg text-on-surface" for="qa-question-input">Research Question</label>
+<textarea class="w-full p-gutter-md rounded-none bg-surface border border-border text-on-surface font-devanagari text-body-lg placeholder:text-text-muted focus:border-black focus:ring-0 focus:outline-none resize-y" id="qa-question-input" placeholder="Ask a question about your indexed documents…" rows="3"></textarea>
+</div>
+<!-- Controls Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-lg pt-gutter-sm border-t border-border">
+<!-- Language Selector -->
+<div class="md:col-span-4 flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm uppercase text-text-muted">Query Language</span>
+<div aria-label="Query language" class="flex flex-wrap gap-1.5" role="group">Automatically detected by the backend (English, Hindi, Hinglish).</div>
+</div>
+<!-- Retrieval Method Selector (Hybrid default) -->
+<div class="md:col-span-5 flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm uppercase text-text-muted">Retrieval Method</span>
+<div aria-label="Retrieval method" class="flex flex-wrap gap-1.5" role="group">
+<!-- COMPONENT: chip-filter-selected -->
+<button aria-pressed="true" class="method-chip px-3 py-1.5 rounded-full bg-black text-on-black font-label text-label-lg border border-black transition-colors duration-state-change" data-component-id="chip-filter-selected" data-component-type="chip" data-component-variant="filter" data-method="Hybrid" type="button">
+<span data-design-text-token="label-lg">Hybrid</span>
+</button>
+<!-- COMPONENT: chip-action -->
+<button aria-pressed="false" class="method-chip px-3 py-1.5 rounded-full bg-surface-white text-on-surface border border-border font-label text-label-lg hover:border-black transition-colors duration-state-change" data-component-id="chip-action" data-component-type="chip" data-component-variant="action" data-method="BM25" type="button">
+<span data-design-text-token="label-lg">BM25</span>
+</button>
+<button aria-pressed="false" class="method-chip px-3 py-1.5 rounded-full bg-surface-white text-on-surface border border-border font-label text-label-lg hover:border-black transition-colors duration-state-change" data-method="TF-IDF" type="button">TF-IDF</button>
+<button aria-pressed="false" class="method-chip px-3 py-1.5 rounded-full bg-surface-white text-on-surface border border-border font-label text-label-lg hover:border-black transition-colors duration-state-change" data-method="Dense" type="button">Dense</button>
+</div>
+</div>
+<!-- Collection & Top-K -->
+<div class="md:col-span-3 grid grid-cols-2 gap-gutter-sm">
+<label class="flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm uppercase text-text-muted">Collection</span>
+<select class="px-2.5 py-1.5 rounded-none bg-surface-white border border-border font-body text-body-sm focus:border-black focus:ring-0" id="collection-select">
+<option value="">All Documents</option>
+<option value="policies">University Policies</option>
+<option value="scholarships">Scholarship Guides</option>
+</select>
+</label>
+<label class="flex flex-col gap-gutter-xs">
+<span class="font-mono text-label-sm uppercase text-text-muted">Top-K</span>
+<select class="px-2.5 py-1.5 rounded-none bg-surface-white border border-border font-mono text-mono-md tabular-nums focus:border-black focus:ring-0" id="topk-select">
+<option value="3">3</option>
+<option selected="" value="5">5</option>
+<option value="8">8</option>
+<option value="10">10</option>
+</select>
+</label>
+</div>
+</div>
+<!-- Action Row -->
+<div class="flex flex-wrap items-center justify-between gap-gutter-md pt-gutter-sm border-t border-border">
+<span class="font-mono text-label-sm text-text-muted">
+              POST /api/query · generate_answer: true
+            </span>
+<!-- COMPONENT: button-primary -->
+<button class="group inline-flex items-center justify-center gap-gutter-sm px-gutter-xl py-3 rounded-full bg-primary text-on-primary font-label text-label-lg transition-colors duration-state-change ease-state-change hover:bg-black hover:text-on-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-black" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" id="ask-ai-btn" type="button">
+<span data-design-text-token="label-lg">Ask AI</span>
+<span aria-hidden="true" class="material-symbols-outlined text-title-md transition-transform duration-state-change group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</button>
+</div>
+</section>
+<!-- Loading & Error States -->
+<div aria-live="polite" class="hidden border border-black bg-surface-white p-gutter-lg flex items-center gap-gutter-md" id="qa-loading" role="status">
+<span aria-hidden="true" class="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
+<span class="font-mono text-mono-md text-on-surface">Retrieving evidence passages and synthesizing grounded answer...</span>
+</div>
+<div class="hidden border border-error bg-primary-tint p-gutter-lg flex items-start justify-between gap-gutter-md" id="qa-error" role="alert">
+<div>
+<span class="font-mono text-label-sm uppercase text-error block">Request Error</span>
+<p class="font-body text-body-md text-on-primary-tint mt-1" id="qa-error-msg">Unable to reach /api/query. Start the FastAPI backend to execute live queries.</p>
+</div>
+</div>
+<!-- Generated Answer Section -->
+<section aria-label="Generated answer and citations" class="bg-surface-white border-t-2 border-b border-black hidden" id="qa-result">
+<!-- Metadata Strip -->
+<div class="px-gutter-lg py-gutter-md border-b border-border flex flex-wrap items-center justify-between gap-gutter-md bg-surface">
+<div class="flex flex-wrap items-center gap-gutter-sm">
+<!-- COMPONENT: badge-answerable -->
+<span class="inline-flex items-center px-2.5 py-1 rounded-sm bg-success text-on-success font-mono text-label-sm uppercase" data-component-id="badge-answerable" data-component-type="badge" data-component-variant="success" id="res-answerability" role="status">
+<span data-design-text-token="label-sm">ANSWERABLE</span>
+</span>
+<span class="px-2.5 py-1 rounded-sm border border-border bg-surface-white font-mono text-label-sm uppercase" id="res-language">LANG: HINGLISH</span>
+<span class="px-2.5 py-1 rounded-sm border border-border bg-surface-white font-mono text-label-sm uppercase" id="res-method">METHOD: HYBRID</span>
+<span class="px-2.5 py-1 rounded-sm border border-border bg-surface-white font-mono text-label-sm text-text-muted uppercase" id="res-confidence">CONFIDENCE: UNAVAILABLE (UNCALIBRATED)</span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-surface-white font-label text-label-lg hover:border-black transition-colors duration-state-change" id="copy-answer-btn" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-body-md">content_copy</span>
+<span>Copy Answer</span>
+</button>
+</div>
+<!-- Answer Body -->
+<div class="p-gutter-xl border-b border-border">
+<span class="font-mono text-label-sm uppercase text-text-muted block mb-gutter-sm">Evidence-Grounded Answer</span>
+<p class="font-devanagari text-headline-md text-on-surface leading-relaxed max-w-prose text-pretty" id="res-answer-text">
+              Submit a question above to query your indexed corpus via <code class="font-mono text-mono-md bg-surface px-1.5 py-0.5">POST /api/query</code>. When answered, the grounded response, answerability verdict, and supporting citations appear here.
+            </p>
+</div>
+<!-- Supporting Citations Grid -->
+<div class="p-gutter-lg border-b border-border">
+<h2 class="font-mono text-label-sm uppercase text-text-muted mb-gutter-md">Supporting Document Citations</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-md" id="res-citations">
+<div class="p-gutter-md border border-border bg-surface flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-mono text-mono-md font-medium text-on-surface">Waiting for query execution</span>
+<span class="font-mono text-label-sm text-primary-deep tabular-nums">PAGE — · PASSAGE —</span>
+</div>
+<p class="font-body text-body-sm text-text-muted">Source filenames, page numbers, and passage identifiers returned in <code class="font-mono">citations</code> will render here.</p>
+</div>
+</div>
+</div>
+<!-- Expandable Retrieved Evidence -->
+<div class="p-gutter-lg">
+<button aria-controls="evidence-drawer" aria-expanded="false" class="w-full flex items-center justify-between py-2 font-label text-label-lg text-on-surface hover:text-primary-deep transition-colors duration-state-change" id="toggle-evidence-btn" type="button">
+<span class="flex items-center gap-gutter-sm">
+<span class="font-mono text-label-sm uppercase text-text-muted">Retrieved Evidence Passages</span>
+<span class="px-2 py-0.5 rounded-full bg-surface font-mono text-label-sm tabular-nums">TOP-5</span>
+</span>
+<span aria-hidden="true" class="material-symbols-outlined transition-transform duration-surface-enter" id="evidence-chevron">expand_more</span>
+</button>
+<div class="hidden pt-gutter-md flex flex-col gap-gutter-sm" id="evidence-drawer">
+<div class="p-gutter-md border border-border bg-surface flex flex-col gap-gutter-xs">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<span class="font-mono text-label-sm text-on-surface">PASSAGE ID: — · SOURCE: — · PAGE —</span>
+<span class="font-mono text-label-sm text-primary-deep tabular-nums">RETRIEVAL SCORE: —</span>
+</div>
+<p class="font-body text-body-sm text-text-muted">Raw passage text and retriever score from <code class="font-mono">evidence[]</code> appear here upon query execution.</p>
+</div>
+</div>
+</div>
+<p class="px-gutter-lg py-3 text-body-sm text-text-muted" id="qa-message"></p></section>
+</div>
+</main>
+</div>
+
+<script src="/src/app.js" type="module"></script></body></html>
