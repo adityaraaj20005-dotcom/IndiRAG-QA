@@ -1,4 +1,4 @@
-from qa_evaluation import exact_match, run_pipeline, token_f1
+from backend.qa_evaluation import exact_match, run_pipeline, token_f1
 
 
 def test_unicode_normalization_and_multiple_references():
