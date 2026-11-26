@@ -11,8 +11,8 @@ from qa_evaluation import summarize, by_language
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASET = ROOT / 'research/datasets/qa_pilot_smoke.json'
-OUTPUT = ROOT / 'research/results/qa_smoke_resumable.json'
-LIMIT = 24
+OUTPUT = ROOT / 'research/results/qa_smoke_corrected.json'
+LIMIT = 60
 
 
 def save(path, state):
@@ -76,11 +76,7 @@ def main_cli():
         if state['dataset_sha256'] != digest:
             raise ValueError('Dataset changed; refusing to resume.')
     else:
-        # Three previous calls allowed up to three attempts each; reserve the worst case.
-        probe = json.loads((ROOT / 'research/results/qa_smoke_probe.json').read_text(encoding='utf-8'))
-        state = {'dataset_sha256': digest, 'request_count': 9, 'historical_requests': 'Three calls, each with up to three attempts; retry counts were not recorded. Nine attempts conservatively reserved.', 'records': {}}
-        for pipeline in ('direct', 'rag'):
-            state['records'][f'0:{pipeline}'] = {**rows[0], **probe[pipeline], 'status': 'ok', 'question_index': 0, 'pipeline': pipeline, 'evidence': [], 'evidence_note': 'Evidence text was not retained in the original probe.'}
+        state = {'dataset_sha256': digest, 'request_count': 0, 'experiment': 'fresh corrected direct vs hybrid RAG', 'records': {}}
         save(OUTPUT, state)
     main.validate_qa_rows([main.QAEvaluationRow(**row) for row in rows])
     def generate(row, pipeline):
@@ -95,6 +91,8 @@ def main_cli():
     for pipeline in ('direct', 'rag'):
         predictions = [p for p in state['records'].values() if p['pipeline'] == pipeline and p['status'] != 'interrupted']
         state.setdefault('pipelines', {})[pipeline] = {'aggregate': summarize(predictions), 'language_wise': by_language(predictions), 'predictions': predictions}
+    matched = [i for i in range(len(rows)) if all(state['records'].get(f'{i}:{p}', {}).get('status') == 'ok' for p in ('direct', 'rag'))]
+    state['matched_successful'] = {'n': len(matched), 'indices': matched, 'pipelines': {p: summarize([state['records'][f'{i}:{p}'] for i in matched]) for p in ('direct', 'rag')}}
     save(OUTPUT, state)
     print('Experiment state saved:', OUTPUT, 'status:', state.get('stop_reason'))
 

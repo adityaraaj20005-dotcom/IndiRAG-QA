@@ -1,0 +1,2258 @@
+{
+  "dataset_sha256": "e7dc56277ac6674223373597b571539fa77c785dcbc7c82c7bf136ff360e1d28",
+  "request_count": 19,
+  "experiment": "fresh corrected direct vs hybrid RAG",
+  "records": {
+    "0:direct": {
+      "question": "What is the maximum annual family income?",
+      "language": "English",
+      "answerable": true,
+      "reference_answers": [
+        "Rs. 4.5 lakh per annum",
+        "4.5 lakh rupees",
+        "₹4.5 lakh"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P1_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "income",
+      "answerability": "UNANSWERABLE",
+      "answer": "I am sorry, but I do not have access to any external documents or specific guidelines to determine the maximum annual family income.",
+      "citations": [],
+      "latency_ms": 1121.02,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 0,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "0:rag": {
+      "question": "What is the maximum annual family income?",
+      "language": "English",
+      "answerable": true,
+      "reference_answers": [
+        "Rs. 4.5 lakh per annum",
+        "4.5 lakh rupees",
+        "₹4.5 lakh"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P1_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "income",
+      "answerability": "ANSWERABLE",
+      "answer": "The maximum annual family income is Rs. 4.5 lakh per annum.",
+      "citations": [
+        "d03cd512b5b8_P2_C1",
+        "cf525ca294ba_P1_C2"
+      ],
+      "latency_ms": 954.49,
+      "evidence": [
+        {
+          "passage_id": "d03cd512b5b8_P2_C1",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "ii. \nPursuing regular degree courses and not correspondence or distance mode or \npursuing Diploma courses; \niii. \nPursuing courses at colleges/institutions recognized by All India Council for \nTechnical Education and respective Regulatory Bodies concerned; \niv. \nNot availing benefit of any other scholarship schemes including State run \nscholarship schemes/ fee waiver & reimbursement scheme; \nv. \nStudents with gross parental/family income upto Rs. 4.5 lakh per annum are \neligible for scholarship under the scheme. Income certificate will be required only \nfor the fresh applicants; \nvi. \nStudent changing his/ her college/institute of study will be allowed to \ncontinue/renew the scholarship provided the course of study and the institution is \nhaving valid AISHE Code; The AISHE code can be checked in the portal \nhttps://aishe.gov.in/aishe/aisheCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03202
+        },
+        {
+          "passage_id": "d03cd512b5b8_P1_C1",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "PRADHAN MANTRI UCHCHATAR SHIKSHA PROTSAHAN (PM-USP) YOJANA \nGUIDELINES FOR THE COMPONENT SCHEME – \nCENTRAL SECTOR SCHEME OF SCHOLARSHIP FOR COLLEGE AND \nUNIVERSITY STUDENTS (PM-USP CSSS) \n \n(Applicable for academic year 2022-23 onwards) \n \n1. Objective \nTo provide financial assistance to meritorious students from poor families to meet a \npart of their day-to-day expenses while pursuing higher studies. \n \n2. Scope \nThe scholarships are awarded by Ministry of Education, Government of India on the \nbasis of results of Higher Secondary / Class XII Board Examination. A maximum of \n82,000 fresh scholarships per annum are provided for pursuing graduate / \npostgraduate degree in colleges and universities and for professional courses, such as \nMedical, Engineering etc. \n \n3. Allocation of Scholarship \nThe total number of scholarships are divided amongst the State Education Boards \nbased on the State’s population in the age group of 18-25 years, after segregating \nshare of CBSE and ICSE on the b",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03102
+        },
+        {
+          "passage_id": "cf525ca294ba_P1_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "Scholarship for College and University Students is a \nmerit-cum-means scholarship scheme. \n \nEligibility conditions for FRESH application: \n Students who are above 80th percentile of successful candidates in the relevant \nstream from a particular Board of Examination in Class XII \n Students pursuing regular course (not correspondence or distance mode) \n Having family income upto Rs. 4.5 lakh per annum \n Not receiving any other scholarship or fee reimbursement of any kind \n Diploma students are not eligible under the scheme. \n Students who had taken a drop after 12th class are not eligible under the scheme. \n \n2. \nWhat is the methodology adopted for generating Merit List for selecting the \nbeneficiaries under the Scheme? \nFrom the eligible applicants, merit list is drawn based on gender (50 boys: 50 girls), \nstream (3-Science: 1-Commerce: 3-Humanities), Category (SC-15 %, ST-7.5 % and \nOBC-27 %), and 5 % horizontal reservation is provided for students with Benchmark \nDisabilities",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03002
+        },
+        {
+          "passage_id": "cf525ca294ba_P2_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.02986
+        },
+        {
+          "passage_id": "cf525ca294ba_P2_C1",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "year 2022-23, subject to the condition that guidelines of Ministry of Finance and NITI \nAayog regarding SC/ST fund allocation of the schemes are adhered to. \n3. \nWhat is the rate of scholarship under the Scheme? \nThe rate of scholarship is Rs. 12,000/- per annum at Graduation level for first three years \nof College and University courses and Rs. 20,000/- per annum at Post-Graduation level. \nStudents pursuing technical courses are paid Rs. 20,000/- per annum in the 4th and 5th year. \nStudents pursing B.Tech/ BE would get scholarship for 4 years only i.e Rs. 12000 per \nannum for first three years and Rs. 20,000 per annum in the 4th year. \n \n4. \nHow a second/ third/ fourth year student gets scholarships? \nAll the students finally selected for scholarship in first year are eligible for renewal of \nscholarships in 2nd/ 3rd years subject to fulfilment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.02929
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 0,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.6666666666666666
+    },
+    "1:direct": {
+      "question": "What is the minimum attendance for renewal?",
+      "language": "English",
+      "answerable": true,
+      "reference_answers": [
+        "75%",
+        "75 percent"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "attendance",
+      "answerability": "UNANSWERABLE",
+      "answer": "I am sorry, but I do not have access to any documents or context to determine the minimum attendance required for renewal.",
+      "citations": [],
+      "latency_ms": 1056.95,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 1,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "1:rag": {
+      "question": "What is the minimum attendance for renewal?",
+      "language": "English",
+      "answerable": true,
+      "reference_answers": [
+        "75%",
+        "75 percent"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "attendance",
+      "answerability": "ANSWERABLE",
+      "answer": "The minimum attendance required for scholarship renewal is at least 75%.",
+      "citations": [
+        "cf525ca294ba_P2_C2",
+        "d03cd512b5b8_P2_C2"
+      ],
+      "latency_ms": 1152.95,
+      "evidence": [
+        {
+          "passage_id": "cf525ca294ba_P2_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03279
+        },
+        {
+          "passage_id": "d03cd512b5b8_P2_C2",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03226
+        },
+        {
+          "passage_id": "cf525ca294ba_P7_C3",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 7,
+          "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03102
+        },
+        {
+          "passage_id": "d03cd512b5b8_P3_C2",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "Latest guideline on Timelines will be made available on NSP. \nvii. Students will not be permanently debarred for scholarships due to delay to renew \nor verification. However, students will have to submit renewal applications within \na cut-off date. Renewal for that year will not be allowed if an applicant misses this \ndeadline. \n \n7. Rate and Duration of Scholarship (from financial year 2022-23) \nThe rate of scholarship is Rs.12,000/-per annum at Graduation level for first three \nyears of College and University courses and Rs.20,000/-per annum at PostGraduation level. Students pursuing professional courses, in case, where the duration \nof course is five (5) years/Integrated course will get Rs. 20,000/-per annum in the \n4th and 5th year. However, students pursuing technical courses such as B.Tech, \nB.Engg. will get scholarship up to graduation level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03037
+        },
+        {
+          "passage_id": "cf525ca294ba_P3_C3",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the portal. \n \n11. \nWhat is One-Time Registration (OTR)? \nOne-Time Registration (OTR) is a unique number provided to streamline the scholarship \nregistration process. Users register with their mobile number and complete e-KYC \n(electronic Know Your Customer). The OTR number is generated once and remains valid \nthroughout the student's academic career. \n \n12. \nHow to get the OTR number? \nTo create OTR, student should first keep the following documents ready: (a) Active \nmobile number, (b) Aadhaar number (in absence of Aadhaar Number, Aadhaar Enrollment \nID), (c) Mobile number linked with Aadhaar.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.02963
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 1,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.16666666666666669
+    },
+    "2:direct": {
+      "question": "What minimum marks are required for renewal?",
+      "language": "English",
+      "answerable": true,
+      "reference_answers": [
+        "50%",
+        "50 percent"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "marks",
+      "answerability": "UNANSWERABLE",
+      "answer": "I am sorry, but I cannot answer this question as the necessary information is not provided.",
+      "citations": [],
+      "latency_ms": 704.48,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 2,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "2:rag": {
+      "question": "What minimum marks are required for renewal?",
+      "language": "English",
+      "answerable": true,
+      "reference_answers": [
+        "50%",
+        "50 percent"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "marks",
+      "answerability": "ANSWERABLE",
+      "answer": "A student must secure at least 50% marks in the Annual Examination for the renewal of the scholarship.",
+      "citations": [
+        "cf525ca294ba_P2_C2",
+        "d03cd512b5b8_P2_C2"
+      ],
+      "latency_ms": 1118.05,
+      "evidence": [
+        {
+          "passage_id": "cf525ca294ba_P2_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03227
+        },
+        {
+          "passage_id": "d03cd512b5b8_P2_C2",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03227
+        },
+        {
+          "passage_id": "cf525ca294ba_P6_C1",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 6,
+          "text": "19. What are the documents that are required to be uploaded for applying and \nverification? \nThe following documents need to be uploaded on the Portal at the time of application: \na. FRESH: 12th Mark Sheet, Family Income Certificate, Category/ caste Certification \nfor reserved category students, Disability Certificate (if applicable) \nb. RENEWAL: Previous Year Mark Sheet \nThe copy of above-mentioned documents must be provided to the institutes at the time of \nverification, if sought for by the Institute Nodal Officer (INO). \n20. \nCan I edit the information already saved and upto what time? \nYou can edit the information till final submission of the online application. After final \nsubmission of application, information can only be edited when your application is marked \nas defective by the verification authority. \n21. \nWhich fields I can edit? \n \nYou can edit all details except the Personal Details provided during OTR. It may be noted \nthat once you click on “Confirm and Submit” button",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03012
+        },
+        {
+          "passage_id": "d03cd512b5b8_P3_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.02967
+        },
+        {
+          "passage_id": "cf525ca294ba_P7_C3",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 7,
+          "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.02963
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 2,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.10526315789473684
+    },
+    "3:direct": {
+      "question": "अधिकतम वार्षिक पारिवारिक आय कितनी है?",
+      "language": "Hindi",
+      "answerable": true,
+      "reference_answers": [
+        "4.5 लाख रुपये प्रति वर्ष",
+        "साढ़े चार लाख रुपये",
+        "₹4.5 लाख"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P1_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "income",
+      "answerability": "UNANSWERABLE",
+      "answer": "मुझे प्राप्त जानकारी में अधिकतम वार्षिक पारिवारिक आय का कोई उल्लेख नहीं है।",
+      "citations": [],
+      "latency_ms": 1051.9,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 3,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "3:rag": {
+      "question": "अधिकतम वार्षिक पारिवारिक आय कितनी है?",
+      "language": "Hindi",
+      "answerable": true,
+      "reference_answers": [
+        "4.5 लाख रुपये प्रति वर्ष",
+        "साढ़े चार लाख रुपये",
+        "₹4.5 लाख"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P1_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "income",
+      "answerability": "ANSWERABLE",
+      "answer": "इस योजना के तहत छात्रवृत्ति के लिए माता-पिता की सकल/पारिवारिक आय अधिकतम 4.5 लाख रुपये प्रति वर्ष तक होनी चाहिए।",
+      "citations": [
+        "d03cd512b5b8_P2_C1"
+      ],
+      "latency_ms": 761.56,
+      "evidence": [
+        {
+          "passage_id": "d03cd512b5b8_P3_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01639
+        },
+        {
+          "passage_id": "cf525ca294ba_P2_C1",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "year 2022-23, subject to the condition that guidelines of Ministry of Finance and NITI \nAayog regarding SC/ST fund allocation of the schemes are adhered to. \n3. \nWhat is the rate of scholarship under the Scheme? \nThe rate of scholarship is Rs. 12,000/- per annum at Graduation level for first three years \nof College and University courses and Rs. 20,000/- per annum at Post-Graduation level. \nStudents pursuing technical courses are paid Rs. 20,000/- per annum in the 4th and 5th year. \nStudents pursing B.Tech/ BE would get scholarship for 4 years only i.e Rs. 12000 per \nannum for first three years and Rs. 20,000 per annum in the 4th year. \n \n4. \nHow a second/ third/ fourth year student gets scholarships? \nAll the students finally selected for scholarship in first year are eligible for renewal of \nscholarships in 2nd/ 3rd years subject to fulfilment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01613
+        },
+        {
+          "passage_id": "d03cd512b5b8_P1_C1",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "PRADHAN MANTRI UCHCHATAR SHIKSHA PROTSAHAN (PM-USP) YOJANA \nGUIDELINES FOR THE COMPONENT SCHEME – \nCENTRAL SECTOR SCHEME OF SCHOLARSHIP FOR COLLEGE AND \nUNIVERSITY STUDENTS (PM-USP CSSS) \n \n(Applicable for academic year 2022-23 onwards) \n \n1. Objective \nTo provide financial assistance to meritorious students from poor families to meet a \npart of their day-to-day expenses while pursuing higher studies. \n \n2. Scope \nThe scholarships are awarded by Ministry of Education, Government of India on the \nbasis of results of Higher Secondary / Class XII Board Examination. A maximum of \n82,000 fresh scholarships per annum are provided for pursuing graduate / \npostgraduate degree in colleges and universities and for professional courses, such as \nMedical, Engineering etc. \n \n3. Allocation of Scholarship \nThe total number of scholarships are divided amongst the State Education Boards \nbased on the State’s population in the age group of 18-25 years, after segregating \nshare of CBSE and ICSE on the b",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01587
+        },
+        {
+          "passage_id": "cf525ca294ba_P3_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01562
+        },
+        {
+          "passage_id": "d03cd512b5b8_P2_C1",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "ii. \nPursuing regular degree courses and not correspondence or distance mode or \npursuing Diploma courses; \niii. \nPursuing courses at colleges/institutions recognized by All India Council for \nTechnical Education and respective Regulatory Bodies concerned; \niv. \nNot availing benefit of any other scholarship schemes including State run \nscholarship schemes/ fee waiver & reimbursement scheme; \nv. \nStudents with gross parental/family income upto Rs. 4.5 lakh per annum are \neligible for scholarship under the scheme. Income certificate will be required only \nfor the fresh applicants; \nvi. \nStudent changing his/ her college/institute of study will be allowed to \ncontinue/renew the scholarship provided the course of study and the institution is \nhaving valid AISHE Code; The AISHE code can be checked in the portal \nhttps://aishe.gov.in/aishe/aisheCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01538
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 3,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.41379310344827586
+    },
+    "4:direct": {
+      "question": "नवीनीकरण के लिए न्यूनतम उपस्थिति कितनी है?",
+      "language": "Hindi",
+      "answerable": true,
+      "reference_answers": [
+        "75 प्रतिशत",
+        "75%",
+        "पचहत्तर प्रतिशत"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "attendance",
+      "answerability": "UNANSWERABLE",
+      "answer": "मुझे इस प्रश्न का उत्तर देने के लिए पर्याप्त जानकारी उपलब्ध नहीं है।",
+      "citations": [],
+      "latency_ms": 780.16,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 4,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "4:rag": {
+      "question": "नवीनीकरण के लिए न्यूनतम उपस्थिति कितनी है?",
+      "language": "Hindi",
+      "answerable": true,
+      "reference_answers": [
+        "75 प्रतिशत",
+        "75%",
+        "पचहत्तर प्रतिशत"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "attendance",
+      "answerability": "ANSWERABLE",
+      "answer": "नवीनीकरण के लिए कम से कम 75% पर्याप्त उपस्थिति बनाए रखना आवश्यक है।",
+      "citations": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "latency_ms": 848.79,
+      "evidence": [
+        {
+          "passage_id": "d03cd512b5b8_P3_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01639
+        },
+        {
+          "passage_id": "cf525ca294ba_P2_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01613
+        },
+        {
+          "passage_id": "d03cd512b5b8_P1_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "ar 2022-23, \nsubject to the condition that guidelines of Ministry of Finance and NITI Aayog \nregarding SC/ST fund allocation of the schemes are adhered to. \n \n4. Eligibility for Scholarship \ni. \nStudents who are above 80th percentile of successful candidates in the relevant \nstream from the respective Board of Examination in Class XII of 10+2 pattern or \nequivalent;",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01587
+        },
+        {
+          "passage_id": "cf525ca294ba_P1_C3",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "erce: 3-Humanities), Category (SC-15 %, ST-7.5 % and \nOBC-27 %), and 5 % horizontal reservation is provided for students with Benchmark \nDisabilities (Disability of 40% or more) from the allocated slots of respective State \nEducation Boards. In case of shortfall in the number of applications, the scholarship slots \nshall be interoperable among categories (Gen, OBC, SC & ST), gender (Female, Male) \nand State Quota to maximize use of slots for fresh scholarships with effect from academic",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01562
+        },
+        {
+          "passage_id": "d03cd512b5b8_P2_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "accepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation on the basis of merit, subject to Central Reservation \nPolicy [i.e. 15% seats are earmarked for SCs, 7.5% for STs and 27 % for OBCs and \n5% horizontal reservation for Persons with Disabilities (PwDs) in all the categories]. \nThe Central Reservation Policy will be applicable in filling the slots against each \nyear's target. If slots under a specific group is not filled after considering all the \nStates/UTs, the vacant slots will be allocated to other categories so that maximum \nnumber of eligible students can get the benefit, subject to overall ceiling of slots.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01538
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 4,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.14285714285714288
+    },
+    "5:direct": {
+      "question": "नवीनीकरण के लिए न्यूनतम अंक कितने हैं?",
+      "language": "Hindi",
+      "answerable": true,
+      "reference_answers": [
+        "50 प्रतिशत",
+        "50%",
+        "पचास प्रतिशत"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "marks",
+      "answerability": "UNANSWERABLE",
+      "answer": "मुझे दिए गए संदर्भ में नवीनीकरण के लिए न्यूनतम अंकों के बारे में कोई जानकारी नहीं मिली है।",
+      "citations": [],
+      "latency_ms": 601.43,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 5,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "5:rag": {
+      "question": "नवीनीकरण के लिए न्यूनतम अंक कितने हैं?",
+      "language": "Hindi",
+      "answerable": true,
+      "reference_answers": [
+        "50 प्रतिशत",
+        "50%",
+        "पचास प्रतिशत"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "marks",
+      "answerability": "ANSWERABLE",
+      "answer": "नवीनीकरण के लिए छात्र को कम से कम 50% अंक प्राप्त करने होंगे।",
+      "citations": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "latency_ms": 807.84,
+      "evidence": [
+        {
+          "passage_id": "d03cd512b5b8_P1_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "ar 2022-23, \nsubject to the condition that guidelines of Ministry of Finance and NITI Aayog \nregarding SC/ST fund allocation of the schemes are adhered to. \n \n4. Eligibility for Scholarship \ni. \nStudents who are above 80th percentile of successful candidates in the relevant \nstream from the respective Board of Examination in Class XII of 10+2 pattern or \nequivalent;",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01639
+        },
+        {
+          "passage_id": "d03cd512b5b8_P3_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01613
+        },
+        {
+          "passage_id": "cf525ca294ba_P1_C3",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "erce: 3-Humanities), Category (SC-15 %, ST-7.5 % and \nOBC-27 %), and 5 % horizontal reservation is provided for students with Benchmark \nDisabilities (Disability of 40% or more) from the allocated slots of respective State \nEducation Boards. In case of shortfall in the number of applications, the scholarship slots \nshall be interoperable among categories (Gen, OBC, SC & ST), gender (Female, Male) \nand State Quota to maximize use of slots for fresh scholarships with effect from academic",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01587
+        },
+        {
+          "passage_id": "cf525ca294ba_P2_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01562
+        },
+        {
+          "passage_id": "cf525ca294ba_P4_C4",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 4,
+          "text": "re \nprocess. \ne. The demographic details provided in the OTR login, need to be same as that in the \nAadhaar and the 12th examination marks sheet. \nf. Any change in the demographic details like Name, Father’s Name, Date of Birth, \nContact Information need to be performed in the OTR login and the same need to \nbe authenticated through e-KYC and face authentication again.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.01538
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 5,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.14285714285714288
+    },
+    "6:direct": {
+      "question": "Family income limit kitni hai per year?",
+      "language": "Hinglish",
+      "answerable": true,
+      "reference_answers": [
+        "4.5 lakh rupees per year",
+        "4.5 lakh",
+        "₹4.5 lakh"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P1_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "income",
+      "answerability": "UNANSWERABLE",
+      "answer": "I do not have access to specific government or institutional scheme details regarding family income limits without further context.",
+      "citations": [],
+      "latency_ms": 1002.08,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 6,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "6:rag": {
+      "question": "Family income limit kitni hai per year?",
+      "language": "Hinglish",
+      "answerable": true,
+      "reference_answers": [
+        "4.5 lakh rupees per year",
+        "4.5 lakh",
+        "₹4.5 lakh"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P1_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "income",
+      "answerability": "ANSWERABLE",
+      "answer": "Students with a gross parental/family income of up to Rs. 4.5 lakh per annum are eligible for the scholarship.",
+      "citations": [
+        "d03cd512b5b8_P2_C1"
+      ],
+      "latency_ms": 876.69,
+      "evidence": [
+        {
+          "passage_id": "d03cd512b5b8_P2_C1",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "ii. \nPursuing regular degree courses and not correspondence or distance mode or \npursuing Diploma courses; \niii. \nPursuing courses at colleges/institutions recognized by All India Council for \nTechnical Education and respective Regulatory Bodies concerned; \niv. \nNot availing benefit of any other scholarship schemes including State run \nscholarship schemes/ fee waiver & reimbursement scheme; \nv. \nStudents with gross parental/family income upto Rs. 4.5 lakh per annum are \neligible for scholarship under the scheme. Income certificate will be required only \nfor the fresh applicants; \nvi. \nStudent changing his/ her college/institute of study will be allowed to \ncontinue/renew the scholarship provided the course of study and the institution is \nhaving valid AISHE Code; The AISHE code can be checked in the portal \nhttps://aishe.gov.in/aishe/aisheCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03252
+        },
+        {
+          "passage_id": "cf525ca294ba_P2_C1",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "year 2022-23, subject to the condition that guidelines of Ministry of Finance and NITI \nAayog regarding SC/ST fund allocation of the schemes are adhered to. \n3. \nWhat is the rate of scholarship under the Scheme? \nThe rate of scholarship is Rs. 12,000/- per annum at Graduation level for first three years \nof College and University courses and Rs. 20,000/- per annum at Post-Graduation level. \nStudents pursuing technical courses are paid Rs. 20,000/- per annum in the 4th and 5th year. \nStudents pursing B.Tech/ BE would get scholarship for 4 years only i.e Rs. 12000 per \nannum for first three years and Rs. 20,000 per annum in the 4th year. \n \n4. \nHow a second/ third/ fourth year student gets scholarships? \nAll the students finally selected for scholarship in first year are eligible for renewal of \nscholarships in 2nd/ 3rd years subject to fulfilment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03202
+        },
+        {
+          "passage_id": "d03cd512b5b8_P3_C3",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03102
+        },
+        {
+          "passage_id": "d03cd512b5b8_P1_C1",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 1,
+          "text": "PRADHAN MANTRI UCHCHATAR SHIKSHA PROTSAHAN (PM-USP) YOJANA \nGUIDELINES FOR THE COMPONENT SCHEME – \nCENTRAL SECTOR SCHEME OF SCHOLARSHIP FOR COLLEGE AND \nUNIVERSITY STUDENTS (PM-USP CSSS) \n \n(Applicable for academic year 2022-23 onwards) \n \n1. Objective \nTo provide financial assistance to meritorious students from poor families to meet a \npart of their day-to-day expenses while pursuing higher studies. \n \n2. Scope \nThe scholarships are awarded by Ministry of Education, Government of India on the \nbasis of results of Higher Secondary / Class XII Board Examination. A maximum of \n82,000 fresh scholarships per annum are provided for pursuing graduate / \npostgraduate degree in colleges and universities and for professional courses, such as \nMedical, Engineering etc. \n \n3. Allocation of Scholarship \nThe total number of scholarships are divided amongst the State Education Boards \nbased on the State’s population in the age group of 18-25 years, after segregating \nshare of CBSE and ICSE on the b",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03055
+        },
+        {
+          "passage_id": "cf525ca294ba_P3_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.02881
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 6,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.2962962962962963
+    },
+    "7:direct": {
+      "question": "Renewal ke liye minimum attendance kitni hai?",
+      "language": "Hinglish",
+      "answerable": true,
+      "reference_answers": [
+        "75 percent",
+        "75%"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "attendance",
+      "answerability": "UNANSWERABLE",
+      "answer": "I do not have enough information in my knowledge base to determine the minimum attendance required for renewal.",
+      "citations": [],
+      "latency_ms": 650.02,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 7,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "7:rag": {
+      "question": "Renewal ke liye minimum attendance kitni hai?",
+      "language": "Hinglish",
+      "answerable": true,
+      "reference_answers": [
+        "75 percent",
+        "75%"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "attendance",
+      "answerability": "ANSWERABLE",
+      "answer": "Renewal ke liye adequate attendance at least 75% honi chahiye.",
+      "citations": [
+        "d03cd512b5b8_P2_C2",
+        "cf525ca294ba_P2_C2"
+      ],
+      "latency_ms": 1226.78,
+      "evidence": [
+        {
+          "passage_id": "d03cd512b5b8_P2_C2",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03227
+        },
+        {
+          "passage_id": "cf525ca294ba_P2_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03175
+        },
+        {
+          "passage_id": "cf525ca294ba_P3_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03058
+        },
+        {
+          "passage_id": "cf525ca294ba_P7_C3",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 7,
+          "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03055
+        },
+        {
+          "passage_id": "d03cd512b5b8_P3_C2",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "Latest guideline on Timelines will be made available on NSP. \nvii. Students will not be permanently debarred for scholarships due to delay to renew \nor verification. However, students will have to submit renewal applications within \na cut-off date. Renewal for that year will not be allowed if an applicant misses this \ndeadline. \n \n7. Rate and Duration of Scholarship (from financial year 2022-23) \nThe rate of scholarship is Rs.12,000/-per annum at Graduation level for first three \nyears of College and University courses and Rs.20,000/-per annum at PostGraduation level. Students pursuing professional courses, in case, where the duration \nof course is five (5) years/Integrated course will get Rs. 20,000/-per annum in the \n4th and 5th year. However, students pursuing technical courses such as B.Tech, \nB.Engg. will get scholarship up to graduation level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03008
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 7,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.18181818181818182
+    },
+    "8:direct": {
+      "question": "Renewal ke liye minimum marks kitne hain?",
+      "language": "Hinglish",
+      "answerable": true,
+      "reference_answers": [
+        "50 percent",
+        "50%"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "marks",
+      "answerability": "UNANSWERABLE",
+      "answer": "I do not have access to a specific document or context to determine the minimum marks required for renewal.",
+      "citations": [],
+      "latency_ms": 947.73,
+      "evidence": [],
+      "citation_valid": null,
+      "status": "ok",
+      "question_index": 8,
+      "pipeline": "direct",
+      "exact_match": 0.0,
+      "token_f1": 0.0
+    },
+    "8:rag": {
+      "question": "Renewal ke liye minimum marks kitne hain?",
+      "language": "Hinglish",
+      "answerable": true,
+      "reference_answers": [
+        "50 percent",
+        "50%"
+      ],
+      "relevant_passage_ids": [
+        "cf525ca294ba_P2_C2"
+      ],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "marks",
+      "answerability": "ANSWERABLE",
+      "answer": "Renewal ke liye Annual Examination mein kam se kam 50% marks aana zaroori hai.",
+      "citations": [
+        "d03cd512b5b8_P2_C2"
+      ],
+      "latency_ms": 876.38,
+      "evidence": [
+        {
+          "passage_id": "d03cd512b5b8_P2_C2",
+          "doc_id": "d03cd512b5b8",
+          "source": "Guidelines_DOHE_CSSS.pdf",
+          "page": 2,
+          "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03227
+        },
+        {
+          "passage_id": "cf525ca294ba_P3_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 3,
+          "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03078
+        },
+        {
+          "passage_id": "cf525ca294ba_P4_C2",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 4,
+          "text": "or \nCollege and University Students”. After this, upload the mandatory documents and submit \nthe application form. \n15. What are the precautions to be kept in mind at the time of online application \nregistration? \na. While filling the application, student is required to ensure that the name of self, \nname of father and Roll No., should exactly match as it has been mentioned in the \nRoll Card/Mark sheet, so that the data gets captured and the scheme is visible on \nthe National Scholarship Portal. \nNote:- in case of name mismatch in 12th examination marks sheet and \nAadhaar card, students are advised to get the name in Aadhaar same as in \nhis/her mark sheet. \n(For example:- Father’s Name as per mark sheet- Shri Mahendra Pratap Singh and \nfather’s name as per AADHAAR is M.P. Singh – Scheme will not be visible) \n \nb. Have a valid personal email ID and mobile no. which should be kept active till \nthe completion of Scholarship disbursement Process. It is advisable not to \nchange the mobile n",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03077
+        },
+        {
+          "passage_id": "cf525ca294ba_P4_C4",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 4,
+          "text": "re \nprocess. \ne. The demographic details provided in the OTR login, need to be same as that in the \nAadhaar and the 12th examination marks sheet. \nf. Any change in the demographic details like Name, Father’s Name, Date of Birth, \nContact Information need to be performed in the OTR login and the same need to \nbe authenticated through e-KYC and face authentication again.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03037
+        },
+        {
+          "passage_id": "cf525ca294ba_P7_C3",
+          "doc_id": "cf525ca294ba",
+          "source": "FAQ_DOHE_CSSS.pdf",
+          "page": 7,
+          "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+          "collection_id": "folder-scholarship_dataset",
+          "collection_name": "Scholarship_Dataset",
+          "score": 0.03008
+        }
+      ],
+      "citation_valid": true,
+      "status": "ok",
+      "question_index": 8,
+      "pipeline": "rag",
+      "exact_match": 0.0,
+      "token_f1": 0.13333333333333333
+    },
+    "9:direct": {
+      "question": "What is the scholarship applicant's favourite planet?",
+      "language": "English",
+      "answerable": false,
+      "reference_answers": [],
+      "relevant_passage_ids": [],
+      "collection_id": "folder-scholarship_dataset",
+      "family_id": "planet",
+      "status": "error",
+      "question_index": 9,
+      "pipeline": "direct",
+      "error_type": "ClientError",
+      "http_status": 429
+    }
+  },
+  "stop_reason": "circuit breaker: HTTP 429",
+  "pipelines": {
+    "direct": {
+      "aggregate": {
+        "n": 10,
+        "completed": 9,
+        "generation_failures": 1,
+        "api_failure_rate": 0.1,
+        "exact_match": 0.0,
+        "token_f1": 0.0,
+        "mean_latency_ms": 879.53,
+        "citation_validity_rate": null,
+        "citation_evaluable": 0,
+        "answerability": {
+          "accuracy": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 9,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 9
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      },
+      "language_wise": {
+        "English": {
+          "n": 4,
+          "completed": 3,
+          "generation_failures": 1,
+          "api_failure_rate": 0.25,
+          "exact_match": 0.0,
+          "token_f1": 0.0,
+          "mean_latency_ms": 960.8166666666667,
+          "citation_validity_rate": null,
+          "citation_evaluable": 0,
+          "answerability": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positives": 0,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 3
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hindi": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.0,
+          "mean_latency_ms": 811.1633333333333,
+          "citation_validity_rate": null,
+          "citation_evaluable": 0,
+          "answerability": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positives": 0,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 3
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hinglish": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.0,
+          "mean_latency_ms": 866.61,
+          "citation_validity_rate": null,
+          "citation_evaluable": 0,
+          "answerability": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positives": 0,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 3
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        }
+      },
+      "predictions": [
+        {
+          "question": "What is the maximum annual family income?",
+          "language": "English",
+          "answerable": true,
+          "reference_answers": [
+            "Rs. 4.5 lakh per annum",
+            "4.5 lakh rupees",
+            "₹4.5 lakh"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P1_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "income",
+          "answerability": "UNANSWERABLE",
+          "answer": "I am sorry, but I do not have access to any external documents or specific guidelines to determine the maximum annual family income.",
+          "citations": [],
+          "latency_ms": 1121.02,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 0,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "What is the minimum attendance for renewal?",
+          "language": "English",
+          "answerable": true,
+          "reference_answers": [
+            "75%",
+            "75 percent"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "attendance",
+          "answerability": "UNANSWERABLE",
+          "answer": "I am sorry, but I do not have access to any documents or context to determine the minimum attendance required for renewal.",
+          "citations": [],
+          "latency_ms": 1056.95,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 1,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "What minimum marks are required for renewal?",
+          "language": "English",
+          "answerable": true,
+          "reference_answers": [
+            "50%",
+            "50 percent"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "marks",
+          "answerability": "UNANSWERABLE",
+          "answer": "I am sorry, but I cannot answer this question as the necessary information is not provided.",
+          "citations": [],
+          "latency_ms": 704.48,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 2,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "अधिकतम वार्षिक पारिवारिक आय कितनी है?",
+          "language": "Hindi",
+          "answerable": true,
+          "reference_answers": [
+            "4.5 लाख रुपये प्रति वर्ष",
+            "साढ़े चार लाख रुपये",
+            "₹4.5 लाख"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P1_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "income",
+          "answerability": "UNANSWERABLE",
+          "answer": "मुझे प्राप्त जानकारी में अधिकतम वार्षिक पारिवारिक आय का कोई उल्लेख नहीं है।",
+          "citations": [],
+          "latency_ms": 1051.9,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 3,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "नवीनीकरण के लिए न्यूनतम उपस्थिति कितनी है?",
+          "language": "Hindi",
+          "answerable": true,
+          "reference_answers": [
+            "75 प्रतिशत",
+            "75%",
+            "पचहत्तर प्रतिशत"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "attendance",
+          "answerability": "UNANSWERABLE",
+          "answer": "मुझे इस प्रश्न का उत्तर देने के लिए पर्याप्त जानकारी उपलब्ध नहीं है।",
+          "citations": [],
+          "latency_ms": 780.16,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 4,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "नवीनीकरण के लिए न्यूनतम अंक कितने हैं?",
+          "language": "Hindi",
+          "answerable": true,
+          "reference_answers": [
+            "50 प्रतिशत",
+            "50%",
+            "पचास प्रतिशत"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "marks",
+          "answerability": "UNANSWERABLE",
+          "answer": "मुझे दिए गए संदर्भ में नवीनीकरण के लिए न्यूनतम अंकों के बारे में कोई जानकारी नहीं मिली है।",
+          "citations": [],
+          "latency_ms": 601.43,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 5,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "Family income limit kitni hai per year?",
+          "language": "Hinglish",
+          "answerable": true,
+          "reference_answers": [
+            "4.5 lakh rupees per year",
+            "4.5 lakh",
+            "₹4.5 lakh"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P1_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "income",
+          "answerability": "UNANSWERABLE",
+          "answer": "I do not have access to specific government or institutional scheme details regarding family income limits without further context.",
+          "citations": [],
+          "latency_ms": 1002.08,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 6,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "Renewal ke liye minimum attendance kitni hai?",
+          "language": "Hinglish",
+          "answerable": true,
+          "reference_answers": [
+            "75 percent",
+            "75%"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "attendance",
+          "answerability": "UNANSWERABLE",
+          "answer": "I do not have enough information in my knowledge base to determine the minimum attendance required for renewal.",
+          "citations": [],
+          "latency_ms": 650.02,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 7,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "Renewal ke liye minimum marks kitne hain?",
+          "language": "Hinglish",
+          "answerable": true,
+          "reference_answers": [
+            "50 percent",
+            "50%"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "marks",
+          "answerability": "UNANSWERABLE",
+          "answer": "I do not have access to a specific document or context to determine the minimum marks required for renewal.",
+          "citations": [],
+          "latency_ms": 947.73,
+          "evidence": [],
+          "citation_valid": null,
+          "status": "ok",
+          "question_index": 8,
+          "pipeline": "direct",
+          "exact_match": 0.0,
+          "token_f1": 0.0
+        },
+        {
+          "question": "What is the scholarship applicant's favourite planet?",
+          "language": "English",
+          "answerable": false,
+          "reference_answers": [],
+          "relevant_passage_ids": [],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "planet",
+          "status": "error",
+          "question_index": 9,
+          "pipeline": "direct",
+          "error_type": "ClientError",
+          "http_status": 429
+        }
+      ]
+    },
+    "rag": {
+      "aggregate": {
+        "n": 9,
+        "completed": 9,
+        "generation_failures": 0,
+        "api_failure_rate": 0.0,
+        "exact_match": 0.0,
+        "token_f1": 0.24995018798204924,
+        "mean_latency_ms": 958.17,
+        "citation_validity_rate": 1.0,
+        "citation_evaluable": 9,
+        "answerability": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 9,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 9,
+              "pred_unanswerable": 0
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      },
+      "language_wise": {
+        "English": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.3128654970760234,
+          "mean_latency_ms": 1075.1633333333334,
+          "citation_validity_rate": 1.0,
+          "citation_evaluable": 3,
+          "answerability": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "true_positives": 3,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 3,
+                "pred_unanswerable": 0
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hindi": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.23316912972085388,
+          "mean_latency_ms": 806.0633333333333,
+          "citation_validity_rate": 1.0,
+          "citation_evaluable": 3,
+          "answerability": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "true_positives": 3,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 3,
+                "pred_unanswerable": 0
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hinglish": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.2038159371492705,
+          "mean_latency_ms": 993.2833333333333,
+          "citation_validity_rate": 1.0,
+          "citation_evaluable": 3,
+          "answerability": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "true_positives": 3,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 3,
+                "pred_unanswerable": 0
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        }
+      },
+      "predictions": [
+        {
+          "question": "What is the maximum annual family income?",
+          "language": "English",
+          "answerable": true,
+          "reference_answers": [
+            "Rs. 4.5 lakh per annum",
+            "4.5 lakh rupees",
+            "₹4.5 lakh"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P1_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "income",
+          "answerability": "ANSWERABLE",
+          "answer": "The maximum annual family income is Rs. 4.5 lakh per annum.",
+          "citations": [
+            "d03cd512b5b8_P2_C1",
+            "cf525ca294ba_P1_C2"
+          ],
+          "latency_ms": 954.49,
+          "evidence": [
+            {
+              "passage_id": "d03cd512b5b8_P2_C1",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "ii. \nPursuing regular degree courses and not correspondence or distance mode or \npursuing Diploma courses; \niii. \nPursuing courses at colleges/institutions recognized by All India Council for \nTechnical Education and respective Regulatory Bodies concerned; \niv. \nNot availing benefit of any other scholarship schemes including State run \nscholarship schemes/ fee waiver & reimbursement scheme; \nv. \nStudents with gross parental/family income upto Rs. 4.5 lakh per annum are \neligible for scholarship under the scheme. Income certificate will be required only \nfor the fresh applicants; \nvi. \nStudent changing his/ her college/institute of study will be allowed to \ncontinue/renew the scholarship provided the course of study and the institution is \nhaving valid AISHE Code; The AISHE code can be checked in the portal \nhttps://aishe.gov.in/aishe/aisheCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03202
+            },
+            {
+              "passage_id": "d03cd512b5b8_P1_C1",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "PRADHAN MANTRI UCHCHATAR SHIKSHA PROTSAHAN (PM-USP) YOJANA \nGUIDELINES FOR THE COMPONENT SCHEME – \nCENTRAL SECTOR SCHEME OF SCHOLARSHIP FOR COLLEGE AND \nUNIVERSITY STUDENTS (PM-USP CSSS) \n \n(Applicable for academic year 2022-23 onwards) \n \n1. Objective \nTo provide financial assistance to meritorious students from poor families to meet a \npart of their day-to-day expenses while pursuing higher studies. \n \n2. Scope \nThe scholarships are awarded by Ministry of Education, Government of India on the \nbasis of results of Higher Secondary / Class XII Board Examination. A maximum of \n82,000 fresh scholarships per annum are provided for pursuing graduate / \npostgraduate degree in colleges and universities and for professional courses, such as \nMedical, Engineering etc. \n \n3. Allocation of Scholarship \nThe total number of scholarships are divided amongst the State Education Boards \nbased on the State’s population in the age group of 18-25 years, after segregating \nshare of CBSE and ICSE on the b",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03102
+            },
+            {
+              "passage_id": "cf525ca294ba_P1_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "Scholarship for College and University Students is a \nmerit-cum-means scholarship scheme. \n \nEligibility conditions for FRESH application: \n Students who are above 80th percentile of successful candidates in the relevant \nstream from a particular Board of Examination in Class XII \n Students pursuing regular course (not correspondence or distance mode) \n Having family income upto Rs. 4.5 lakh per annum \n Not receiving any other scholarship or fee reimbursement of any kind \n Diploma students are not eligible under the scheme. \n Students who had taken a drop after 12th class are not eligible under the scheme. \n \n2. \nWhat is the methodology adopted for generating Merit List for selecting the \nbeneficiaries under the Scheme? \nFrom the eligible applicants, merit list is drawn based on gender (50 boys: 50 girls), \nstream (3-Science: 1-Commerce: 3-Humanities), Category (SC-15 %, ST-7.5 % and \nOBC-27 %), and 5 % horizontal reservation is provided for students with Benchmark \nDisabilities",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03002
+            },
+            {
+              "passage_id": "cf525ca294ba_P2_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.02986
+            },
+            {
+              "passage_id": "cf525ca294ba_P2_C1",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "year 2022-23, subject to the condition that guidelines of Ministry of Finance and NITI \nAayog regarding SC/ST fund allocation of the schemes are adhered to. \n3. \nWhat is the rate of scholarship under the Scheme? \nThe rate of scholarship is Rs. 12,000/- per annum at Graduation level for first three years \nof College and University courses and Rs. 20,000/- per annum at Post-Graduation level. \nStudents pursuing technical courses are paid Rs. 20,000/- per annum in the 4th and 5th year. \nStudents pursing B.Tech/ BE would get scholarship for 4 years only i.e Rs. 12000 per \nannum for first three years and Rs. 20,000 per annum in the 4th year. \n \n4. \nHow a second/ third/ fourth year student gets scholarships? \nAll the students finally selected for scholarship in first year are eligible for renewal of \nscholarships in 2nd/ 3rd years subject to fulfilment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.02929
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 0,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.6666666666666666
+        },
+        {
+          "question": "What is the minimum attendance for renewal?",
+          "language": "English",
+          "answerable": true,
+          "reference_answers": [
+            "75%",
+            "75 percent"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "attendance",
+          "answerability": "ANSWERABLE",
+          "answer": "The minimum attendance required for scholarship renewal is at least 75%.",
+          "citations": [
+            "cf525ca294ba_P2_C2",
+            "d03cd512b5b8_P2_C2"
+          ],
+          "latency_ms": 1152.95,
+          "evidence": [
+            {
+              "passage_id": "cf525ca294ba_P2_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03279
+            },
+            {
+              "passage_id": "d03cd512b5b8_P2_C2",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03226
+            },
+            {
+              "passage_id": "cf525ca294ba_P7_C3",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 7,
+              "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03102
+            },
+            {
+              "passage_id": "d03cd512b5b8_P3_C2",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "Latest guideline on Timelines will be made available on NSP. \nvii. Students will not be permanently debarred for scholarships due to delay to renew \nor verification. However, students will have to submit renewal applications within \na cut-off date. Renewal for that year will not be allowed if an applicant misses this \ndeadline. \n \n7. Rate and Duration of Scholarship (from financial year 2022-23) \nThe rate of scholarship is Rs.12,000/-per annum at Graduation level for first three \nyears of College and University courses and Rs.20,000/-per annum at PostGraduation level. Students pursuing professional courses, in case, where the duration \nof course is five (5) years/Integrated course will get Rs. 20,000/-per annum in the \n4th and 5th year. However, students pursuing technical courses such as B.Tech, \nB.Engg. will get scholarship up to graduation level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03037
+            },
+            {
+              "passage_id": "cf525ca294ba_P3_C3",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the portal. \n \n11. \nWhat is One-Time Registration (OTR)? \nOne-Time Registration (OTR) is a unique number provided to streamline the scholarship \nregistration process. Users register with their mobile number and complete e-KYC \n(electronic Know Your Customer). The OTR number is generated once and remains valid \nthroughout the student's academic career. \n \n12. \nHow to get the OTR number? \nTo create OTR, student should first keep the following documents ready: (a) Active \nmobile number, (b) Aadhaar number (in absence of Aadhaar Number, Aadhaar Enrollment \nID), (c) Mobile number linked with Aadhaar.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.02963
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 1,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.16666666666666669
+        },
+        {
+          "question": "What minimum marks are required for renewal?",
+          "language": "English",
+          "answerable": true,
+          "reference_answers": [
+            "50%",
+            "50 percent"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "marks",
+          "answerability": "ANSWERABLE",
+          "answer": "A student must secure at least 50% marks in the Annual Examination for the renewal of the scholarship.",
+          "citations": [
+            "cf525ca294ba_P2_C2",
+            "d03cd512b5b8_P2_C2"
+          ],
+          "latency_ms": 1118.05,
+          "evidence": [
+            {
+              "passage_id": "cf525ca294ba_P2_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03227
+            },
+            {
+              "passage_id": "d03cd512b5b8_P2_C2",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03227
+            },
+            {
+              "passage_id": "cf525ca294ba_P6_C1",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 6,
+              "text": "19. What are the documents that are required to be uploaded for applying and \nverification? \nThe following documents need to be uploaded on the Portal at the time of application: \na. FRESH: 12th Mark Sheet, Family Income Certificate, Category/ caste Certification \nfor reserved category students, Disability Certificate (if applicable) \nb. RENEWAL: Previous Year Mark Sheet \nThe copy of above-mentioned documents must be provided to the institutes at the time of \nverification, if sought for by the Institute Nodal Officer (INO). \n20. \nCan I edit the information already saved and upto what time? \nYou can edit the information till final submission of the online application. After final \nsubmission of application, information can only be edited when your application is marked \nas defective by the verification authority. \n21. \nWhich fields I can edit? \n \nYou can edit all details except the Personal Details provided during OTR. It may be noted \nthat once you click on “Confirm and Submit” button",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03012
+            },
+            {
+              "passage_id": "d03cd512b5b8_P3_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.02967
+            },
+            {
+              "passage_id": "cf525ca294ba_P7_C3",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 7,
+              "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.02963
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 2,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.10526315789473684
+        },
+        {
+          "question": "अधिकतम वार्षिक पारिवारिक आय कितनी है?",
+          "language": "Hindi",
+          "answerable": true,
+          "reference_answers": [
+            "4.5 लाख रुपये प्रति वर्ष",
+            "साढ़े चार लाख रुपये",
+            "₹4.5 लाख"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P1_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "income",
+          "answerability": "ANSWERABLE",
+          "answer": "इस योजना के तहत छात्रवृत्ति के लिए माता-पिता की सकल/पारिवारिक आय अधिकतम 4.5 लाख रुपये प्रति वर्ष तक होनी चाहिए।",
+          "citations": [
+            "d03cd512b5b8_P2_C1"
+          ],
+          "latency_ms": 761.56,
+          "evidence": [
+            {
+              "passage_id": "d03cd512b5b8_P3_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01639
+            },
+            {
+              "passage_id": "cf525ca294ba_P2_C1",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "year 2022-23, subject to the condition that guidelines of Ministry of Finance and NITI \nAayog regarding SC/ST fund allocation of the schemes are adhered to. \n3. \nWhat is the rate of scholarship under the Scheme? \nThe rate of scholarship is Rs. 12,000/- per annum at Graduation level for first three years \nof College and University courses and Rs. 20,000/- per annum at Post-Graduation level. \nStudents pursuing technical courses are paid Rs. 20,000/- per annum in the 4th and 5th year. \nStudents pursing B.Tech/ BE would get scholarship for 4 years only i.e Rs. 12000 per \nannum for first three years and Rs. 20,000 per annum in the 4th year. \n \n4. \nHow a second/ third/ fourth year student gets scholarships? \nAll the students finally selected for scholarship in first year are eligible for renewal of \nscholarships in 2nd/ 3rd years subject to fulfilment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01613
+            },
+            {
+              "passage_id": "d03cd512b5b8_P1_C1",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "PRADHAN MANTRI UCHCHATAR SHIKSHA PROTSAHAN (PM-USP) YOJANA \nGUIDELINES FOR THE COMPONENT SCHEME – \nCENTRAL SECTOR SCHEME OF SCHOLARSHIP FOR COLLEGE AND \nUNIVERSITY STUDENTS (PM-USP CSSS) \n \n(Applicable for academic year 2022-23 onwards) \n \n1. Objective \nTo provide financial assistance to meritorious students from poor families to meet a \npart of their day-to-day expenses while pursuing higher studies. \n \n2. Scope \nThe scholarships are awarded by Ministry of Education, Government of India on the \nbasis of results of Higher Secondary / Class XII Board Examination. A maximum of \n82,000 fresh scholarships per annum are provided for pursuing graduate / \npostgraduate degree in colleges and universities and for professional courses, such as \nMedical, Engineering etc. \n \n3. Allocation of Scholarship \nThe total number of scholarships are divided amongst the State Education Boards \nbased on the State’s population in the age group of 18-25 years, after segregating \nshare of CBSE and ICSE on the b",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01587
+            },
+            {
+              "passage_id": "cf525ca294ba_P3_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01562
+            },
+            {
+              "passage_id": "d03cd512b5b8_P2_C1",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "ii. \nPursuing regular degree courses and not correspondence or distance mode or \npursuing Diploma courses; \niii. \nPursuing courses at colleges/institutions recognized by All India Council for \nTechnical Education and respective Regulatory Bodies concerned; \niv. \nNot availing benefit of any other scholarship schemes including State run \nscholarship schemes/ fee waiver & reimbursement scheme; \nv. \nStudents with gross parental/family income upto Rs. 4.5 lakh per annum are \neligible for scholarship under the scheme. Income certificate will be required only \nfor the fresh applicants; \nvi. \nStudent changing his/ her college/institute of study will be allowed to \ncontinue/renew the scholarship provided the course of study and the institution is \nhaving valid AISHE Code; The AISHE code can be checked in the portal \nhttps://aishe.gov.in/aishe/aisheCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01538
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 3,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.41379310344827586
+        },
+        {
+          "question": "नवीनीकरण के लिए न्यूनतम उपस्थिति कितनी है?",
+          "language": "Hindi",
+          "answerable": true,
+          "reference_answers": [
+            "75 प्रतिशत",
+            "75%",
+            "पचहत्तर प्रतिशत"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "attendance",
+          "answerability": "ANSWERABLE",
+          "answer": "नवीनीकरण के लिए कम से कम 75% पर्याप्त उपस्थिति बनाए रखना आवश्यक है।",
+          "citations": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "latency_ms": 848.79,
+          "evidence": [
+            {
+              "passage_id": "d03cd512b5b8_P3_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01639
+            },
+            {
+              "passage_id": "cf525ca294ba_P2_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01613
+            },
+            {
+              "passage_id": "d03cd512b5b8_P1_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "ar 2022-23, \nsubject to the condition that guidelines of Ministry of Finance and NITI Aayog \nregarding SC/ST fund allocation of the schemes are adhered to. \n \n4. Eligibility for Scholarship \ni. \nStudents who are above 80th percentile of successful candidates in the relevant \nstream from the respective Board of Examination in Class XII of 10+2 pattern or \nequivalent;",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01587
+            },
+            {
+              "passage_id": "cf525ca294ba_P1_C3",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "erce: 3-Humanities), Category (SC-15 %, ST-7.5 % and \nOBC-27 %), and 5 % horizontal reservation is provided for students with Benchmark \nDisabilities (Disability of 40% or more) from the allocated slots of respective State \nEducation Boards. In case of shortfall in the number of applications, the scholarship slots \nshall be interoperable among categories (Gen, OBC, SC & ST), gender (Female, Male) \nand State Quota to maximize use of slots for fresh scholarships with effect from academic",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01562
+            },
+            {
+              "passage_id": "d03cd512b5b8_P2_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "accepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation on the basis of merit, subject to Central Reservation \nPolicy [i.e. 15% seats are earmarked for SCs, 7.5% for STs and 27 % for OBCs and \n5% horizontal reservation for Persons with Disabilities (PwDs) in all the categories]. \nThe Central Reservation Policy will be applicable in filling the slots against each \nyear's target. If slots under a specific group is not filled after considering all the \nStates/UTs, the vacant slots will be allocated to other categories so that maximum \nnumber of eligible students can get the benefit, subject to overall ceiling of slots.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01538
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 4,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.14285714285714288
+        },
+        {
+          "question": "नवीनीकरण के लिए न्यूनतम अंक कितने हैं?",
+          "language": "Hindi",
+          "answerable": true,
+          "reference_answers": [
+            "50 प्रतिशत",
+            "50%",
+            "पचास प्रतिशत"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "marks",
+          "answerability": "ANSWERABLE",
+          "answer": "नवीनीकरण के लिए छात्र को कम से कम 50% अंक प्राप्त करने होंगे।",
+          "citations": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "latency_ms": 807.84,
+          "evidence": [
+            {
+              "passage_id": "d03cd512b5b8_P1_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "ar 2022-23, \nsubject to the condition that guidelines of Ministry of Finance and NITI Aayog \nregarding SC/ST fund allocation of the schemes are adhered to. \n \n4. Eligibility for Scholarship \ni. \nStudents who are above 80th percentile of successful candidates in the relevant \nstream from the respective Board of Examination in Class XII of 10+2 pattern or \nequivalent;",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01639
+            },
+            {
+              "passage_id": "d03cd512b5b8_P3_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01613
+            },
+            {
+              "passage_id": "cf525ca294ba_P1_C3",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "erce: 3-Humanities), Category (SC-15 %, ST-7.5 % and \nOBC-27 %), and 5 % horizontal reservation is provided for students with Benchmark \nDisabilities (Disability of 40% or more) from the allocated slots of respective State \nEducation Boards. In case of shortfall in the number of applications, the scholarship slots \nshall be interoperable among categories (Gen, OBC, SC & ST), gender (Female, Male) \nand State Quota to maximize use of slots for fresh scholarships with effect from academic",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01587
+            },
+            {
+              "passage_id": "cf525ca294ba_P2_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01562
+            },
+            {
+              "passage_id": "cf525ca294ba_P4_C4",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 4,
+              "text": "re \nprocess. \ne. The demographic details provided in the OTR login, need to be same as that in the \nAadhaar and the 12th examination marks sheet. \nf. Any change in the demographic details like Name, Father’s Name, Date of Birth, \nContact Information need to be performed in the OTR login and the same need to \nbe authenticated through e-KYC and face authentication again.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.01538
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 5,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.14285714285714288
+        },
+        {
+          "question": "Family income limit kitni hai per year?",
+          "language": "Hinglish",
+          "answerable": true,
+          "reference_answers": [
+            "4.5 lakh rupees per year",
+            "4.5 lakh",
+            "₹4.5 lakh"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P1_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "income",
+          "answerability": "ANSWERABLE",
+          "answer": "Students with a gross parental/family income of up to Rs. 4.5 lakh per annum are eligible for the scholarship.",
+          "citations": [
+            "d03cd512b5b8_P2_C1"
+          ],
+          "latency_ms": 876.69,
+          "evidence": [
+            {
+              "passage_id": "d03cd512b5b8_P2_C1",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "ii. \nPursuing regular degree courses and not correspondence or distance mode or \npursuing Diploma courses; \niii. \nPursuing courses at colleges/institutions recognized by All India Council for \nTechnical Education and respective Regulatory Bodies concerned; \niv. \nNot availing benefit of any other scholarship schemes including State run \nscholarship schemes/ fee waiver & reimbursement scheme; \nv. \nStudents with gross parental/family income upto Rs. 4.5 lakh per annum are \neligible for scholarship under the scheme. Income certificate will be required only \nfor the fresh applicants; \nvi. \nStudent changing his/ her college/institute of study will be allowed to \ncontinue/renew the scholarship provided the course of study and the institution is \nhaving valid AISHE Code; The AISHE code can be checked in the portal \nhttps://aishe.gov.in/aishe/aisheCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03252
+            },
+            {
+              "passage_id": "cf525ca294ba_P2_C1",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "year 2022-23, subject to the condition that guidelines of Ministry of Finance and NITI \nAayog regarding SC/ST fund allocation of the schemes are adhered to. \n3. \nWhat is the rate of scholarship under the Scheme? \nThe rate of scholarship is Rs. 12,000/- per annum at Graduation level for first three years \nof College and University courses and Rs. 20,000/- per annum at Post-Graduation level. \nStudents pursuing technical courses are paid Rs. 20,000/- per annum in the 4th and 5th year. \nStudents pursing B.Tech/ BE would get scholarship for 4 years only i.e Rs. 12000 per \nannum for first three years and Rs. 20,000 per annum in the 4th year. \n \n4. \nHow a second/ third/ fourth year student gets scholarships? \nAll the students finally selected for scholarship in first year are eligible for renewal of \nscholarships in 2nd/ 3rd years subject to fulfilment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03202
+            },
+            {
+              "passage_id": "d03cd512b5b8_P3_C3",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "tion level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum for first three years of fresh/ \nrenewal scholarships with respect to academic year 2021-22, even if the actual release \nhappens in FY 2022-23. \n \n8. Payment of Scholarship \nStudents are required to have the bank accounts opened, especially, in their name for \navailing the benefits under the scheme. The scholarship will be disbursed directly into \nthe savings bank accounts of the beneficiaries through Direct Benefit Transfer (DBT)",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03102
+            },
+            {
+              "passage_id": "d03cd512b5b8_P1_C1",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 1,
+              "text": "PRADHAN MANTRI UCHCHATAR SHIKSHA PROTSAHAN (PM-USP) YOJANA \nGUIDELINES FOR THE COMPONENT SCHEME – \nCENTRAL SECTOR SCHEME OF SCHOLARSHIP FOR COLLEGE AND \nUNIVERSITY STUDENTS (PM-USP CSSS) \n \n(Applicable for academic year 2022-23 onwards) \n \n1. Objective \nTo provide financial assistance to meritorious students from poor families to meet a \npart of their day-to-day expenses while pursuing higher studies. \n \n2. Scope \nThe scholarships are awarded by Ministry of Education, Government of India on the \nbasis of results of Higher Secondary / Class XII Board Examination. A maximum of \n82,000 fresh scholarships per annum are provided for pursuing graduate / \npostgraduate degree in colleges and universities and for professional courses, such as \nMedical, Engineering etc. \n \n3. Allocation of Scholarship \nThe total number of scholarships are divided amongst the State Education Boards \nbased on the State’s population in the age group of 18-25 years, after segregating \nshare of CBSE and ICSE on the b",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03055
+            },
+            {
+              "passage_id": "cf525ca294ba_P3_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.02881
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 6,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.2962962962962963
+        },
+        {
+          "question": "Renewal ke liye minimum attendance kitni hai?",
+          "language": "Hinglish",
+          "answerable": true,
+          "reference_answers": [
+            "75 percent",
+            "75%"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "attendance",
+          "answerability": "ANSWERABLE",
+          "answer": "Renewal ke liye adequate attendance at least 75% honi chahiye.",
+          "citations": [
+            "d03cd512b5b8_P2_C2",
+            "cf525ca294ba_P2_C2"
+          ],
+          "latency_ms": 1226.78,
+          "evidence": [
+            {
+              "passage_id": "d03cd512b5b8_P2_C2",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03227
+            },
+            {
+              "passage_id": "cf525ca294ba_P2_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "filment of certain eligibility conditions. The \nstudents have to apply again in the same portal as renewal applicant and provide necessary \nmarksheets, etc. for this. The applicant should not receive scholarship from any other \ndepartment/ ministry. \n \n5. \nWhat is the duration of scholarships and criteria for renewal under the \nscheme? \nA student will be eligible for the scholarship for a total duration not exceeding 5 years. A \nscholarship under the scheme is renewable on year-to-year basis up to Post Graduate level \n(except for the students pursuing technical courses leading to degree at graduation level). \nStudent must secure at least 50% marks and maintain adequate attendance of at least 75%. \n \n6. \nWhat is the methodology for disbursement of scholarship under the Scheme? \nScholarship is disbursed through Direct Benefit Transfer (DBT) mode i.e. directly into the \nbank accounts of the beneficiary. The scholarship amount will be disbursed in the Aadhaar \nSeeded Bank Account. To have",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03175
+            },
+            {
+              "passage_id": "cf525ca294ba_P3_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03058
+            },
+            {
+              "passage_id": "cf525ca294ba_P7_C3",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 7,
+              "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03055
+            },
+            {
+              "passage_id": "d03cd512b5b8_P3_C2",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "Latest guideline on Timelines will be made available on NSP. \nvii. Students will not be permanently debarred for scholarships due to delay to renew \nor verification. However, students will have to submit renewal applications within \na cut-off date. Renewal for that year will not be allowed if an applicant misses this \ndeadline. \n \n7. Rate and Duration of Scholarship (from financial year 2022-23) \nThe rate of scholarship is Rs.12,000/-per annum at Graduation level for first three \nyears of College and University courses and Rs.20,000/-per annum at PostGraduation level. Students pursuing professional courses, in case, where the duration \nof course is five (5) years/Integrated course will get Rs. 20,000/-per annum in the \n4th and 5th year. However, students pursuing technical courses such as B.Tech, \nB.Engg. will get scholarship up to graduation level only i.e. Rs. 12,000 p.a. for 1st, \n2nd and 3rd year and Rs. 20,000 in the 4th year. \nNote: The rate of scholarship is Rs.10,000/-per annum",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03008
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 7,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.18181818181818182
+        },
+        {
+          "question": "Renewal ke liye minimum marks kitne hain?",
+          "language": "Hinglish",
+          "answerable": true,
+          "reference_answers": [
+            "50 percent",
+            "50%"
+          ],
+          "relevant_passage_ids": [
+            "cf525ca294ba_P2_C2"
+          ],
+          "collection_id": "folder-scholarship_dataset",
+          "family_id": "marks",
+          "answerability": "ANSWERABLE",
+          "answer": "Renewal ke liye Annual Examination mein kam se kam 50% marks aana zaroori hai.",
+          "citations": [
+            "d03cd512b5b8_P2_C2"
+          ],
+          "latency_ms": 876.38,
+          "evidence": [
+            {
+              "passage_id": "d03cd512b5b8_P2_C2",
+              "doc_id": "d03cd512b5b8",
+              "source": "Guidelines_DOHE_CSSS.pdf",
+              "page": 2,
+              "text": "eCode \nvii. \nStudents who missed to apply for renewal of application online on NSP will be \nallowed to apply for renewal of scholarship for subsequent year on NSP, if he/she \nfulfils eligibility condition for renewal; \nviii. \nFor renewal of scholarship in each year of study, besides getting at least 50% \nmarks in the Annual Examination, maintenance of adequate attendance of at least \n75%, will also be the criteria. Complaints against the student regarding any in \ndisciplined or criminal behaviour including any complaints of having indulged in \nragging, will lead to forfeiture of scholarship; \nix. \nBeneficiaries/ Applicants under the scheme must apply online in the National \nScholarships Portal (www.scholarships.gov.in) for the fresh/ renewal scholarships. \nFresh/Renewal applications sent directly to the Ministry of Education shall not be \naccepted. \n \n5. Reservation \nStudents belonging to reserved categories/weaker sections /minorities etc. are eligible \nto get benefit of reservation o",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03227
+            },
+            {
+              "passage_id": "cf525ca294ba_P3_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 3,
+              "text": "y for fresh \nscholarship. This list is given by the respective state education boards. Those who are not \ncovered in this list will not be able to avail the benefits of PM-USP CSSS scholarship \nscheme. \n \n(b) \nRENEWAL: Students who have received fresh scholarship in last four academic \nyears (e.g for AY 2025-26, beneficiaries of AY 2021-22, 2022-23, 2023-24 and 2024-25), \ncan apply on the National Scholarship Portal http://scholarships.gov.in/ for renewal before \nthe cut-off date. \nTo receive renewal scholarship, it is compulsory for the scheme beneficiaries to \napply on NSP. If missed out in an academic year, he/she can apply for renewal in \nsubsequent year subject to fulfilling other renewal eligibility criteria (For Example, \nStudent who missed to apply for the renewal in 2024-25 can apply for the Renewal 202526). Therefore, applicant has to ensure to apply for renewal on portal and to get his/her \napplication verified by the Institute and State Nodal officer, before closure of the",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03078
+            },
+            {
+              "passage_id": "cf525ca294ba_P4_C2",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 4,
+              "text": "or \nCollege and University Students”. After this, upload the mandatory documents and submit \nthe application form. \n15. What are the precautions to be kept in mind at the time of online application \nregistration? \na. While filling the application, student is required to ensure that the name of self, \nname of father and Roll No., should exactly match as it has been mentioned in the \nRoll Card/Mark sheet, so that the data gets captured and the scheme is visible on \nthe National Scholarship Portal. \nNote:- in case of name mismatch in 12th examination marks sheet and \nAadhaar card, students are advised to get the name in Aadhaar same as in \nhis/her mark sheet. \n(For example:- Father’s Name as per mark sheet- Shri Mahendra Pratap Singh and \nfather’s name as per AADHAAR is M.P. Singh – Scheme will not be visible) \n \nb. Have a valid personal email ID and mobile no. which should be kept active till \nthe completion of Scholarship disbursement Process. It is advisable not to \nchange the mobile n",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03077
+            },
+            {
+              "passage_id": "cf525ca294ba_P4_C4",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 4,
+              "text": "re \nprocess. \ne. The demographic details provided in the OTR login, need to be same as that in the \nAadhaar and the 12th examination marks sheet. \nf. Any change in the demographic details like Name, Father’s Name, Date of Birth, \nContact Information need to be performed in the OTR login and the same need to \nbe authenticated through e-KYC and face authentication again.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03037
+            },
+            {
+              "passage_id": "cf525ca294ba_P7_C3",
+              "doc_id": "cf525ca294ba",
+              "source": "FAQ_DOHE_CSSS.pdf",
+              "page": 7,
+              "text": "dhaar? \nYes, minor applicants can apply with their Parent’s Aadhaar but the applicant must submit \ntheir Aadhaar on attaining the age of 18 years. \n32. \n What is the difference between ‘Defective’ and ‘Rejected’ applications on NSP? \nDefective: There are errors you can correct and resubmit. \nRejected: Your application is permanently disqualified due to non-fulfillment of eligibility \nor incorrect data. \n33. \n What happens if I miss the renewal deadline? \nYou can apply for renewal in the following year, subject to eligibility criteria. \n34. \n Is there any fee to apply for this scholarship? \nNo, application on the National Scholarship Portal is completely free of cost.",
+              "collection_id": "folder-scholarship_dataset",
+              "collection_name": "Scholarship_Dataset",
+              "score": 0.03008
+            }
+          ],
+          "citation_valid": true,
+          "status": "ok",
+          "question_index": 8,
+          "pipeline": "rag",
+          "exact_match": 0.0,
+          "token_f1": 0.13333333333333333
+        }
+      ]
+    }
+  },
+  "matched_successful": {
+    "n": 9,
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "pipelines": {
+      "direct": {
+        "n": 9,
+        "completed": 9,
+        "generation_failures": 0,
+        "api_failure_rate": 0.0,
+        "exact_match": 0.0,
+        "token_f1": 0.0,
+        "mean_latency_ms": 879.53,
+        "citation_validity_rate": null,
+        "citation_evaluable": 0,
+        "answerability": {
+          "accuracy": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 9,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 9
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      },
+      "rag": {
+        "n": 9,
+        "completed": 9,
+        "generation_failures": 0,
+        "api_failure_rate": 0.0,
+        "exact_match": 0.0,
+        "token_f1": 0.24995018798204924,
+        "mean_latency_ms": 958.17,
+        "citation_validity_rate": 1.0,
+        "citation_evaluable": 9,
+        "answerability": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 9,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 9,
+              "pred_unanswerable": 0
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -27,6 +27,6 @@ def test_generation_failure_not_abstention():
 
 
 def test_budget_prevents_request(tmp_path):
-    state = {'request_count': 24, 'records': {}}
+    state = {'request_count': 60, 'records': {}}
     run([{'question': 'q'}], state, tmp_path / 'r.json', lambda *a: 1 / 0)
     assert state['stop_reason'] == 'request budget exhausted'
