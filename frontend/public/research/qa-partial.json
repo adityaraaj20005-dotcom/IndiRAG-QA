@@ -1,0 +1,420 @@
+{
+  "dataset_sha256": "e7dc56277ac6674223373597b571539fa77c785dcbc7c82c7bf136ff360e1d28",
+  "request_count": 19,
+  "experiment": "fresh corrected direct vs hybrid RAG",
+  "records": {
+    "0:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "0:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "1:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "1:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "2:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "2:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "3:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "3:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "4:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "4:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "5:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "5:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "6:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "6:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "7:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "7:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "8:direct": {
+      "status": "ok",
+      "pipeline": "direct"
+    },
+    "8:rag": {
+      "status": "ok",
+      "pipeline": "rag"
+    },
+    "9:direct": {
+      "status": "error",
+      "pipeline": "direct"
+    }
+  },
+  "stop_reason": "circuit breaker: HTTP 429",
+  "pipelines": {
+    "direct": {
+      "aggregate": {
+        "n": 10,
+        "completed": 9,
+        "generation_failures": 1,
+        "api_failure_rate": 0.1,
+        "exact_match": 0.0,
+        "token_f1": 0.0,
+        "mean_latency_ms": 879.53,
+        "citation_validity_rate": null,
+        "citation_evaluable": 0,
+        "answerability": {
+          "accuracy": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 9,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 9
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      },
+      "language_wise": {
+        "English": {
+          "n": 4,
+          "completed": 3,
+          "generation_failures": 1,
+          "api_failure_rate": 0.25,
+          "exact_match": 0.0,
+          "token_f1": 0.0,
+          "mean_latency_ms": 960.8166666666667,
+          "citation_validity_rate": null,
+          "citation_evaluable": 0,
+          "answerability": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positives": 0,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 3
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hindi": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.0,
+          "mean_latency_ms": 811.1633333333333,
+          "citation_validity_rate": null,
+          "citation_evaluable": 0,
+          "answerability": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positives": 0,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 3
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hinglish": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.0,
+          "mean_latency_ms": 866.61,
+          "citation_validity_rate": null,
+          "citation_evaluable": 0,
+          "answerability": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positives": 0,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 3
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "rag": {
+      "aggregate": {
+        "n": 9,
+        "completed": 9,
+        "generation_failures": 0,
+        "api_failure_rate": 0.0,
+        "exact_match": 0.0,
+        "token_f1": 0.24995018798204924,
+        "mean_latency_ms": 958.17,
+        "citation_validity_rate": 1.0,
+        "citation_evaluable": 9,
+        "answerability": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 9,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 9,
+              "pred_unanswerable": 0
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      },
+      "language_wise": {
+        "English": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.3128654970760234,
+          "mean_latency_ms": 1075.1633333333334,
+          "citation_validity_rate": 1.0,
+          "citation_evaluable": 3,
+          "answerability": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "true_positives": 3,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 3,
+                "pred_unanswerable": 0
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hindi": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.23316912972085388,
+          "mean_latency_ms": 806.0633333333333,
+          "citation_validity_rate": 1.0,
+          "citation_evaluable": 3,
+          "answerability": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "true_positives": 3,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 3,
+                "pred_unanswerable": 0
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        },
+        "Hinglish": {
+          "n": 3,
+          "completed": 3,
+          "generation_failures": 0,
+          "api_failure_rate": 0.0,
+          "exact_match": 0.0,
+          "token_f1": 0.2038159371492705,
+          "mean_latency_ms": 993.2833333333333,
+          "citation_validity_rate": 1.0,
+          "citation_evaluable": 3,
+          "answerability": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "true_positives": 3,
+            "true_negatives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "confusion_matrix": {
+              "actual_answerable": {
+                "pred_answerable": 3,
+                "pred_unanswerable": 0
+              },
+              "actual_unanswerable": {
+                "pred_answerable": 0,
+                "pred_unanswerable": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "matched_successful": {
+    "n": 9,
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "pipelines": {
+      "direct": {
+        "n": 9,
+        "completed": 9,
+        "generation_failures": 0,
+        "api_failure_rate": 0.0,
+        "exact_match": 0.0,
+        "token_f1": 0.0,
+        "mean_latency_ms": 879.53,
+        "citation_validity_rate": null,
+        "citation_evaluable": 0,
+        "answerability": {
+          "accuracy": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 9,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 9
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      },
+      "rag": {
+        "n": 9,
+        "completed": 9,
+        "generation_failures": 0,
+        "api_failure_rate": 0.0,
+        "exact_match": 0.0,
+        "token_f1": 0.24995018798204924,
+        "mean_latency_ms": 958.17,
+        "citation_validity_rate": 1.0,
+        "citation_evaluable": 9,
+        "answerability": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 9,
+          "true_negatives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "confusion_matrix": {
+            "actual_answerable": {
+              "pred_answerable": 9,
+              "pred_unanswerable": 0
+            },
+            "actual_unanswerable": {
+              "pred_answerable": 0,
+              "pred_unanswerable": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

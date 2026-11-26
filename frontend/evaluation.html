@@ -180,6 +180,8 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 <span>Export Results</span>
 </button>
 <label class="cursor-pointer px-gutter-md py-2.5 rounded-full border border-black bg-surface-white font-label text-label-lg">Load saved results<input accept=".json" class="sr-only" id="saved-results-input" type="file"/></label>
+<button class="px-gutter-md py-2.5 rounded-full border border-black bg-surface-white font-label text-label-lg" id="demo-retrieval" type="button">View saved retrieval</button>
+<button class="px-gutter-md py-2.5 rounded-full border border-black bg-surface-white font-label text-label-lg" id="demo-qa" type="button">View partial QA pilot</button>
 </div>
 <label class="inline-flex items-center gap-2 font-mono text-label-sm text-text-muted"><input id="confirm-qa-generation" type="checkbox"/> I understand this runs live Gemini calls</label>
 </header>
@@ -296,7 +298,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 <th class="py-2">Pipeline</th>
 <th class="py-2">Exact Match</th>
 <th class="py-2">Token F1</th>
-<th class="py-2">Hallucination Rate</th>
+<th class="py-2">Support review</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-border font-mono text-mono-md tabular-nums">

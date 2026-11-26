@@ -13,7 +13,7 @@ This Bennett University CSET 346 project uses a Vite interface and FastAPI backe
 3. Ask “What is the minimum attendance for renewal?”, “नवीनीकरण के लिए न्यूनतम अंक कितने हैं?”, and “Family income limit kitni hai per year?” Inspect evidence (two minutes).
 4. Ask “What is the applicant's favourite planet?” and explain that model abstention is not guaranteed (one minute).
 5. Compare BM25, TF-IDF, Dense and Hybrid in Retrieval Lab (two minutes).
-6. Load the saved retrieval results and corrected QA result JSON separately in Evaluation (two minutes).
+6. In Evaluation select “View saved retrieval” and “View partial QA pilot” (two minutes). These are saved aggregate results, not live model predictions. Exported summaries exclude raw evidence and predictions; the full local research JSON retains per-question traces.
 
 The historical retrieval pilot reports Hybrid Recall@5 0.9583 and MRR@5 0.7694. The corrected QA run stopped at HTTP 429 after nine matched answerable pairs. RAG token F1 was 0.250 and citation IDs were valid in 9/9; Direct token F1 was 0. These are incomplete pilot observations, not evidence of general superiority. Citation-ID validity does not establish entailment.
 

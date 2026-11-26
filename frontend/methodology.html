@@ -202,7 +202,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 <article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
 <span class="font-headline text-display-lg text-primary tabular-nums">01</span>
 <h3 class="font-headline text-title-lg">Document processing</h3>
-<p class="font-body text-body-sm text-text-muted">Ingests single PDFs or nested collections with deterministic document IDs, folder metadata, and deduplication.</p>
+<p class="font-body text-body-sm text-text-muted">Ingests PDFs into collections with generated document IDs and folder metadata.</p>
 </article>
 <article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
 <span class="font-headline text-display-lg text-on-surface tabular-nums">02</span>
@@ -222,7 +222,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 <article class="p-gutter-xl border-r border-b border-border bg-primary text-on-primary flex flex-col gap-gutter-sm">
 <span class="font-headline text-display-lg text-on-primary tabular-nums">05</span>
 <h3 class="font-headline text-title-lg">Hybrid retrieval using Reciprocal Rank Fusion</h3>
-<p class="font-body text-body-sm text-on-primary/90">Fuses BM25, TF-IDF, and dense rankings using RRF (<code class="font-mono">1 / (k + rank)</code>) without fragile raw-score normalization.</p>
+<p class="font-body text-body-sm text-on-primary/90">Fuses BM25 and dense rankings using RRF (<code class="font-mono">1 / (k + rank)</code>) without raw-score normalization. TF-IDF is evaluated separately.</p>
 </article>
 <article class="p-gutter-xl border-r border-b border-border flex flex-col gap-gutter-sm">
 <span class="font-headline text-display-lg text-on-surface tabular-nums">06</span>

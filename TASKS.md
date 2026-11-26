@@ -25,3 +25,11 @@
 - [x] Add saved-result loading and a comparison display; add six source-checked candidates.
 - [ ] Complete pilot after quota recovers; assess unsupported answers and unanswerable cases.
 - [ ] Complete dashboard progress/visual QA, broader candidate set, independent review, and deployment security validation.
+
+## Current validation
+
+- [x] Run a retrieval-only evaluation over 15 source-checked answerable variants and save per-question Hybrid rankings.
+- [x] Open all seven pages and verify built-in saved-result display in a browser without Gemini calls.
+- [ ] Complete browser upload, folder, export download, authentication, and responsive interaction testing.
+- [ ] Obtain diverse source documents and independently review a larger benchmark; complete 15 distinct difficult-case analyses.
+- [ ] Configure and test an HTTPS same-origin API proxy and persistent production volume before deployment.

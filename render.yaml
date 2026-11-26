@@ -5,6 +5,16 @@ services:
     buildCommand: pip install -r backend/requirements.txt
     startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
+      - key: INDIRAG_PRODUCTION
+        value: "true"
+      - key: INDIRAG_AUTH_ENABLED
+        value: "true"
+      - key: INDIRAG_TEAM_PASSWORD
+        sync: false
+      - key: INDIRAG_SESSION_SECRET
+        sync: false
+      - key: INDIRAG_DATA_DIR
+        sync: false
       - key: GEMINI_API_KEY
         sync: false
       - key: GEMINI_MODEL

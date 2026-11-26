@@ -23,3 +23,15 @@ def test_health_and_empty_collection():
     assert client.get('/api/health').status_code == 200
     response = client.post('/api/query', json={'question': 'test', 'collection_id': 'does-not-exist', 'generate_answer': False})
     assert response.status_code == 409
+
+
+def test_rejects_untrusted_origin_and_limits_login(monkeypatch):
+    monkeypatch.setattr(main, 'AUTH_ENABLED', True)
+    monkeypatch.setattr(main, 'TEAM_PASSWORD', 'test-password-long-enough')
+    main.request_times.clear()
+    client = TestClient(main.app)
+    assert client.post('/api/login', headers={'Origin': 'https://untrusted.example'}, json={'password': 'wrong'}).status_code == 403
+    for _ in range(5):
+        assert client.post('/api/login', json={'password': 'wrong'}).status_code == 401
+    assert client.post('/api/login', json={'password': 'wrong'}).status_code == 429
+    main.request_times.clear()

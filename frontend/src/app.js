@@ -1,4 +1,4 @@
-const BASE=(import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000').replace(/\/+$/,'');
+const BASE=(import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? 'http://127.0.0.1:8000' : '')).replace(/\/+$/,'');
 const $=id=>document.getElementById(id);
 const show=(id,on)=>$(id)?.classList.toggle('hidden',!on);
 const text=(id,value)=>{if($(id))$(id).textContent=value;};
@@ -53,22 +53,24 @@ if($('run-eval-btn')){
 }
 
 if($('saved-results-input')){
- $('saved-results-input').onchange=async e=>{
+ async function showSaved(file){
   try{
-   const file=e.target.files[0];if(!file)return;const data=JSON.parse(await file.text());const panel=$('eval-results');panel.replaceChildren(el('h2','Saved experiment · '+file.name,'font-headline text-title-lg mb-4'));document.querySelectorAll('main section').forEach(section=>section.hidden=true);
+   if(!file)return;const data=JSON.parse(await file.text());const panel=$('eval-results');panel.replaceChildren(el('h2','Saved experiment · '+file.name,'font-headline text-title-lg mb-4'));document.querySelectorAll('main section').forEach(section=>section.hidden=true);
    const pct=v=>v==null?'—':(100*v).toFixed(1)+'%';
    if(data.pipelines){
     const names=['direct','rag'];const table=el('table','','w-full text-left border-collapse');const head=el('tr');['Pipeline','Coverage','EM','Token F1','Answerability accuracy','Answerability F1','Latency (ms)','Citation validity','Failure rate'].forEach(x=>head.append(el('th',x,'p-2 border-b border-black text-label-sm')));table.append(head);
     for(const name of names){const a=data.pipelines[name]?.aggregate;if(!a)continue;const tr=el('tr');[name==='rag'?'Hybrid RAG':'Direct Gemini',`${a.completed}/${a.n}`,pct(a.exact_match),pct(a.token_f1),pct(a.answerability?.accuracy),pct(a.answerability?.f1),a.mean_latency_ms?.toFixed(0)??'—',pct(a.citation_validity_rate),pct(a.api_failure_rate??(a.n?a.generation_failures/a.n:null))].forEach(v=>tr.append(el('td',String(v),'p-2 border-b border-border text-body-sm')));table.append(tr);}
     panel.append(table,el('p',`Progress: ${Object.values(data.records||{}).filter(r=>r.status==='ok').length} successful predictions. Status: ${data.stop_reason||'saved result'}. Matched pairs: ${data.matched_successful?.n??'unavailable'}. Dataset SHA-256: ${data.dataset_sha256||'not recorded'}.`,'text-body-sm mt-4'));
     const chart=el('div','','mt-4 grid gap-2');for(const name of names){const a=data.pipelines[name]?.aggregate;if(!a)continue;const label=el('p',`${name.toUpperCase()} · token F1 ${pct(a.token_f1)}`,'font-mono text-label-sm');const track=el('div','','w-full bg-surface border border-border h-5');const bar=el('div','','h-full '+(name==='rag'?'bg-primary':'bg-black'));bar.style.width=`${Math.max(0,Math.min(100,(a.token_f1||0)*100))}%`;track.append(bar);chart.append(label,track);}panel.append(chart);
-    for(const name of names){const p=data.pipelines[name];if(!p)continue;panel.append(el('h3',`${name.toUpperCase()} · language and confusion matrix`,'font-headline text-title-md mt-4'));const pre=el('pre',JSON.stringify({language_wise:p.language_wise,confusion_matrix:p.aggregate?.answerability?.confusion_matrix},null,2),'text-body-sm whitespace-pre-wrap');panel.append(pre);}
+    for(const name of names){const p=data.pipelines[name];if(!p)continue;panel.append(el('h3',`${name.toUpperCase()} · language performance`,'font-headline text-title-md mt-4'));const langTable=el('table','','w-full text-left text-body-sm');const header=el('tr');['Language','Completed','EM','Token F1','Answerability'].forEach(x=>header.append(el('th',x,'p-2 border-b border-black')));langTable.append(header);for(const [lang,a] of Object.entries(p.language_wise||{})){const tr=el('tr');[lang,`${a.completed}/${a.n}`,pct(a.exact_match),pct(a.token_f1),pct(a.answerability?.accuracy)].forEach(v=>tr.append(el('td',String(v),'p-2 border-b border-border')));langTable.append(tr);}panel.append(langTable);const cm=p.aggregate?.answerability?.confusion_matrix;if(cm){const grid=el('table','','mt-4 text-body-sm border-collapse');for(const values of [['Actual / Predicted','Answerable','Unanswerable'],['Answerable',cm.actual_answerable.pred_answerable,cm.actual_answerable.pred_unanswerable],['Unanswerable',cm.actual_unanswerable.pred_answerable,cm.actual_unanswerable.pred_unanswerable]]){const tr=el('tr');values.forEach(v=>tr.append(el('td',String(v),'border border-border p-2')));grid.append(tr);}panel.append(el('h4','Answerability confusion matrix','font-headline text-title-md mt-4'),grid);}}
    } else if(Array.isArray(data.results)){
     const table=el('table','','w-full text-left');const head=el('tr');['Method','Language','N','Recall@5','Precision@5','Hit Rate@5','MRR@5'].forEach(v=>head.append(el('th',v,'p-2 border-b border-black')));table.append(head);data.results.forEach(r=>{const tr=el('tr');[r.method,r.language,r.n,pct(r.recall),pct(r.precision),pct(r.hit_rate),pct(r.mrr_at_k)].forEach(v=>tr.append(el('td',String(v),'p-2 border-b border-border')));table.append(tr);});panel.append(table);const chart=el('div','','grid gap-2 mt-4');for(const row of data.results.filter(r=>r.language==='all')){chart.append(el('p',`${row.method} · Recall@${row.k} ${pct(row.recall)}`,'font-mono text-label-sm'));const track=el('div','','h-5 bg-surface border border-border');const bar=el('div','','h-full '+(row.method==='Hybrid'?'bg-primary':'bg-black'));bar.style.width=`${Math.max(0,Math.min(100,100*row.recall))}%`;track.append(bar);chart.append(track);}panel.append(chart);
    } else throw Error('Unsupported result format.');
    const download=el('button','Export loaded results','mt-4 px-4 py-2 bg-primary rounded-full');download.onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=el('a');a.href=u;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);};panel.append(download);text('eval-status-banner',`Loaded ${file.name}. Results are read from the selected file; no model calls were made.`);
-  }catch(err){text('eval-status-banner','Could not load results: '+err.message);}finally{e.target.value='';}
- };
+  }catch(err){text('eval-status-banner','Could not load results: '+err.message);}
+ }
+ $('saved-results-input').onchange=async e=>{await showSaved(e.target.files[0]);e.target.value='';};
+ for(const [id,url] of [['demo-retrieval','/research/retrieval.json'],['demo-qa','/research/qa-partial.json']]) $(id).onclick=async()=>{try{const response=await fetch(url);if(!response.ok)throw Error('Saved demo results unavailable.');const blob=await response.blob();await showSaved(new File([blob],url.split('/').pop(),{type:'application/json'}));}catch(err){text('eval-status-banner',err.message);}};
 }
 
 // QA datasets add reference answers and answerability labels. This handler supersedes
