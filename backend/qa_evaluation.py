@@ -76,6 +76,7 @@ def summarize(predictions: list[dict[str, Any]]) -> dict[str, Any]:
     citation_valid = [p for p in cited if p.get("citation_valid") is not None]
     return {
         "n": len(predictions), "completed": len(completed), "generation_failures": len(failures),
+        "api_failure_rate": len(failures) / len(predictions) if predictions else None,
         "exact_match": mean([p["exact_match"] for p in answerable]) if answerable else None,
         "token_f1": mean([p["token_f1"] for p in answerable]) if answerable else None,
         "mean_latency_ms": mean([p["latency_ms"] for p in completed]) if completed else None,

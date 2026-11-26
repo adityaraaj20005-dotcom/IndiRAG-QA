@@ -11,3 +11,9 @@
 - [ ] Run a user-approved, quota-aware QA smoke experiment, then a full experiment.
 - [ ] Write difficult-case analysis from actual saved prediction traces (minimum 15 cases).
 - [ ] Add authentication/shared-access controls before public document upload deployment.
+
+## Current continuation
+
+- [x] Preserve a source-checked 12-question pilot and resumable, budget-limited experiment ledger.
+- [ ] Complete paired smoke predictions after the request budget issue is resolved.
+- [ ] Complete dashboard, independent annotation, case analysis and deployment security.
