@@ -11,7 +11,7 @@ from typing import Any, Callable
 def normalize(text: str | None) -> str:
     """Normalize English, Devanagari and Romanized Hindi safely for EM."""
     text = unicodedata.normalize("NFC", text or "").casefold()
-    return " ".join(re.findall(r"[^\W_]+", text, flags=re.UNICODE))
+    return " ".join("".join(c if unicodedata.category(c)[0] in "LMN" else " " for c in text).split())
 
 
 def tokens(text: str | None) -> list[str]:

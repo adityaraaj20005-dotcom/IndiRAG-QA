@@ -4,6 +4,7 @@ from backend.qa_evaluation import exact_match, run_pipeline, token_f1
 def test_unicode_normalization_and_multiple_references():
     assert exact_match("  ₹ 2,50,000 ", ["Rs 250000", "₹ 2,50,000"]) == 1
     assert exact_match("नहीं", ["हाँ", "नहीं"]) == 1
+    assert token_f1("छात्रवृत्ति के लिए", ["छात्रवृत्ति के लिए"]) == 1
     assert token_f1("minimum attendance 75 percent", ["75 percent minimum attendance"]) == 1
 
 
