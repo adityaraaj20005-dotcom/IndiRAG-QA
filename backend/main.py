@@ -1,5 +1,8 @@
 import json
 import os
+import hmac
+import time
+from collections import defaultdict, deque
 import re
 import uuid
 from datetime import datetime, timezone
@@ -14,15 +17,17 @@ from evaluation import evaluate
 from qa_evaluation import run_pipeline
 from direct_llm import generate_direct, generate_with_evidence
 import pymupdf as fitz  # PyMuPDF
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile, Request
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware
+from starlette.responses import JSONResponse
 from pydantic import BaseModel, Field
 from rank_bm25 import BM25Okapi
 # --------------------------------------------------
 # Paths and application configuration
 # --------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = PROJECT_ROOT / "data"
+DATA_DIR = Path(os.getenv("INDIRAG_DATA_DIR") or str(PROJECT_ROOT / "data")).resolve()
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 PASSAGES_FILE = PROCESSED_DIR / "passages.jsonl"
@@ -43,13 +48,59 @@ app = FastAPI(
     ),
     version="0.1.0",
 )
+AUTH_ENABLED = os.getenv('INDIRAG_AUTH_ENABLED', 'false').lower() == 'true'
+TEAM_PASSWORD = os.getenv('INDIRAG_TEAM_PASSWORD', '')
+SESSION_SECRET = os.getenv('INDIRAG_SESSION_SECRET', '')
+PRODUCTION = os.getenv('INDIRAG_PRODUCTION', 'false').lower() == 'true'
+if (PRODUCTION and not AUTH_ENABLED) or (AUTH_ENABLED and (len(TEAM_PASSWORD) < 16 or len(SESSION_SECRET) < 32)):
+    raise RuntimeError('Authentication requires a team password of at least 16 characters and a session secret of at least 32 characters; production requires authentication.')
+ORIGINS = [origin.strip() for origin in os.getenv('ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173').split(',') if origin.strip()]
+if PRODUCTION and (not ORIGINS or '*' in ORIGINS or any(not x.startswith('https://') for x in ORIGINS)):
+    raise RuntimeError('Production CORS requires explicit HTTPS origins.')
+request_times = defaultdict(deque)
+
+@app.middleware('http')
+async def access_control(request: Request, call_next):
+    path = request.url.path
+    if path.startswith('/api/') and request.method != 'OPTIONS':
+        origin = request.headers.get('origin')
+        if origin and origin not in ORIGINS:
+            return JSONResponse({'detail': 'Origin not allowed.'}, status_code=403)
+        if AUTH_ENABLED and path not in ('/api/health', '/api/login') and not request.session.get('authenticated'):
+            return JSONResponse({'detail': 'Login required.'}, status_code=401)
+        if path in ('/api/login', '/api/query', '/api/evaluation/qa'):
+            key = (request.client.host if request.client else 'unknown', path)
+            now = time.monotonic(); q = request_times[key]
+            while q and q[0] < now - 60: q.popleft()
+            if len(q) >= (5 if path == '/api/login' else 20):
+                return JSONResponse({'detail': 'Rate limit exceeded.'}, status_code=429)
+            q.append(now)
+    return await call_next(request)
+
+app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET or 'local-development-only', https_only=PRODUCTION, same_site='none' if PRODUCTION else 'lax', max_age=28800)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[origin.strip() for origin in os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if origin.strip()],
-    allow_credentials=False,
+    allow_origins=ORIGINS,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+class LoginRequest(BaseModel):
+    password: str = Field(max_length=256)
+
+@app.post('/api/login')
+def login(request: Request, credentials: LoginRequest):
+    if not AUTH_ENABLED or not hmac.compare_digest(credentials.password, TEAM_PASSWORD):
+        raise HTTPException(status_code=401, detail='Invalid credentials.')
+    request.session.clear()
+    request.session['authenticated'] = True
+    return {'status': 'authenticated'}
+
+@app.post('/api/logout')
+def logout(request: Request):
+    request.session.clear()
+    return {'status': 'signed out'}
 # --------------------------------------------------
 # In-memory search index + persistent JSON storage
 # --------------------------------------------------
@@ -252,7 +303,7 @@ async def upload_document(
             status_code=415,
             detail="Only PDF documents are supported.",
         )
-    content = await file.read()
+    content = await file.read(MAX_FILE_SIZE + 1)
     if not content:
         raise HTTPException(
             status_code=400,
