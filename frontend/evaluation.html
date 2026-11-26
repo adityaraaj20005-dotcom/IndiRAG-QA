@@ -179,6 +179,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 <button class="inline-flex items-center gap-gutter-xs px-gutter-md py-2.5 rounded-full border border-border bg-surface-white text-text-muted font-label text-label-lg hover:border-black hover:text-on-surface transition-colors duration-state-change" disabled="" id="export-eval-btn" type="button">
 <span>Export Results</span>
 </button>
+<label class="cursor-pointer px-gutter-md py-2.5 rounded-full border border-black bg-surface-white font-label text-label-lg">Load saved results<input accept=".json" class="sr-only" id="saved-results-input" type="file"/></label>
 </div>
 <label class="inline-flex items-center gap-2 font-mono text-label-sm text-text-muted"><input id="confirm-qa-generation" type="checkbox"/> I understand this runs live Gemini calls</label>
 </header>

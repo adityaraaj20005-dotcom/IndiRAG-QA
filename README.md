@@ -27,3 +27,5 @@ Open `http://127.0.0.1:5173`. API documentation is at `http://127.0.0.1:8000/doc
 ## Evaluation
 
 The included pilot benchmark is retrieval-only. QA metrics require manually verified answers and gold passage IDs using `research/datasets/qa_annotation_template.json`. The UI and `/api/evaluation/qa` require explicit confirmation before live Gemini evaluation. See `research/METRICS.md`, `research/EXPERIMENTS.md`, and `DEPLOYMENT.md`.
+
+The 12-question QA pilot is source-checked but not independently human-reviewed. The corrected live run stopped at HTTP 429 with nine paired results; load `research/results/qa_smoke_corrected.json` using Evaluation → Load saved results without calling Gemini. Six additional candidates are separate and have not been model-evaluated.

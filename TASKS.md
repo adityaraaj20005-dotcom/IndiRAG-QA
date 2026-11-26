@@ -17,3 +17,11 @@
 - [x] Preserve a source-checked 12-question pilot and resumable, budget-limited experiment ledger.
 - [ ] Complete paired smoke predictions after the request budget issue is resolved.
 - [ ] Complete dashboard, independent annotation, case analysis and deployment security.
+
+## Showcase continuation
+
+- [x] Correct Direct prompt and save a fresh bounded experiment with matched-pair metrics.
+- [x] Add team-session access foundation, persistent data path, and basic per-process request limits.
+- [x] Add saved-result loading and a comparison display; add six source-checked candidates.
+- [ ] Complete pilot after quota recovers; assess unsupported answers and unanswerable cases.
+- [ ] Complete dashboard progress/visual QA, broader candidate set, independent review, and deployment security validation.
